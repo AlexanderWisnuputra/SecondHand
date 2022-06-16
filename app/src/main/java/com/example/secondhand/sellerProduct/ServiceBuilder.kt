@@ -3,26 +3,29 @@ package com.example.secondhand.sellerProduct
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.TimeUnit
 
 object ServiceBuilder {
     private const val URL ="https://market-final-project.herokuapp.com/api-docs/"
-    //CREATE HTTP CLIENT
-    private val okHttp =OkHttpClient.Builder()
+    private var retrofit: Retrofit? = null
+    private val okHttp =OkHttpClient.Builder().apply {
+        connectTimeout(30, TimeUnit.SECONDS)
+        readTimeout(30, TimeUnit.SECONDS)
+        writeTimeout(30, TimeUnit.SECONDS)
+    }.build()
 
-    //retrofit builder
-    private val builder =Retrofit.Builder().baseUrl(URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(okHttp.build())
-
-    //create retrofit Instance
-    private val retrofit = builder.build()
-
-    //we will use this class to create an anonymous inner class function that
-    //implements Country service Interface
-
-
-    fun <T> buildService (serviceType :Class<T>):T{
-        return retrofit.create(serviceType)
+    private fun getClient() : Retrofit{
+        if (retrofit == null){
+            retrofit = Retrofit.Builder().apply {
+                client(okHttp)
+                baseUrl(URL)
+                addConverterFactory(GsonConverterFactory.create())
+            }.build()
+            return retrofit!!
+        }
+        return retrofit!!
     }
+    //retrofit builder
+  fun instance() = getClient().create(SellerProductList::class.java)
 
 }

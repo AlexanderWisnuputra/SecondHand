@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.secondhand.R
 
-class List : Fragment() {
+class SellList : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
