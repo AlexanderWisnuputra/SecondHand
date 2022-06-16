@@ -7,18 +7,25 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.secondhand.R
+import com.example.secondhand.databinding.FragmentRegisterBinding
 
 class Register : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+    private lateinit var binding: FragmentRegisterBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_register, container, false)
+        val registerBinding = FragmentRegisterBinding.inflate(inflater, container, false)
+        binding = registerBinding
+        return registerBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            tvtoLogin.setOnClickListener { toLogin() }
+        }
     }
 
     private fun toLogin(){

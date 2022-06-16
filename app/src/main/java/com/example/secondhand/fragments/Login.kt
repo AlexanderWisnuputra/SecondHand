@@ -12,15 +12,20 @@ import com.example.secondhand.databinding.FragmentLoginBinding
 class Login : Fragment() {
     private lateinit var binding: FragmentLoginBinding
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_login, container, false)
+        val loginBinding = FragmentLoginBinding.inflate(inflater, container, false)
+        binding = loginBinding
+        return loginBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.apply {
+            tvtoReg.setOnClickListener { toRegister() }
+        }
     }
 
     private fun toRegister(){
