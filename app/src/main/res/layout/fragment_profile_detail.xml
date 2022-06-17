@@ -55,6 +55,7 @@
         android:textColor="@color/black"
         android:textSize="18sp" />
 
+
     <TextView
         android:id="@+id/textSettingAcc"
         android:layout_width="wrap_content"
