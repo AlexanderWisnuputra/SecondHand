@@ -5,17 +5,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.secondhand.R
+import com.example.secondhand.dao.UserViewModel
 import com.example.secondhand.databinding.FragmentRegisterBinding
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class Register : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
 
+    private val viewModel: UserViewModel by viewModel()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val registerBinding = FragmentRegisterBinding.inflate(inflater, container, false)
         binding = registerBinding
         return registerBinding.root
@@ -24,11 +32,46 @@ class Register : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            tvtoLogin.setOnClickListener { toLogin() }
+            btnDaftar.setOnClickListener { toLogin() }
+            tvtoLogin.setOnClickListener { findNavController().navigate(R.id.action_register_to_login) }
         }
     }
 
     private fun toLogin(){
-        findNavController().navigate(R.id.action_register_to_login)
+        if (blankInputCheck()) {
+            if (confirmPass()) {
+                lifecycleScope.launch(Dispatchers.IO) {
+                    viewModel.userProfile(
+                        binding.namaReg.text.toString(),
+                        binding.emailReg.text.toString(),
+                        binding.passReg.text.toString(),
+                        "",
+                        0,
+                        ""
+                    )
+                }
+                findNavController().navigate(R.id.action_register_to_login)
+                Toast.makeText(requireContext(),"Akun berhasil dibuat", Toast.LENGTH_LONG).show()
+            }
+            else {
+                Toast.makeText(requireContext(),"Password tidak sesuai", Toast.LENGTH_LONG).show()
+            }
+        }
+        else {
+            Toast.makeText(requireContext(), "Data masih kosong!", Toast.LENGTH_LONG).show()
+        }
+    }
+
+    private fun blankInputCheck(): Boolean {
+        return viewModel.isInputEmpty(
+            binding.namaReg.text.toString(),
+            binding.emailReg.text.toString(),
+            binding.passReg.text.toString(),
+            binding.confPassReg.toString()
+        )
+    }
+
+    private fun confirmPass(): Boolean{
+        return binding.passReg.text.toString() == binding.confPassReg.text.toString()
     }
 }
