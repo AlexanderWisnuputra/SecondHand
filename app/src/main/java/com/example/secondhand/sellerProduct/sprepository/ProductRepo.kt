@@ -15,7 +15,6 @@ class ProductRepo {
                 println(t.message)
                 completion(null, Error(t.message))
             }
-
             override fun onResponse(
                 call: Call<List<SellerProductItem>>,
                 response: Response<List<SellerProductItem>>
