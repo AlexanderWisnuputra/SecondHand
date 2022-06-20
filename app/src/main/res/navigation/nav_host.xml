@@ -26,10 +26,10 @@
         android:label="fragment_home"
         tools:layout="@layout/fragment_list" />
     <fragment
-        android:id="@+id/profile"
+        android:id="@+id/profileDetail"
         android:name="com.example.secondhand.fragments.Profile"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile_detail" />`
     <fragment
         android:id="@+id/login"
         android:name="com.example.secondhand.fragments.Login"
