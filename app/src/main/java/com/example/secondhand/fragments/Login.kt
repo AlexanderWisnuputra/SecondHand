@@ -10,6 +10,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
+import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.secondhand.R
@@ -38,6 +39,7 @@ class Login : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dataStore = requireContext().createDataStore(name = "user")
         binding.apply {
             tvtoReg.setOnClickListener { toRegister() }
             btnLogin.setOnClickListener { toHome() }
