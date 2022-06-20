@@ -25,8 +25,8 @@
         android:title="Daftar Jual" />
 
     <item
-    android:id="@+id/profile"
-    android:icon="@drawable/ic_user"
-    android:title="Akun" />
+        android:id="@+id/profileDetail"
+        android:icon="@drawable/ic_user"
+        android:title="Akun" />
 
 </menu>

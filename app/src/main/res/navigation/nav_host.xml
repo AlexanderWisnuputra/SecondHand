@@ -29,7 +29,7 @@
         android:id="@+id/profileDetail"
         android:name="com.example.secondhand.fragments.Profile"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_profile_detail" />`
+        tools:layout="@layout/fragment_profile" />
     <fragment
         android:id="@+id/login"
         android:name="com.example.secondhand.fragments.Login"
