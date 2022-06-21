@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object ServiceBuilder {
-    private const val URL ="https://market-final-project.herokuapp.com/api-docs/"
+    private const val URL ="https://market-final-project.herokuapp.com/"
     private var retrofit: Retrofit? = null
     private val okHttp =OkHttpClient.Builder().apply {
         connectTimeout(30, TimeUnit.SECONDS)
@@ -26,6 +26,6 @@ object ServiceBuilder {
         return retrofit!!
     }
     //retrofit builder
-  fun instance() = getClient().create(SellerProductList::class.java)
+  fun instance() = getClient().create(ProductList::class.java)
 
 }

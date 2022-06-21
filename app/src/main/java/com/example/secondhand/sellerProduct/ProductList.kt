@@ -4,8 +4,8 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface SellerProductList {
-    @GET("seller/product")
+interface ProductList {
+    @GET("buyer/product")
     fun getProductSold () : Call<List<SellerProductItem>>
 
     @GET("seller/product/{id}")

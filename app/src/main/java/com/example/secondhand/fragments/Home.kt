@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.secondhand.databinding.FragmentHomeBinding
 import com.example.secondhand.sellerProduct.*
 
@@ -77,7 +78,7 @@ class Home : Fragment(), ProductInterface {
     private fun setupRecyclerView() {
             binding.sellerProductRecyclerview.apply {
                 layoutManager =
-                    LinearLayoutManager(requireContext())
+                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false )
                 adapter = Adapters(mutableListOf(), this@Home)
             }
         }

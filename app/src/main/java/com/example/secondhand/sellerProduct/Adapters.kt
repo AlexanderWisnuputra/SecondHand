@@ -20,11 +20,12 @@ class Adapters(private val products: MutableList<SellerProductItem>, private val
         var product_price = itemView.findViewById<TextView>(R.id.product_price)
         var product_name = itemView.findViewById<TextView>(R.id.product_name)
         var product_category = itemView.findViewById<TextView>(R.id.product_category)
-        fun bind(product: SellerProductItem) {
 
+        fun bind(product: SellerProductItem) {
+            var kategori = product.name
             val price = "Rp ${product.basePrice}"
             product_name.text = product.name
-            product_category.text = product.categories.toString()
+            product_category.text = kategori
             product_price.text = price
 
             Glide.with(itemView)
