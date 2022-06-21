@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             when (destination.id) {
                 R.id.login -> binding.bottomNavigationView.visibility = View.INVISIBLE
                 R.id.register ->binding.bottomNavigationView.visibility = View.INVISIBLE
+                R.id.changeAcc ->binding.bottomNavigationView.visibility = View.INVISIBLE
                 else -> binding.bottomNavigationView.visibility = View.VISIBLE
             }
         }
