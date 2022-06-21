@@ -10,10 +10,10 @@
         android:id="@+id/deskripsi"
         android:layout_width="match_parent"
         android:layout_height="90dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/text_border"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_border_small"
         android:hint="Contoh: Jualan Ikan Hiu 33"
         android:inputType="textEmailAddress"
         android:textColorHint="#7f7f7f"
@@ -21,12 +21,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passLayoutlog" />
+        app:layout_constraintTop_toBottomOf="@+id/kategori" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:fontFamily="@font/poppins"
         android:text="Deskripsi"
         app:layout_constraintBottom_toTopOf="@+id/deskripsi"
@@ -50,7 +50,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:fontFamily="@font/poppins"
         android:text="Harga Produk"
         app:layout_constraintBottom_toTopOf="@+id/produkHarga"
@@ -59,7 +59,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:fontFamily="@font/poppins"
         android:text="Nama Produk"
         app:layout_constraintBottom_toTopOf="@+id/namaProduk"
@@ -68,16 +68,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:fontFamily="@font/poppins"
         android:text="Kategori"
-        app:layout_constraintBottom_toTopOf="@+id/passLayoutlog"
+        app:layout_constraintBottom_toTopOf="@+id/kategori"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:fontFamily="@font/poppins"
         android:text="Foto Produk"
         app:layout_constraintBottom_toTopOf="@+id/imageView4"
@@ -87,10 +87,10 @@
         android:id="@+id/produkHarga"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/text_border"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_border_small"
         android:hint="Rp 0,00"
         android:inputType="textEmailAddress"
         android:textColorHint="#7f7f7f"
@@ -105,10 +105,10 @@
         android:id="@+id/namaProduk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="60dp"
-        android:layout_marginEnd="50dp"
-        android:background="@drawable/text_border"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/text_border_small"
         android:hint="Nama Produk"
         android:inputType="textEmailAddress"
         android:textColorHint="#7f7f7f"
@@ -119,12 +119,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passLayoutlog"
+        android:id="@+id/kategori"
         android:layout_width="0dp"
         android:layout_height="50dp"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="30dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         app:boxStrokeColor="#CCCCCC"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
@@ -133,11 +134,11 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/produkHarga">
 
-        <EditText
-            android:id="@+id/passReg"
+        <AutoCompleteTextView
+            android:id="@+id/kategoriText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/text_border"
+            android:background="@drawable/text_border_small"
             android:hint="Pilih Kategori"
             android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
@@ -146,23 +147,25 @@
 
     <Button
         android:id="@+id/btnTerbit"
-        android:layout_width="150dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="32dp"
         android:background="@drawable/button_border"
         android:fontFamily="@font/poppins"
         android:text="Terbitkan"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/btnPreview" />
 
-    <Button
+    <android.widget.Button
         android:id="@+id/btnPreview"
-        android:layout_width="150dp"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="30dp"
         android:layout_marginBottom="32dp"
-        android:background="@drawable/button_border"
+        android:background="@drawable/border_purple"
         android:fontFamily="@font/poppins"
         android:text="Preview"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -172,7 +175,7 @@
         android:id="@+id/imageView4"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/dashed_line"
         android:src="@drawable/ic_baseline_add_24"

@@ -29,7 +29,14 @@
         android:id="@+id/profileDetail"
         android:name="com.example.secondhand.fragments.Profile"
         android:label="fragment_list"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileDetail_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_profileDetail_to_changeAcc"
+            app:destination="@id/changeAcc" />
+    </fragment>
     <fragment
         android:id="@+id/login"
         android:name="com.example.secondhand.fragments.Login"
@@ -49,6 +56,15 @@
         <action
             android:id="@+id/action_register_to_login"
             app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeAcc"
+        android:name="com.example.secondhand.fragments.ChangeAcc"
+        android:label="fragment_change_acc"
+        tools:layout="@layout/fragment_change_acc" >
+        <action
+            android:id="@+id/action_changeAcc_to_profileDetail"
+            app:destination="@id/profileDetail" />
     </fragment>
 
 

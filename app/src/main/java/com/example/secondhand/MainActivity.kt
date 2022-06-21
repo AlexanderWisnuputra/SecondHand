@@ -2,6 +2,8 @@ package com.example.secondhand
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.fragment.NavHostFragment
@@ -34,5 +36,21 @@ class MainActivity : AppCompatActivity() {
                 else -> binding.bottomNavigationView.visibility = View.VISIBLE
             }
         }
+        doubleBackToExit()
     }
+
+    private fun doubleBackToExit() {
+        var doubleBackPressed: Long = 0
+        val toast = Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT)
+        this@MainActivity.onBackPressedDispatcher.addCallback(this) {
+            if (doubleBackPressed + 2000 > System.currentTimeMillis()) {
+                finishAffinity()
+                finish()
+                toast.cancel()
+            } else {
+                toast.show()
+            }
+            doubleBackPressed = System.currentTimeMillis()
+        }
     }
+}
