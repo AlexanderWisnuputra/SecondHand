@@ -48,7 +48,7 @@
         android:background="@drawable/text_border"
         android:hint="Contoh: johndee@gmail.com"
         android:textColorHint="#7f7f7f"
-
+        android:inputType="textEmailAddress"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
