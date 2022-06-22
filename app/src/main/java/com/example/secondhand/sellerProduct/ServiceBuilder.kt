@@ -26,6 +26,6 @@ object ServiceBuilder {
         return retrofit!!
     }
     //retrofit builder
-  fun instance() = getClient().create(ProductList::class.java)
+  fun instance() = getClient().create(ServiceAPI::class.java)
 
 }

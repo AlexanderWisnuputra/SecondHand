@@ -11,6 +11,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.secondhand.R
 import com.example.secondhand.dao.UserViewModel
 import com.example.secondhand.databinding.FragmentRegisterBinding
+import com.example.secondhand.entity.User
+import com.example.secondhand.sellerProduct.ServiceBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -51,6 +53,9 @@ class Register : Fragment() {
                     )
                 }
                 findNavController().navigate(R.id.action_register_to_login)
+                lifecycleScope.launch(Dispatchers.IO){
+                    postUser()
+                }
                 Toast.makeText(requireContext(),"Akun berhasil dibuat", Toast.LENGTH_LONG).show()
             }
             else {
@@ -73,5 +78,19 @@ class Register : Fragment() {
 
     private fun confirmPass(): Boolean{
         return binding.passReg.text.toString() == binding.confPassReg.text.toString()
+    }
+                          //PASSWORD MINIMAL 6 CHAR   
+    private suspend fun postUser(){
+        ServiceBuilder.instance().addUser(
+            User(id = null,
+                binding.namaReg.text.toString(),
+                binding.emailReg.text.toString(),
+                binding.passReg.text.toString(),
+        0,// NOMOR HP G BS NULL, NANTI PAS DI EDIT MENU G USH GET DARI API
+            "Alamat Anda",
+                    " Gambar ",
+                "Kota "
+            )
+        )
     }
 }

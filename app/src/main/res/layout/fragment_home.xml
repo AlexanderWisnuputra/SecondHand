@@ -166,18 +166,20 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/button"
+            <android.widget.Button
+                android:id="@+id/category1"
                 android:layout_width="120dp"
                 android:layout_height="43dp"
                 android:layout_marginTop="5dp"
-                android:background="@drawable/button_border"
+                android:background="@drawable/category_border"
+                android:backgroundTint="@color/purple_500"
                 android:drawableLeft="@drawable/ic_search_clicked"
                 android:text="Semua "
+                android:textColor="@color/white"
                 android:textAllCaps="false" />
 
             <android.widget.Button
-                android:id="@+id/button2"
+                android:id="@+id/category2"
                 android:layout_width="wrap_content"
                 android:layout_height="43dp"
                 android:layout_marginStart="20dp"
@@ -189,7 +191,7 @@
                 android:textColor="@color/black" />
 
             <android.widget.Button
-                android:id="@+id/button3"
+                android:id="@+id/category3"
                 android:layout_width="wrap_content"
                 android:layout_height="43dp"
                 android:layout_marginStart="20dp"
