@@ -16,6 +16,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.secondhand.R
 import com.example.secondhand.dao.UserViewModel
 import com.example.secondhand.databinding.FragmentLoginBinding
+import com.example.secondhand.entity.UserAcessToken
+import com.example.secondhand.sellerProduct.ServiceBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -67,8 +69,9 @@ class Login : Fragment() {
                     activity?.runOnUiThread {
                         findNavController().navigate(R.id.action_login_to_home)
                     }
-                    lifecycleScope.launch{
+                    lifecycleScope.launch(Dispatchers.IO){
                         save("login", "LoggedIn")
+                        getUser()
                     }
                 }
                 else {
@@ -105,5 +108,17 @@ class Login : Fragment() {
         val dataStoreKey = preferencesKey<String>(key)
         val preferences = dataStore.data.first()
         return preferences[dataStoreKey]
+    }
+
+    //BELOM BISA DAPET ACCESS TOKEN
+    private suspend fun getUser(){
+        ServiceBuilder.instance().loginUser(
+            UserAcessToken(
+                binding.etEmail.text.toString(),
+                binding.etPassword.text.toString(),
+                null
+            )
+        )
+
     }
 }

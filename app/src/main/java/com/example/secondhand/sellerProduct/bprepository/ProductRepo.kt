@@ -1,6 +1,8 @@
-package com.example.secondhand.sellerProduct.sprepository
+package com.example.secondhand.sellerProduct.bprepository
 
-import com.example.secondhand.sellerProduct.SellerProductItem
+import com.example.secondhand.entity.SellerProductItem
+import com.example.secondhand.entity.User
+import com.example.secondhand.sellerProduct.ServiceAPI
 import com.example.secondhand.sellerProduct.ServiceBuilder
 import retrofit2.Call
 import retrofit2.Callback

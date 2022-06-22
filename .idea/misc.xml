@@ -22,7 +22,7 @@
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/activity_main.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_buyer__product__add.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_change_acc.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_home.xml" value="0.2210144927536232" />
+        <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_home.xml" value="0.67" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_list.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_notification.xml" value="0.2210144927536232" />
@@ -33,23 +33,15 @@
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_seller__product__add.xml" value="0.36476683937823834" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/product_sold.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/menu/bottom_navigation.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/border_purple.xml" value="0.208" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/button_border.xml" value="0.209" />
-        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/button_border_purple.xml" value="0.208" />
-        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/dashed_line.xml" value="0.208" />
-        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.209" />
-        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/text_border.xml" value="0.209" />
-        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/text_border_small.xml" value="0.208" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/activity_main.xml" value="0.14221014492753623" />
-        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_buyer__product__add.xml" value="0.33" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_change_acc.xml" value="0.2015625" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_home.xml" value="0.22" />
-        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_list.xml" value="0.2015625" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_profile.xml" value="0.18819655521783182" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_profile_detail.xml" value="0.2015625" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_register.xml" value="0.22" />
-        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_sell.xml" value="0.25" />
+        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_sell.xml" value="0.2015625" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/product_sold.xml" value="0.2015625" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/test_layout.xml" value="0.20052083333333334" />
       </map>

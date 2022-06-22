@@ -2,7 +2,8 @@ package com.example.secondhand.sellerProduct
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.secondhand.sellerProduct.sprepository.ProductRepo
+import com.example.secondhand.entity.SellerProductItem
+import com.example.secondhand.sellerProduct.bprepository.ProductRepo
 
 class SPViewModel : ViewModel() {
     private val state = MutableLiveData<MainState>()

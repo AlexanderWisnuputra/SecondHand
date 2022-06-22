@@ -10,8 +10,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.secondhand.databinding.FragmentHomeBinding
+import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.sellerProduct.*
 
 
@@ -39,6 +39,7 @@ class Home : Fragment(), ProductInterface {
     }
 
     private fun getdata() = vmod.fetchProducts()
+
 
     private fun setupViewModel(){
         vmod = ViewModelProvider(this).get(SPViewModel::class.java)
