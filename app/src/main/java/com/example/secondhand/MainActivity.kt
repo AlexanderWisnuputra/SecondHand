@@ -31,27 +31,11 @@ class MainActivity : AppCompatActivity() {
 
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.login -> binding.bottomNavigationView.visibility = View.INVISIBLE
-                R.id.register ->binding.bottomNavigationView.visibility = View.INVISIBLE
-                R.id.changeAcc ->binding.bottomNavigationView.visibility = View.INVISIBLE
+                R.id.login -> binding.bottomNavigationView.visibility = View.GONE
+                R.id.register ->binding.bottomNavigationView.visibility = View.GONE
+                R.id.changeAcc ->binding.bottomNavigationView.visibility = View.GONE
                 else -> binding.bottomNavigationView.visibility = View.VISIBLE
             }
-        }
-        doubleBackToExit()
-    }
-
-    private fun doubleBackToExit() {
-        var doubleBackPressed: Long = 0
-        val toast = Toast.makeText(this, "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT)
-        this@MainActivity.onBackPressedDispatcher.addCallback(this) {
-            if (doubleBackPressed + 2000 > System.currentTimeMillis()) {
-                finishAffinity()
-                finish()
-                toast.cancel()
-            } else {
-                toast.show()
-            }
-            doubleBackPressed = System.currentTimeMillis()
         }
     }
 }

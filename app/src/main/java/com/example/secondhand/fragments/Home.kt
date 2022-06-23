@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
+import androidx.core.app.ActivityCompat.finishAffinity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -36,6 +38,7 @@ class Home : Fragment(), ProductInterface {
         setupViewModel()
         observe()
         getdata()
+        doubleBackToExit()
     }
 
     private fun getdata() = vmod.fetchProducts()
@@ -51,8 +54,8 @@ class Home : Fragment(), ProductInterface {
 
     }
 
-    private fun observeState() = vmod.getState().observe(this, Observer { handlestate(it)})
-    private fun observeProduct() = vmod.getProduct().observe(this, Observer { handleproduct(it)})
+    private fun observeState() = vmod.getState().observe(viewLifecycleOwner, Observer { handlestate(it)})
+    private fun observeProduct() = vmod.getProduct().observe(viewLifecycleOwner, Observer { handleproduct(it)})
 
     private fun handlestate(it: MainState){
         when(it){
@@ -84,9 +87,21 @@ class Home : Fragment(), ProductInterface {
             }
         }
 
-
     override fun click(item: SellerProductItem) {
     Toast.makeText(requireContext(), item.name,Toast.LENGTH_SHORT).show()
     }
 
+    private fun doubleBackToExit() {
+        var doubleBackPressed: Long = 0
+        val toast = Toast.makeText(requireContext(), "Tekan sekali lagi untuk keluar", Toast.LENGTH_SHORT)
+        requireActivity().onBackPressedDispatcher.addCallback(this@Home) {
+            if (doubleBackPressed + 2000 > System.currentTimeMillis()) {
+                activity?.finish()
+                toast.cancel()
+            } else {
+                toast.show()
+            }
+            doubleBackPressed = System.currentTimeMillis()
+        }
+    }
 }

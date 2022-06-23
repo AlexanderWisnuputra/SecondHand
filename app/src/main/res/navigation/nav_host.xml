@@ -36,6 +36,9 @@
         <action
             android:id="@+id/action_profileDetail_to_changeAcc"
             app:destination="@id/changeAcc" />
+        <action
+            android:id="@+id/action_profileDetail_to_settingAcc"
+            app:destination="@id/settingAcc" />
     </fragment>
     <fragment
         android:id="@+id/login"
@@ -65,7 +68,16 @@
         <action
             android:id="@+id/action_changeAcc_to_profileDetail"
             app:destination="@id/profileDetail" />
+        <argument
+            android:name="dataAcc"
+            app:argType="com.example.secondhand.entity.Login"
+            app:nullable="true" />
     </fragment>
+    <fragment
+        android:id="@+id/settingAcc"
+        android:name="com.example.secondhand.fragments.SettingAcc"
+        android:label="fragment_setting_acc"
+        tools:layout="@layout/fragment_setting_acc" />
 
 
 </navigation>

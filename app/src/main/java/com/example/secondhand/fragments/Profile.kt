@@ -58,7 +58,7 @@ class Profile : Fragment() {
     }
 
     private fun toSettingAcc() {
-        TODO("Not yet implemented")
+        findNavController().navigate(R.id.action_profileDetail_to_settingAcc)
     }
 
     private fun toUbahAkun() {
