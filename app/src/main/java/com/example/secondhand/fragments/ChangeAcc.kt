@@ -37,6 +37,7 @@ class ChangeAcc : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.apply {
             btnEdit.setOnClickListener { saveData() }
             btnBatal.setOnClickListener { findNavController().navigate(R.id.action_changeAcc_to_profileDetail) }
@@ -51,7 +52,7 @@ class ChangeAcc : Fragment() {
                 args.dataAcc.email,
                 binding.passReg.text.toString(),
                 binding.kotaProvinsi.text.toString(),
-                binding.noTelp.toString().toInt(),
+                args.dataAcc.noHP,
                 args.dataAcc.picture
             )
             activity?.runOnUiThread {

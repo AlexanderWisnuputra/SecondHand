@@ -13,6 +13,7 @@ import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.example.secondhand.Helper
 import com.example.secondhand.R
 import com.example.secondhand.dao.UserViewModel
 import com.example.secondhand.databinding.FragmentLoginBinding
@@ -26,6 +27,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class Login : Fragment() {
     private lateinit var binding: FragmentLoginBinding
     private lateinit var dataStore: DataStore<Preferences>
+    private lateinit var sharedPref: Helper
 
     private val viewModel: UserViewModel by viewModel()
 
@@ -42,6 +44,7 @@ class Login : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dataStore = requireContext().createDataStore(name = "user")
+        sharedPref = Helper(requireContext())
         binding.apply {
             tvtoReg.setOnClickListener { toRegister() }
             btnLogin.setOnClickListener { toHome() }
@@ -68,6 +71,7 @@ class Login : Fragment() {
                 if (check) {
                     activity?.runOnUiThread {
                         findNavController().navigate(R.id.action_login_to_home)
+                        saveSession(binding.etEmail.text.toString())
                     }
                     lifecycleScope.launch(Dispatchers.IO){
                         save("login", "LoggedIn")
@@ -89,7 +93,10 @@ class Login : Fragment() {
     private fun toRegister(){
         findNavController().navigate(R.id.action_login_to_register)
     }
+    private fun saveSession(email: String) {
 
+        sharedPref.putEmail("email", email)
+    }
     private fun blankInputCheck(): Boolean {
         return viewModel.isInputEmpty(
             binding.etEmail.text.toString(),
