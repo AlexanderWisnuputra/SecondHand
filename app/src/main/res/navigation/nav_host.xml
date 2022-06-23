@@ -50,6 +50,9 @@
         <action
             android:id="@+id/action_login_to_home"
             app:destination="@id/home" />
+        <action
+            android:id="@+id/action_login_to_profileDetail"
+            app:destination="@id/profileDetail" />
     </fragment>
     <fragment
         android:id="@+id/register"
@@ -70,8 +73,7 @@
             app:destination="@id/profileDetail" />
         <argument
             android:name="dataAcc"
-            app:argType="com.example.secondhand.entity.Login"
-            app:nullable="true" />
+            app:argType="com.example.secondhand.entity.Login" />
     </fragment>
     <fragment
         android:id="@+id/settingAcc"
