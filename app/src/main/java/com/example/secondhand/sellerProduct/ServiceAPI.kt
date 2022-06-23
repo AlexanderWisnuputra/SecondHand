@@ -24,4 +24,9 @@ interface ServiceAPI {
         @Body post: UserAcessToken
     ): Response<UserAcessToken>
 
+    @PUT("auth/user")
+    fun changeDetail(
+        @Path("access_token") access_token:String,
+        @Body post:User
+    ): Call<User>
 }

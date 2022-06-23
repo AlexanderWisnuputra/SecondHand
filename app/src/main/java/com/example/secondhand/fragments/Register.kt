@@ -41,23 +41,30 @@ class Register : Fragment() {
 
     private fun toLogin(){
         if (blankInputCheck()) {
-            if (confirmPass()) {
-                lifecycleScope.launch(Dispatchers.IO) {
-                    viewModel.userProfile(
-                        binding.namaReg.text.toString(),
-                        binding.emailReg.text.toString(),
-                        binding.passReg.text.toString(),
-                        "",
-                        0,
-                        ""
-                    )
+            if (binding.passReg.length() >= 6) {
+                if (confirmPass()) {
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        viewModel.userProfile(
+                            binding.namaReg.text.toString(),
+                            binding.emailReg.text.toString(),
+                            binding.passReg.text.toString(),
+                            "",
+                            0,
+                            ""
+                        )
+                    }
+                    findNavController().navigate(R.id.action_register_to_login)
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        postUser()
+                    }
+                    Toast.makeText(requireContext(), "Akun berhasil dibuat", Toast.LENGTH_LONG)
+                        .show()
                 }
-                findNavController().navigate(R.id.action_register_to_login)
-                lifecycleScope.launch(Dispatchers.IO){
-                    postUser()
-                }
-                Toast.makeText(requireContext(),"Akun berhasil dibuat", Toast.LENGTH_LONG).show()
+             else {
+                Toast.makeText(requireContext(), "Password minimal 6 huruf", Toast.LENGTH_LONG)
+                    .show()
             }
+        }
             else {
                 Toast.makeText(requireContext(),"Password tidak sesuai", Toast.LENGTH_LONG).show()
             }
