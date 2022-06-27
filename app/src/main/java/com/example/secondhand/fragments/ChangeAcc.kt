@@ -39,7 +39,17 @@ class ChangeAcc : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            btnEdit.setOnClickListener { saveData() }
+            btnEdit.setOnClickListener {
+                if (binding.passReg.text.toString() == binding.confPasstext.text.toString())
+                { saveData() }
+                else if (binding.passReg.length() <= 6)
+                {
+                    Toast.makeText(requireContext(),"Password minimal 6 huruf", Toast.LENGTH_LONG).show()
+                }
+                else{
+                    Toast.makeText(requireContext(),"Data tidak sesuai!", Toast.LENGTH_LONG).show()
+                }
+            }
             btnBatal.setOnClickListener { findNavController().navigate(R.id.action_changeAcc_to_profileDetail) }
         }
     }

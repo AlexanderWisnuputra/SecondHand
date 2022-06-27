@@ -99,7 +99,7 @@
         android:layout_height="29dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="44dp"
-        android:fontFamily="sans-serif-medium"
+        android:fontFamily="@font/poppins"
         android:text="Daftar Jual Saya"
         android:textColor="@color/black"
         android:textSize="20sp"
@@ -124,7 +124,7 @@
 
             <android.widget.Button
                 android:id="@+id/button"
-                android:layout_width="100dp"
+                android:layout_width="140dp"
                 android:layout_height="43dp"
                 android:layout_marginTop="5dp"
                 android:layout_marginStart="20dp"
@@ -135,7 +135,7 @@
 
             <Button
                 android:id="@+id/button2"
-                android:layout_width="100dp"
+                android:layout_width="140dp"
                 android:layout_height="43dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="6dp"
@@ -147,7 +147,7 @@
 
             <android.widget.Button
                 android:id="@+id/button3"
-                android:layout_width="100dp"
+                android:layout_width="140dp"
                 android:layout_height="43dp"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="6dp"

@@ -60,11 +60,12 @@ class Register : Fragment() {
                     Toast.makeText(requireContext(), "Akun berhasil dibuat", Toast.LENGTH_LONG)
                         .show()
                 }
-             else {
+        }
+            else if (binding.passReg.length() <= 6) {
                 Toast.makeText(requireContext(), "Password minimal 6 huruf", Toast.LENGTH_LONG)
                     .show()
             }
-        }
+
             else {
                 Toast.makeText(requireContext(),"Password tidak sesuai", Toast.LENGTH_LONG).show()
             }

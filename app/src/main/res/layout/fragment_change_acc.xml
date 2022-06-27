@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.ChangeAcc">
 
     <TextView
         android:id="@+id/textUbahAkun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="50dp"
         android:layout_marginTop="61dp"
         android:layout_marginEnd="240dp"
@@ -19,87 +18,89 @@
         android:text="Ubah Akun"
         android:textColor="@color/black"
         android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textUbahAkun"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="49dp"
-        android:layout_marginTop="34dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="280dp"
         android:fontFamily="@font/poppins"
-        android:text="No Telpon" />
+        android:text="No Telpon"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUbahAkun" />
 
     <EditText
         android:id="@+id/noTelp"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/text_border"
         android:hint="Contoh: 08123...."
         android:inputType="number"
         android:textColorHint="#7f7f7f"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <TextView
         android:id="@+id/textAlamat"
-        android:inputType="text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/noTelp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="280dp"
         android:fontFamily="@font/poppins"
-        android:text="Alamat" />
+        android:inputType="text"
+        android:text="Alamat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/noTelp" />
 
     <EditText
         android:id="@+id/kotaProvinsi"
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_below="@+id/textAlamat"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/text_border"
         android:hint="Kota, Provinsi"
         android:textColorHint="#7f7f7f"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textAlamat" />
 
     <TextView
         android:id="@+id/textBwtPsw"
         android:layout_width="wrap_content"
         android:layout_height="20dp"
-        android:layout_below="@+id/kotaProvinsi"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="22dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="255dp"
         android:fontFamily="@font/poppins"
-        android:text="Buat password" />
+        android:text="Buat password"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/kotaProvinsi" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passLayoutlog"
-        android:layout_width="300dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textBwtPsw"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:hintEnabled="false"
         app:boxStrokeColor="#CCCCCC"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
@@ -113,39 +114,37 @@
             android:id="@+id/passReg"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textBwtPsw"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
             android:background="@drawable/text_border"
-            android:hint="Buat Password"
+            android:hint="Masukkan Password"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:textColorHint="#7f7f7f"
             android:inputType="textPassword"
             android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/textBwtPsw" />
+            app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/passLayoutlog"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="50dp"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="22dp"
         android:layout_marginEnd="214dp"
         android:fontFamily="@font/poppins"
         android:text="Konfirmasi password"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passLayoutlog" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/confPassLayoutlog"
-        android:layout_width="305dp"
-        android:layout_height="66dp"
-        android:layout_below="@+id/textView4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="0dp"
-        android:layout_marginEnd="50dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
+        app:hintEnabled="false"
         app:boxStrokeColor="#CCCCCC"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
@@ -156,17 +155,17 @@
         app:passwordToggleEnabled="true">
 
         <EditText
-            android:id="@+id/confPassReg"
+            android:id="@+id/confPasstext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/textView4"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="0dp"
             android:background="@drawable/text_border"
-            android:hint="Konfirmasi Password"
+            android:hint="Masukkan Password"
             android:inputType="textPassword"
-            android:textSize="20sp" />
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:textColorHint="#7f7f7f"
+            android:textSize="20sp"
+            app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -174,17 +173,17 @@
         android:id="@+id/btnEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/confPassLayoutlog"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/button_border"
         android:fontFamily="@font/poppins"
         android:text="simpan perubahan"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confPassLayoutlog" />
 
@@ -192,19 +191,19 @@
         android:id="@+id/btnBatal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/btnEdit"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="9dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:background="@drawable/button_border"
         android:fontFamily="@font/poppins"
         android:text="batal"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confPassLayoutlog" />
+        app:layout_constraintTop_toBottomOf="@+id/btnEdit" />
 
 
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

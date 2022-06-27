@@ -62,6 +62,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="30dp"
+        app:hintEnabled="false"
         app:boxStrokeColor="#CCCCCC"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
@@ -77,6 +78,9 @@
             android:layout_height="wrap_content"
             android:background="@drawable/text_border"
             android:hint="Masukkan Password"
+            android:paddingTop="18dp"
+            android:paddingBottom="18dp"
+            android:textColorHint="#7f7f7f"
             android:inputType="textPassword"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
