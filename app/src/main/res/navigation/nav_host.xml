@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_host"
-    app:startDestination="@id/login">
+    app:startDestination="@id/home">
 
     <fragment
         android:id="@+id/home"
@@ -19,7 +19,14 @@
         android:id="@+id/sell"
         android:name="com.example.secondhand.fragments.Sell"
         android:label="fragment_notification"
-        tools:layout="@layout/fragment_sell" />
+        tools:layout="@layout/fragment_sell" >
+        <action
+            android:id="@+id/action_sell_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_sell_to_home"
+            app:destination="@id/home" />
+    </fragment>
     <fragment
         android:id="@+id/list"
         android:name="com.example.secondhand.fragments.SellList"
@@ -53,6 +60,9 @@
         <action
             android:id="@+id/action_login_to_profileDetail"
             app:destination="@id/profileDetail" />
+        <action
+            android:id="@+id/action_login_to_sell"
+            app:destination="@id/sell" />
     </fragment>
     <fragment
         android:id="@+id/register"

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -56,7 +57,7 @@ class Profile : Fragment() {
                 lifecycleScope.launch{
                     save("login", "")
                 }
-                findNavController().navigate(R.id.action_profileDetail_to_login)
+                Toast.makeText(requireContext(), "Anda berhasil logout!", Toast.LENGTH_LONG).show()
             }
             .setNegativeButton("Tidak") {dialog, _->
                 dialog.dismiss()
@@ -84,5 +85,4 @@ class Profile : Fragment() {
             settings[dataStoreKey] = value
         }
     }
-
 }

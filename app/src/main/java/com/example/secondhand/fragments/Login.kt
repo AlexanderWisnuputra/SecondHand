@@ -51,16 +51,6 @@ class Login : Fragment() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        lifecycleScope.launch{
-            val loginCheck = read("login")
-            if (loginCheck == "LoggedIn") {
-                findNavController().navigate(R.id.action_login_to_home)
-            }
-        }
-    }
-
     private fun toHome() {
         if (blankInputCheck()) {
             lifecycleScope.launch(Dispatchers.IO) {
@@ -109,12 +99,6 @@ class Login : Fragment() {
         dataStore.edit { settings ->
             settings[dataStoreKey] = value
         }
-    }
-
-    private suspend fun read(key: String): String? {
-        val dataStoreKey = preferencesKey<String>(key)
-        val preferences = dataStore.data.first()
-        return preferences[dataStoreKey]
     }
 
     //BELOM BISA DAPET ACCESS TOKEN
