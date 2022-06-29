@@ -10,6 +10,13 @@
         <entry key="..\:/BottomNavigationView/app/src/main/res/menu/bottom_navigaion.xml" value="0.2640449438202247" />
         <entry key="..\:/BottomNavigationView/app/src/main/res/menu/bottom_navigation.xml" value="0.2640449438202247" />
         <entry key="..\:/BottomNavigationView/app/src/main/res/menu/nav_host.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/Administrator/Documents/androidBinar/SecondHand-Kelompok4-AND6/app/src/main/res/layout/activity_main.xml" value="0.3625" />
+        <entry key="..\:/Users/Administrator/Documents/androidBinar/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_buyer__product__add.xml" value="0.33" />
+        <entry key="..\:/Users/Administrator/Documents/androidBinar/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_detail_barang.xml" value="0.3484375" />
+        <entry key="..\:/Users/Administrator/Documents/androidBinar/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_home.xml" value="0.3625" />
+        <entry key="..\:/Users/Administrator/Documents/androidBinar/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_register.xml" value="0.3625" />
+        <entry key="..\:/Users/Administrator/Documents/androidBinar/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_sell.xml" value="0.3625" />
+        <entry key="..\:/Users/Administrator/Documents/androidBinar/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_seller__product__add.xml" value="0.3625" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Bottom-Navigation-View--master/app/src/main/res/drawable/ic_notifications.xml" value="0.222" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Bottom-Navigation-View--master/app/src/main/res/drawable/ic_user.xml" value="0.222" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Bottom-Navigation-View--master/app/src/main/res/layout/activity_main.xml" value="0.2" />
@@ -54,7 +61,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

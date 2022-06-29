@@ -1,9 +1,12 @@
 package com.example.secondhand.sellerProduct
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
@@ -13,8 +16,8 @@ import com.example.secondhand.entity.SellerProductItem
 class Adapters(private val products: MutableList<SellerProductItem>, private val mainInterface:ProductInterface)
     : RecyclerView.Adapter<Adapters.ViewHolder>() {
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         var product_image = itemView.findViewById<ImageView>(R.id.seller_product_image)
         var product_price = itemView.findViewById<TextView>(R.id.product_price)
@@ -32,8 +35,16 @@ class Adapters(private val products: MutableList<SellerProductItem>, private val
                 .load(product.imageUrl)
                 .into(product_image)
             itemView.setOnClickListener {
-                mainInterface.click(product)
+//                mainInterface.click(product)
+                val mBundle = Bundle()
+                mBundle.putString("name_product", product.name)
+                mBundle.putString("category_product", product.categories[0].name)
+                mBundle.putString("poster", product.imageUrl)
+                mBundle.putString("description_product", product.description)
+                mBundle.putString("price_product", "Price ${product.basePrice}")
+                it.findNavController().navigate(R.id.action_home_to_buyer_Product_Add, mBundle)
             }
+
         }
 
     }
