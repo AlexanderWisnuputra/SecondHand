@@ -19,6 +19,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.secondhand.Helper
 import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentHomeBinding
 import com.example.secondhand.entity.SellerProductItem
@@ -48,6 +49,7 @@ class Home : Fragment(), ProductInterface {
         observe()
         getdata()
         doubleBackToExit()
+
     }
 
     private fun getdata() = vmod.fetchProducts()

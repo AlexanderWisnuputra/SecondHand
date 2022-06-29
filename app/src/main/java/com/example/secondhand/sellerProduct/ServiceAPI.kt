@@ -3,6 +3,7 @@ package com.example.secondhand.sellerProduct
 import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.entity.User
 import com.example.secondhand.entity.UserAcessToken
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -20,9 +21,9 @@ interface ServiceAPI {
     ): Response<User>
 
     @POST("auth/login")
-    suspend fun loginUser(
+    fun loginUser(
         @Body post: UserAcessToken
-    ): Response<UserAcessToken>
+    ): Call<UserAcessToken>
 
     @PUT("auth/user")
     fun changeDetail(
