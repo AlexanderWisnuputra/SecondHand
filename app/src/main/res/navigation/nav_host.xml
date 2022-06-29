@@ -84,6 +84,9 @@
         <argument
             android:name="dataAcc"
             app:argType="com.example.secondhand.entity.Login" />
+        <action
+            android:id="@+id/action_changeAcc_to_login"
+            app:destination="@id/login" />
     </fragment>
     <fragment
         android:id="@+id/settingAcc"

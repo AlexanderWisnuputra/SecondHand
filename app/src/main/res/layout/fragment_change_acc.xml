@@ -7,203 +7,176 @@
     android:layout_height="match_parent"
     tools:context=".fragments.ChangeAcc">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/photoProfile"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        app:cardBackgroundColor="#e8d4f4"
+        app:cardCornerRadius="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/namaUbah"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textUbahAkun">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_fi_camera"/>
+
+    </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/textUbahAkun"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="240dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/poppins"
-        android:text="Ubah Akun"
+        android:text="Lengkapi info akun"
         android:textColor="@color/black"
-        android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/namaUbah"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="116dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/text_border_small"
+        android:hint="Nama"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#7f7f7f"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toTopOf="@+id/kotaLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="280dp"
         android:fontFamily="@font/poppins"
         android:text="No Telpon"
+        app:layout_constraintBottom_toTopOf="@+id/noTelp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/kotaLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
+        app:boxStrokeColor="#CCCCCC"
+        app:boxStrokeWidth="0dp"
+        app:boxStrokeWidthFocused="0dp"
+        app:hintEnabled="false"
+        app:layout_constraintBottom_toTopOf="@+id/alamat"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textUbahAkun" />
+        app:layout_constraintStart_toStartOf="parent">
+
+        <AutoCompleteTextView
+            android:id="@+id/kota"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/text_border_small"
+            android:hint="Pilih Kota"
+            android:textSize="15sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <EditText
         android:id="@+id/noTelp"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="32dp"
         android:background="@drawable/text_border"
         android:hint="Contoh: 08123...."
         android:inputType="number"
         android:textColorHint="#7f7f7f"
-        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/btnEdit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textAlamat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="280dp"
         android:fontFamily="@font/poppins"
         android:inputType="text"
         android:text="Alamat"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/noTelp" />
+        app:layout_constraintBottom_toTopOf="@+id/alamat"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/kotaProvinsi"
+        android:id="@+id/alamat"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="100dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/text_border"
-        android:hint="Kota, Provinsi"
+        android:hint="Contoh: Jalan ikan Hiu 33"
         android:textColorHint="#7f7f7f"
-        android:textSize="20sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textAlamat" />
-
-    <TextView
-        android:id="@+id/textBwtPsw"
-        android:layout_width="wrap_content"
-        android:layout_height="20dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="255dp"
-        android:fontFamily="@font/poppins"
-        android:text="Buat password"
+        android:gravity="top"
+        app:layout_constraintBottom_toTopOf="@+id/noTelp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kotaProvinsi" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/passLayoutlog"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        app:hintEnabled="false"
-        app:boxStrokeColor="#CCCCCC"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textBwtPsw"
-        app:passwordToggleEnabled="true">
-
-        <EditText
-            android:id="@+id/passReg"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/text_border"
-            android:hint="Masukkan Password"
-            android:paddingTop="18dp"
-            android:paddingBottom="18dp"
-            android:textColorHint="#7f7f7f"
-            android:inputType="textPassword"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="214dp"
-        android:fontFamily="@font/poppins"
-        android:text="Konfirmasi password"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passLayoutlog" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/confPassLayoutlog"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="30dp"
-        app:hintEnabled="false"
-        app:boxStrokeColor="#CCCCCC"
-        app:boxStrokeWidth="0dp"
-        app:boxStrokeWidthFocused="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4"
-        app:passwordToggleEnabled="true">
-
-        <EditText
-            android:id="@+id/confPasstext"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/text_border"
-            android:hint="Masukkan Password"
-            android:inputType="textPassword"
-            android:paddingTop="18dp"
-            android:paddingBottom="18dp"
-            android:textColorHint="#7f7f7f"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnEdit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         android:layout_marginStart="30dp"
         android:layout_marginEnd="30dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/button_border"
         android:fontFamily="@font/poppins"
         android:text="simpan perubahan"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confPassLayoutlog" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Button
-        android:id="@+id/btnBatal"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="30dp"
-        android:background="@drawable/button_border"
-        android:fontFamily="@font/poppins"
-        android:text="batal"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEdit" />
+        android:text="Kota"
+        app:layout_constraintBottom_toTopOf="@+id/kotaLayout"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="Nama"
+        app:layout_constraintBottom_toTopOf="@+id/namaUbah"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
