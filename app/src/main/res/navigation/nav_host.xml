@@ -9,7 +9,11 @@
         android:id="@+id/home"
         android:name="com.example.secondhand.fragments.Home"
         android:label="fragment_user"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_buyer_Product_Add"
+            app:destination="@id/buyer_Product_Add" />
+    </fragment>
     <fragment
         android:id="@+id/notification"
         android:name="com.example.secondhand.fragments.Notification"
@@ -26,6 +30,9 @@
         <action
             android:id="@+id/action_sell_to_home"
             app:destination="@id/home" />
+        <action
+            android:id="@+id/action_sell_to_seller_Product_Add"
+            app:destination="@id/seller_Product_Add" />
     </fragment>
     <fragment
         android:id="@+id/list"
@@ -93,6 +100,25 @@
         android:name="com.example.secondhand.fragments.SettingAcc"
         android:label="fragment_setting_acc"
         tools:layout="@layout/fragment_setting_acc" />
+    <fragment
+        android:id="@+id/buyer_Product_Add"
+        android:name="com.example.secondhand.fragments.Buyer_Product_Add"
+        android:label="fragment_buyer__product__add"
+        tools:layout="@layout/fragment_buyer__product__add" >
+        <argument
+            android:name="barangmu"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="kosong" />
+        <action
+            android:id="@+id/action_buyer_Product_Add_to_home"
+            app:destination="@id/home" />
+    </fragment>
+    <fragment
+        android:id="@+id/seller_Product_Add"
+        android:name="com.example.secondhand.fragments.Seller_Product_Add"
+        android:label="fragment_seller__product__add"
+        tools:layout="@layout/fragment_seller__product__add" />
 
 
 </navigation>
