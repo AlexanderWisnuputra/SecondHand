@@ -48,6 +48,8 @@ class Profile : Fragment() {
             textSettingAcc.setOnClickListener { toSettingAcc() }
             textLogout.setOnClickListener { logout() }
         }
+        var x = sharedPref.getAT("AT")
+        Toast.makeText(requireContext(),"$x",Toast.LENGTH_SHORT).show()
     }
 
     private fun logout() {

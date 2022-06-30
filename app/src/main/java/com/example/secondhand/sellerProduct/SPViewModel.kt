@@ -9,7 +9,6 @@ class SPViewModel : ViewModel() {
     private val state = MutableLiveData<MainState>()
     private val products = MutableLiveData<List<SellerProductItem>>()
     private val repo = ProductRepo()
-
     private fun loading(b: Boolean){
         state.value = MainState.Loading(b)
     }

@@ -1,7 +1,6 @@
 package com.example.secondhand.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +10,7 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.secondhand.Helper
@@ -20,9 +20,13 @@ import com.example.secondhand.databinding.FragmentLoginBinding
 import com.example.secondhand.entity.UserAcessToken
 import com.example.secondhand.sellerProduct.ServiceBuilder
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import okhttp3.ResponseBody
+import org.json.JSONObject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Login : Fragment() {
     private lateinit var binding: FragmentLoginBinding
@@ -103,13 +107,18 @@ class Login : Fragment() {
 
     //BELOM BISA DAPET ACCESS TOKEN
     private suspend fun getUser(){
-        ServiceBuilder.instance().loginUser(
-            UserAcessToken(
-                binding.etEmail.text.toString(),
-                binding.etPassword.text.toString(),
-                null
-            )
-        )
-
+        ServiceBuilder.instance().loginUser(UserAcessToken(binding.etEmail.text.toString(),binding.etPassword.text.toString(),null)
+        ).enqueue(object : Callback<UserAcessToken> {
+            override fun onResponse(call: Call<UserAcessToken>, response: Response<UserAcessToken>) {
+                        if (response.isSuccessful) {
+                            response.body()
+                            val at: String = response.body()?.accessToken.toString()
+                            sharedPref.putAT("AT", at)
+                        } else Toast.makeText(context,response.errorBody()!!.string(),Toast.LENGTH_SHORT).show()
+                    }
+            override fun onFailure(call: Call<UserAcessToken>, t: Throwable) {
+                println(t.message)
+                }
+        })
     }
 }

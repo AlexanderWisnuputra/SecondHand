@@ -16,5 +16,10 @@ class Helper(context: Context) {
     fun getEmail(key: String): String? {
         return sharedPref.getString(key, null)
     }
-
+    fun putAT(key: String, value: String) {
+        editor.putString(key, value).apply()
+    }
+    fun getAT(key: String): String? {
+        return sharedPref.getString(key, null)
+    }
 }
