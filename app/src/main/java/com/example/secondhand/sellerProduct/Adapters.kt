@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.navigation.findNavController
@@ -14,7 +16,9 @@ import com.example.secondhand.entity.SellerProductItem
 
 
 class Adapters(private val products: MutableList<SellerProductItem>, private val mainInterface:ProductInterface)
-    : RecyclerView.Adapter<Adapters.ViewHolder>() {
+    : RecyclerView.Adapter<Adapters.ViewHolder>()/*, Filterable */{
+    var allDataList : List<SellerProductItem> = listOf()
+    var dataList : List<SellerProductItem> = listOf()
 
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -25,10 +29,9 @@ class Adapters(private val products: MutableList<SellerProductItem>, private val
         var product_category = itemView.findViewById<TextView>(R.id.product_category)
 
         fun bind(product: SellerProductItem) {
-            var kategori = product.name
             val price = "Rp ${product.basePrice}"
             product_name.text = product.name
-            product_category.text = kategori
+            product_category.text = product.categories[0].name
             product_price.text = price
 
             Glide.with(itemView)
@@ -48,11 +51,22 @@ class Adapters(private val products: MutableList<SellerProductItem>, private val
         }
 
     }
-fun updateList(it: List<SellerProductItem>){
-    products.clear()
-    products.addAll(it)
-    notifyDataSetChanged()
-}
+    fun updateList(it: List<SellerProductItem>){
+        products.clear()
+        products.addAll(it)
+        notifyDataSetChanged()
+    }
+   /* fun setData(dataList: List<SellerProductItem>) {
+        //set all list to allDataList
+        this.allDataList = dataList
+        products.clear()
+        products.addAll(dataList)
+        //Show initial all list
+        showListByCatagory("all")
+        notifyDataSetChanged()
+
+    }*/
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
@@ -63,4 +77,5 @@ fun updateList(it: List<SellerProductItem>){
     override fun getItemCount() = products.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(products[position])
+
 }
