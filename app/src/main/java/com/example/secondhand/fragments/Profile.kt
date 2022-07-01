@@ -78,7 +78,7 @@ class Profile : Fragment() {
                 val actionToProfile = ProfileDirections.actionProfileDetailToChangeAcc(dataAcc)
                 findNavController().navigate(actionToProfile)
             }
-            }
+        }
     }
 
     private suspend fun save(key: String, value: String) {

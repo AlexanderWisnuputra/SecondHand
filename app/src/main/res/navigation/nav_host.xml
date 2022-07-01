@@ -116,9 +116,9 @@
     </fragment>
     <fragment
         android:id="@+id/seller_Product_Add"
-        android:name="com.example.secondhand.fragments.Seller_Product_Add"
+        android:name="com.example.secondhand.fragments.SellPreview"
         android:label="fragment_seller__product__add"
-        tools:layout="@layout/fragment_seller__product__add" />
+        tools:layout="@layout/fragment_sell_preview" />
 
 
 </navigation>

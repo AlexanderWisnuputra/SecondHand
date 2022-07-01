@@ -22,4 +22,10 @@ class Helper(context: Context) {
     fun getAT(key: String): String? {
         return sharedPref.getString(key, null)
     }
+    fun putSell(key: String, value: String) {
+        editor.putString(key, value).apply()
+    }
+    fun getSell(key: String): String? {
+        return sharedPref.getString(key, null)
+    }
 }
