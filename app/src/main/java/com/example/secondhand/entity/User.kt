@@ -14,11 +14,11 @@ data class User(
     @SerializedName("password")
     val password: String,
     @SerializedName("phone_number")
-    val phoneNumber: Int,
+    val phoneNumber: Int?,
     @SerializedName("address")
-    val address: String,
+    val address: String?,
     @SerializedName("image_url")
-    val imageUrl: String,
+    val imageUrl: String?,
     @SerializedName("city")
-    val city: String
+    val city: String?
     )

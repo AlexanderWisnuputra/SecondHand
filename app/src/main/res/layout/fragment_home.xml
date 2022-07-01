@@ -191,7 +191,7 @@
                 android:layout_marginTop="4dp"
                 android:background="@drawable/category_border"
                 android:drawableLeft="@drawable/ic_search_unclicked"
-                android:text="Hobi"
+                android:text="Kursus"
                 android:textAllCaps="false"
                 android:textColor="@color/black" />
 
@@ -203,7 +203,31 @@
                 android:layout_marginTop="4dp"
                 android:background="@drawable/category_border"
                 android:drawableLeft="@drawable/ic_search_unclicked"
-                android:text="Kendaraaan"
+                android:text="Sport"
+                android:textAllCaps="false"
+                tools:layout_editor_absoluteX="56dp"
+                tools:layout_editor_absoluteY="476dp" />
+            <android.widget.Button
+                android:id="@+id/category4"
+                android:layout_width="140dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/category_border"
+                android:drawableLeft="@drawable/ic_search_unclicked"
+                android:text="Makanan"
+                android:textAllCaps="false"
+                tools:layout_editor_absoluteX="56dp"
+                tools:layout_editor_absoluteY="476dp" />
+            <android.widget.Button
+                android:id="@+id/category5"
+                android:layout_width="140dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/category_border"
+                android:drawableLeft="@drawable/ic_search_unclicked"
+                android:text="Hobi"
                 android:textAllCaps="false"
                 tools:layout_editor_absoluteX="56dp"
                 tools:layout_editor_absoluteY="476dp" />

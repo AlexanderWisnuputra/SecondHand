@@ -1,5 +1,6 @@
 package com.example.secondhand.sellerProduct
 
+import com.example.secondhand.entity.Login
 import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.entity.User
 import com.example.secondhand.entity.UserAcessToken
@@ -12,8 +13,23 @@ interface ServiceAPI {
     @GET("buyer/product")
     fun getProductSold () : Call<List<SellerProductItem>>
 
-    @GET("buyer/product/{id}")
+    @GET("buyer/product/id")
     fun getProductSoldbyID (@Path("id") userid:String) : Call<SellerProductItem>
+
+    @GET("buyer/product/")
+    abstract fun getProductSearchBar (@Query("search") search:String) : Call<List<SellerProductItem>>
+    @GET("buyer/product/")
+    fun getProductCategory1 (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
+
+    @GET("buyer/product/")
+    fun getProductCategory2 (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
+
+    @GET("buyer/product/")
+    fun getProductCategory3 (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
+
+    @GET("buyer/product/")
+    fun getProductCategory4 (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
+
 
     @POST("auth/register")
     suspend fun addUser(
@@ -25,10 +41,11 @@ interface ServiceAPI {
         @Body post: UserAcessToken
     ): Call<UserAcessToken>
 
+
     @PUT("auth/user")
-    fun changeDetail(
-        @Path("access_token") access_token:String,
-        @Body post:User
-    ): Call<User>
+    suspend fun changeDetail(
+        @Header("access_token") access_token:String?,
+        @Body post: User
+    ): Response<User>
 
 }

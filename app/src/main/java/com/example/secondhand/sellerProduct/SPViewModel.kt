@@ -21,6 +21,48 @@ class SPViewModel : ViewModel() {
             error?.let{it.message?.let { message -> println(message) }}
             sproduct?.let { products.postValue(it) }
         }
+
+
+    }
+    fun fetchProductsbyKursus() {
+        loading(true)
+        repo.categoryKursus { sproduct, error ->
+            loading(false)
+            error?.let { it.message?.let { message -> println(message) } }
+            sproduct?.let { products.postValue(it) }
+        }
+    }
+    fun fetchProductsbySport() {
+        loading(true)
+        repo.categorySport { sproduct, error ->
+            loading(false)
+            error?.let { it.message?.let { message -> println(message) } }
+            sproduct?.let { products.postValue(it) }
+        }
+    }
+    fun fetchProductsbyMakanan() {
+        loading(true)
+        repo.categoryMakanan() { sproduct, error ->
+            loading(false)
+            error?.let { it.message?.let { message -> println(message) } }
+            sproduct?.let { products.postValue(it) }
+        }
+    }
+    fun fetchProductsbyHobi() {
+        loading(true)
+        repo.categoryhobi() { sproduct, error ->
+            loading(false)
+            error?.let { it.message?.let { message -> println(message) } }
+            sproduct?.let { products.postValue(it) }
+        }
+    }
+    fun fetchProductsbySearch(search: String) {
+        loading(true)
+        repo.searchBar(search) { sproduct, error ->
+            loading(false)
+            error?.let { it.message?.let { message -> println(message) } }
+            sproduct?.let { products.postValue(it) }
+        }
     }
 
     fun getState() =state

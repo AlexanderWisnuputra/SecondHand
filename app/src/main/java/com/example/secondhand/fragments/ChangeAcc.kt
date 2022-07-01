@@ -14,10 +14,15 @@ import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.secondhand.Helper
 import com.example.secondhand.R
 import com.example.secondhand.dao.UserViewModel
 import com.example.secondhand.databinding.FragmentChangeAccBinding
+import com.example.secondhand.entity.Login
+import com.example.secondhand.entity.User
+import com.example.secondhand.sellerProduct.ServiceBuilder
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,6 +33,7 @@ class ChangeAcc : Fragment() {
     private lateinit var dataStore: DataStore<Preferences>
     private val viewModel: UserViewModel by viewModel()
     private val args: ChangeAccArgs by navArgs()
+    private lateinit var sharedPref: Helper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +47,7 @@ class ChangeAcc : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedPref = Helper(requireContext())
         dataStore = requireContext().createDataStore(name = "user")
         binding.apply {
             btnEdit.setOnClickListener {
@@ -75,6 +82,9 @@ class ChangeAcc : Fragment() {
                 findNavController().navigate(R.id.action_changeAcc_to_profileDetail)
             }
         }
+        lifecycleScope.launch(Dispatchers.IO){
+            editUser()
+        }
     }
 
     private fun login() {
@@ -94,5 +104,22 @@ class ChangeAcc : Fragment() {
         val dataStoreKey = preferencesKey<String>(key)
         val preferences = dataStore.data.first()
         return preferences[dataStoreKey]
+    }
+
+    private suspend fun editUser() {
+        var x =sharedPref.getAT("AT")
+            ServiceBuilder.instance().changeDetail(
+            x,
+            User(
+                null,
+                binding.namaUbah.text.toString(),
+                args.dataAcc.email,
+                args.dataAcc.password,
+                args.dataAcc.noHP,
+                args.dataAcc.alamat,
+                args.dataAcc.password,
+                binding.kota.text.toString()
+            )
+        )
     }
 }

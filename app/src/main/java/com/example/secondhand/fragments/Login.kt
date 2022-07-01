@@ -105,7 +105,6 @@ class Login : Fragment() {
         }
     }
 
-    //BELOM BISA DAPET ACCESS TOKEN
     private suspend fun getUser(){
         ServiceBuilder.instance().loginUser(UserAcessToken(binding.etEmail.text.toString(),binding.etPassword.text.toString(),null)
         ).enqueue(object : Callback<UserAcessToken> {
