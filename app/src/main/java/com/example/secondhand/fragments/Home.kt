@@ -10,8 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.secondhand.Helper
+import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentHomeBinding
 import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.sellerProduct.*
@@ -48,6 +51,7 @@ class Home : Fragment(), ProductInterface {
     private fun getdataCategory3() = vmod.fetchProductsbyMakanan()
     private fun getdataCategory4() = vmod.fetchProductsbyHobi()
     private fun getdataSearch(search: String) = vmod.fetchProductsbySearch(search)
+    private fun getbyID(id: Int) = vmod.getByID(id)
 
     private fun setupViewModel(){
         vmod = ViewModelProvider(this).get(SPViewModel::class.java)
@@ -136,16 +140,6 @@ class Home : Fragment(), ProductInterface {
                 }
             }
         }
-
-
-    // DUPE BUAT TIAP BUTTON, tambah ganti warna pas di click
-       /* binding.category1.setOnClickListener {
-            binding.sellerProductRecyclerview.adapter?.let { a->
-                if(a is Adapters){
-                    a.showListByCatagory("c1")
-                }
-            }
-        }*/
     }
 
     private fun setupRecyclerView() {
@@ -157,7 +151,15 @@ class Home : Fragment(), ProductInterface {
         }
 
     override fun click(item: SellerProductItem) {
-    Toast.makeText(requireContext(), item.name,Toast.LENGTH_SHORT).show()
+        var x = item.id
+        getbyID(x)
+        val mBundle = Bundle()
+                mBundle.putString("name_product", item.name)
+                mBundle.putString("category_product", item.categories[0].name)
+                mBundle.putString("poster", item.imageUrl)
+                mBundle.putString("description_product", item.description)
+                mBundle.putString("price_product", "Price ${item.basePrice}")
+        findNavController().navigate(R.id.action_home_to_buyer_Product_Add, mBundle)
     }
 
     private fun doubleBackToExit() {

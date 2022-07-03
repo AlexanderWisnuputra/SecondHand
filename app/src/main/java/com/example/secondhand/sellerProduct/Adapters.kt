@@ -16,7 +16,7 @@ import com.example.secondhand.entity.SellerProductItem
 
 
 class Adapters(private val products: MutableList<SellerProductItem>, private val mainInterface:ProductInterface)
-    : RecyclerView.Adapter<Adapters.ViewHolder>()/*, Filterable */{
+    : RecyclerView.Adapter<Adapters.ViewHolder>(){
     var allDataList : List<SellerProductItem> = listOf()
     var dataList : List<SellerProductItem> = listOf()
 
@@ -38,14 +38,8 @@ class Adapters(private val products: MutableList<SellerProductItem>, private val
                 .load(product.imageUrl)
                 .into(product_image)
             itemView.setOnClickListener {
-//                mainInterface.click(product)
-                val mBundle = Bundle()
-                mBundle.putString("name_product", product.name)
-                mBundle.putString("category_product", product.categories[0].name)
-                mBundle.putString("poster", product.imageUrl)
-                mBundle.putString("description_product", product.description)
-                mBundle.putString("price_product", "Price ${product.basePrice}")
-                it.findNavController().navigate(R.id.action_home_to_buyer_Product_Add, mBundle)
+                mainInterface.click(product)
+
             }
 
         }
@@ -56,16 +50,7 @@ class Adapters(private val products: MutableList<SellerProductItem>, private val
         products.addAll(it)
         notifyDataSetChanged()
     }
-   /* fun setData(dataList: List<SellerProductItem>) {
-        //set all list to allDataList
-        this.allDataList = dataList
-        products.clear()
-        products.addAll(dataList)
-        //Show initial all list
-        showListByCatagory("all")
-        notifyDataSetChanged()
 
-    }*/
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
 import com.example.secondhand.databinding.FragmentSellPreviewBinding
 import kotlinx.android.synthetic.main.fragment_sell.view.*
@@ -40,6 +41,10 @@ class SellPreview : Fragment() {
         val hargaProduk = sharedPref.getSell("harga")
         val kategori = sharedPref.getSell("kategori")
         val deskripsi = sharedPref.getSell("deskripsi")
+        val gambar = sharedPref.getSell("picture")
+        Glide.with(requireActivity())
+            .load(gambar)
+            .into(binding.imageView3)
 
         binding.textView5.setText("$namaProduk").toString()
         binding.textView7.setText("$hargaProduk").toString()

@@ -13,11 +13,12 @@ interface ServiceAPI {
     @GET("buyer/product")
     fun getProductSold () : Call<List<SellerProductItem>>
 
-    @GET("buyer/product/id")
-    fun getProductSoldbyID (@Path("id") userid:String) : Call<SellerProductItem>
+    @GET("buyer/product/")
+    fun getProductSoldbyID (@Query("id") id:Int) : Call<SellerProductItem>
 
     @GET("buyer/product/")
-    abstract fun getProductSearchBar (@Query("search") search:String) : Call<List<SellerProductItem>>
+    fun getProductSearchBar (@Query("search") search:String) : Call<List<SellerProductItem>>
+
     @GET("buyer/product/")
     fun getProductCategory1 (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
 

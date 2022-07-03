@@ -139,5 +139,27 @@ class ProductRepo {
             }
         })
     }
+    fun getByID(id:Int, completion: (SellerProductItem?, Error?) -> Unit) {
+        api.getProductSoldbyID(id).enqueue(object : Callback<SellerProductItem> {
+            override fun onFailure(call: Call<SellerProductItem>, t: Throwable) {
+                println(t.message)
+                completion(null, Error(t.message))
+            }
+            override fun onResponse(
+                call: Call<SellerProductItem>,
+                response: Response<SellerProductItem>
+            ) {
+                when {
+                    response.isSuccessful -> {
+                        completion(response.body(), null)
+                    }
+                    !response.isSuccessful -> {
+                        completion(null, Error("Cannot get data"))
+                    }
+                }
+            }
+        })
+    }
 
 }
+
