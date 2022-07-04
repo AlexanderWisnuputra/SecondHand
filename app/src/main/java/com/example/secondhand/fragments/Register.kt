@@ -90,13 +90,13 @@ class Register : Fragment() {
                           //PASSWORD MINIMAL 6 CHAR   
     private suspend fun postUser(){
         ServiceBuilder.instance().addUser(
-            User(id = null,
+            User(
                 binding.namaReg.text.toString(),
                 binding.emailReg.text.toString(),
                 binding.passReg.text.toString(),
-        0,// NOMOR HP G BS NULL, NANTI PAS DI EDIT MENU G USH GET DARI API
+        10,// NOMOR HP G BS NULL, NANTI PAS DI EDIT MENU G USH GET DARI API
             "Alamat Anda",
-                    " Gambar ",
+                "https://firebasestorage.googleapis.com/v0/b/market-final-project.appspot.com/o/avatar%2FAV-1656939653050-42503866_2259264127640278_7961827119955181568_n.jpg?alt=media",
                 "Kota "
             )
         )
