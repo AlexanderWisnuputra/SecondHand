@@ -125,18 +125,32 @@
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/hargaTawar" />
 
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="380dp"
+    <android.widget.Button
+        android:id="@+id/btnKirim"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/button_border"
-        android:fontFamily="@font/poppins"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="20dp"
-        android:inputType="number"
+        android:backgroundTint="@color/purple_500"
+        android:elevation="10dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         android:text="Kirim"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:text="         ."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnKirim" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
