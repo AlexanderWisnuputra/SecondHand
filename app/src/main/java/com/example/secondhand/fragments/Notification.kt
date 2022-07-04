@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.secondhand.R
+import com.example.secondhand.databinding.FragmentNotificationBinding
 
 class Notification : Fragment() {
+    private lateinit var binding: FragmentNotificationBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notification, container, false)
+    ): View {
+        val fragmentNotificationBinding = FragmentNotificationBinding.inflate(inflater, container, false)
+        binding = fragmentNotificationBinding
+        return fragmentNotificationBinding.root
     }
 
 }

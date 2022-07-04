@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
@@ -38,6 +39,11 @@ class Sell : Fragment() {
     ): View? {
         val sellBinding = FragmentSellBinding.inflate(inflater, container, false)
         binding = sellBinding
+
+        val category = resources.getStringArray(R.array.category)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, category)
+        binding.kategoriText.setAdapter(arrayAdapter)
+
         return sellBinding.root
     }
 
@@ -111,6 +117,10 @@ class Sell : Fragment() {
                 findNavController().navigate(R.id.action_sell_to_login)
             }
             .setNegativeButton("Tidak") {_, _->
+                findNavController().navigate(R.id.action_sell_to_home)
+                Toast.makeText(requireContext(), "Untuk memposting barang anda harus login terlebih dahulu", Toast.LENGTH_LONG).show()
+            }
+            .setOnCancelListener {
                 findNavController().navigate(R.id.action_sell_to_home)
                 Toast.makeText(requireContext(), "Untuk memposting barang anda harus login terlebih dahulu", Toast.LENGTH_LONG).show()
             }
