@@ -1,10 +1,8 @@
 package com.example.secondhand.entity
 
-
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 
-data class User(
+data class Password(
     @SerializedName("full_name")
     val fullName: String,
     @SerializedName("email")
@@ -19,4 +17,4 @@ data class User(
     val imageUrl: String?,
     @SerializedName("city")
     val city: String?
-    )
+)

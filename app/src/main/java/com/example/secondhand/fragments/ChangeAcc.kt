@@ -105,13 +105,12 @@ class ChangeAcc : Fragment() {
         val preferences = dataStore.data.first()
         return preferences[dataStoreKey]
     }
-
+    // gambar buat error
     private suspend fun editUser() {
         var x =sharedPref.getAT("AT")
             ServiceBuilder.instance().changeDetail(
             x,
             User(
-                null,
                 binding.namaUbah.text.toString(),
                 args.dataAcc.email,
                 args.dataAcc.password,
