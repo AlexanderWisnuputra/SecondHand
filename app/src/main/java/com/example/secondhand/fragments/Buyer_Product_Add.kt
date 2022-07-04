@@ -9,7 +9,9 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentBuyerProductAddBinding
+import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.sellerProduct.Adapters
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
 class Buyer_Product_Add : Fragment() {
@@ -32,8 +34,6 @@ class Buyer_Product_Add : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val IMAGE_BASE = "https://firebasestorage.googleapis.com/v0/b/market-final-project.appspot.com/o/products%2FPR-"
-
         val nameProduct = arguments?.getString("name_product")
         val categoryProduct = arguments?.getString("category_product")
         val descriptionProduct = arguments?.getString("description_product")
@@ -51,6 +51,19 @@ class Buyer_Product_Add : Fragment() {
 
         binding.imageView4.setOnClickListener {
             it.findNavController().navigate(R.id.action_buyer_Product_Add_to_home)
+        }
+
+        val bundle = Bundle().apply {
+            putString("named", nameProduct)
+            putString("posterd", poster)
+            putString("priced", priceProduct)
+        }
+        val fragment = BottomSheetDialogFragment()
+        fragment.arguments = bundle
+
+
+        binding.button5.setOnClickListener {
+            it.findNavController().navigate(R.id.action_buyer_Product_Add_to_bottom_sheet_dialog, bundle)
         }
     }
 

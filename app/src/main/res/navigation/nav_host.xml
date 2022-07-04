@@ -113,12 +113,24 @@
         <action
             android:id="@+id/action_buyer_Product_Add_to_home"
             app:destination="@id/home" />
+        <action
+            android:id="@+id/action_buyer_Product_Add_to_bottom_sheet_dialog"
+            app:destination="@id/bottom_sheet_dialog" />
     </fragment>
     <fragment
         android:id="@+id/seller_Product_Add"
         android:name="com.example.secondhand.fragments.SellPreview"
         android:label="fragment_seller__product__add"
         tools:layout="@layout/fragment_sell_preview" />
+    <dialog
+        android:id="@+id/bottom_sheet_dialog"
+        android:name="com.example.secondhand.bottom_sheet_dialog"
+        android:label="fragment_bottom_sheet_dialog"
+        tools:layout="@layout/fragment_bottom_sheet_dialog" >
+        <action
+            android:id="@+id/action_bottom_sheet_dialog_to_buyer_Product_Add"
+            app:destination="@id/buyer_Product_Add" />
+    </dialog>
 
 
 </navigation>
