@@ -1,9 +1,6 @@
 package com.example.secondhand.sellerProduct
 
-import com.example.secondhand.entity.Login
-import com.example.secondhand.entity.SellerProductItem
-import com.example.secondhand.entity.User
-import com.example.secondhand.entity.UserAcessToken
+import com.example.secondhand.entity.*
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
@@ -31,6 +28,11 @@ interface ServiceAPI {
     @GET("buyer/product/")
     fun getProductCategory4 (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
 
+    @POST("seller/product")
+    suspend fun addProduct(
+        @Header("access_token") access_token:String?,
+        @Body post: Product
+    ): Call<Product>
 
     @POST("auth/register")
     suspend fun addUser(
@@ -49,4 +51,9 @@ interface ServiceAPI {
         @Body post: User
     ): Response<User>
 
+    @PUT("auth/change-password")
+    suspend fun changePass(
+        @Header("access_token") access_token:String?,
+        @Body post: User
+    ): Response<User>
 }
