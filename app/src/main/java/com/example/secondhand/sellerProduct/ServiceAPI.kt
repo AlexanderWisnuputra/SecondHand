@@ -54,6 +54,6 @@ interface ServiceAPI {
     @PUT("auth/change-password")
     suspend fun changePass(
         @Header("access_token") access_token:String?,
-        @Body post: User
-    ): Response<User>
+        @Body post: Password
+    ): Response<Password>
 }

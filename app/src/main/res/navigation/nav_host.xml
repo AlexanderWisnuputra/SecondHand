@@ -99,7 +99,11 @@
         android:id="@+id/settingAcc"
         android:name="com.example.secondhand.fragments.SettingAcc"
         android:label="fragment_setting_acc"
-        tools:layout="@layout/fragment_setting_acc" />
+        tools:layout="@layout/fragment_setting_acc" >
+        <action
+            android:id="@+id/action_settingAcc_to_profileDetail"
+            app:destination="@id/profileDetail" />
+    </fragment>
     <fragment
         android:id="@+id/buyer_Product_Add"
         android:name="com.example.secondhand.fragments.Buyer_Product_Add"
