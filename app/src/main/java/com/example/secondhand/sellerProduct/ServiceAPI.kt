@@ -1,6 +1,9 @@
 package com.example.secondhand.sellerProduct
 
+import android.content.ClipDescription
 import com.example.secondhand.entity.*
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
@@ -28,11 +31,17 @@ interface ServiceAPI {
     @GET("buyer/product/")
     fun getProductCategory4 (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
 
+    @Multipart
     @POST("seller/product")
     suspend fun addProduct(
         @Header("access_token") access_token:String?,
-        @Body post: Product
-    ): Call<Product>
+        @Part ("name") name: RequestBody,
+        @Part ("description") description: RequestBody,
+        @Part ("base_price") basePrice: RequestBody,
+        @Part ("category_ids") categoryId: RequestBody,
+        @Part ("location") location: RequestBody,
+        @Part productImage: MultipartBody.Part
+    ): Response<Product>
 
     @POST("auth/register")
     suspend fun addUser(

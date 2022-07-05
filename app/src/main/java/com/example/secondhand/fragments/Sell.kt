@@ -1,9 +1,12 @@
 package com.example.secondhand.fragments
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -26,13 +29,14 @@ import kotlinx.android.synthetic.main.fragment_sell.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import java.io.ByteArrayOutputStream
 
 
 class Sell : Fragment() {
     private lateinit var binding: FragmentSellBinding
     private lateinit var dataStore: DataStore<Preferences>
     private lateinit var sharedPref: Helper
-
+    val REQUEST_CODE = 1
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -60,26 +64,38 @@ class Sell : Fragment() {
     }
 
     private fun openGallery() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.type = "image/*"
-        galleryResult.launch("image/*")
+        var photo = Intent("android.media.action.IMAGE_CAPTURE");
+        startActivityForResult(photo, REQUEST_CODE);
+
+    }
+    fun BitMapToString(bitmap: Bitmap): String {
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 50, baos)
+        Bitmap.createScaledBitmap(bitmap, 88, 88, false)
+        val b = baos.toByteArray()
+        return Base64.encodeToString(b, Base64.DEFAULT)
+
     }
 
-    private val galleryResult =
-        registerForActivityResult(ActivityResultContracts.GetContent()) { result ->
-            binding.fotoProduk.setImageURI(result)
-            val gambarProduk = result.toString()
-            sharedPref.putSell("picture", gambarProduk)
+    private fun handleCameraImage(intent: Intent?) {
+        val uri = intent?.extras?.get("data") as Bitmap
+        val x = BitMapToString(uri)
+        sharedPref.putSell("picture",x)
+    }
 
-                requireActivity().runOnUiThread {
-                    Glide.with(requireActivity())
-                        .load(result)
-                        .into(fotoProduk)
-                }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE) {
+            handleCameraImage(data)
+            val x = data?.data.toString()
+            requireActivity().runOnUiThread {
+                Glide.with(requireActivity())
+                    .load(x)
+                    .into(fotoProduk)
             }
-
-    private fun toTerbit() {
+        }
     }
+
 
     private fun toPreview() {
         val sharedPreferences: SharedPreferences =

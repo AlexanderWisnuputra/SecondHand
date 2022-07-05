@@ -2,7 +2,12 @@ package com.example.secondhand.fragments
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
+import android.os.Environment
+import android.util.Base64
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,18 +19,22 @@ import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
 import com.example.secondhand.databinding.FragmentSellPreviewBinding
 import com.example.secondhand.entity.Product
+import com.example.secondhand.sellerProduct.SPViewModel
 import com.example.secondhand.sellerProduct.ServiceBuilder
 import kotlinx.android.synthetic.main.fragment_sell.*
 import kotlinx.android.synthetic.main.fragment_sell.view.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import okio.ByteString.Companion.decodeBase64
+import java.io.ByteArrayOutputStream
+import java.io.File
 
 
 class SellPreview : Fragment() {
     private lateinit var binding: FragmentSellPreviewBinding
     private lateinit var dataStore: DataStore<Preferences>
     private lateinit var sharedPref: Helper
-
+    private lateinit var vmod: SPViewModel
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,9 +48,8 @@ class SellPreview : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         sharedPref = Helper(requireContext())
         binding.button5.setOnClickListener {
-            lifecycleScope.launch(Dispatchers.IO) {
                 sellProduct()
-            }
+
         }
     }
 
@@ -52,7 +60,8 @@ class SellPreview : Fragment() {
         val hargaProduk = sharedPref.getSell("harga")
         val kategori = sharedPref.getSell("kategori")
         val deskripsi = sharedPref.getSell("deskripsi")
-        val gambar = sharedPref.getSell("picture")
+        val gambar = sharedPref.getAT("image")
+
         Glide.with(requireActivity())
             .load(gambar)
             .into(binding.imageView3)
@@ -62,21 +71,28 @@ class SellPreview : Fragment() {
         binding.textView6.setText("$kategori").toString()
         binding.smallerDetail.setText("$deskripsi").toString()
     }
-    private suspend fun sellProduct() {
+    private fun sellProduct() {
         var x = sharedPref.getAT("AT")
         val gambar = sharedPref.getSell("picture")
-     /*   ServiceBuilder.instance().addProduct(
-            x,
-            Product(
-                null,
-                "${binding.textView5.text}",
-                "${binding.textView5.text}",
-                binding.textView7.text.toString().toInt(),
+        var imageBytes = Base64.decode(gambar, 0)
 
-                "$gambar",
-                "${binding.textView5.text}",
-                null
+        var q =BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
+
+        var image = convertBitmapToFile(requireContext(),q)
+
+        val xs =
+            vmod.PostProduct(
+                acstkn = x,"${binding.textView5.text}","${binding.smallerDetail.text}",binding.textView7.text.toString().toInt(),
+                listOf(100),"Jakarta",image
             )
-        )*/
+    }
+    fun convertBitmapToFile(context: Context,bitmap: Bitmap): File {
+        val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + "save")
+        file.createNewFile()
+        // Convert bitmap to byte array
+        val baos = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 50, baos) // It can be also saved it as JPEG
+        val bitmapdata = baos.toByteArray()
+        return file
     }
 }
