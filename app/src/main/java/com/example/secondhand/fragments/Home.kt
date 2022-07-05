@@ -1,5 +1,6 @@
 package com.example.secondhand.fragments
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -43,6 +44,8 @@ class Home : Fragment(), ProductInterface {
         observe()
         getdata()
         doubleBackToExit()
+        binding.category1.setBackgroundResource(R.drawable.selected_category_border)
+        binding.category1.setTextColor(Color.WHITE)
     }
 
     private fun getdata() = vmod.fetchProducts()
@@ -93,7 +96,18 @@ class Home : Fragment(), ProductInterface {
                     a.notifyDataSetChanged()
                 }
             }
+            binding.category1.setBackgroundResource(R.drawable.selected_category_border)
+            binding.category1.setTextColor(Color.WHITE)
+            binding.category2.setBackgroundResource(R.drawable.category_border)
+            binding.category2.setTextColor(Color.BLACK)
+            binding.category3.setBackgroundResource(R.drawable.category_border)
+            binding.category3.setTextColor(Color.BLACK)
+            binding.category4.setBackgroundResource(R.drawable.category_border)
+            binding.category4.setTextColor(Color.BLACK)
+            binding.category5.setBackgroundResource(R.drawable.category_border)
+            binding.category5.setTextColor(Color.BLACK)
         }
+
         binding.category2.setOnClickListener {
             binding.sellerProductRecyclerview.adapter?.let { a->
                 if(a is Adapters){
@@ -102,6 +116,16 @@ class Home : Fragment(), ProductInterface {
                     a.notifyDataSetChanged()
                 }
             }
+            binding.category1.setBackgroundResource(R.drawable.category_border)
+            binding.category1.setTextColor(Color.BLACK)
+            binding.category2.setBackgroundResource(R.drawable.selected_category_border)
+            binding.category2.setTextColor(Color.WHITE)
+            binding.category3.setBackgroundResource(R.drawable.category_border)
+            binding.category3.setTextColor(Color.BLACK)
+            binding.category4.setBackgroundResource(R.drawable.category_border)
+            binding.category4.setTextColor(Color.BLACK)
+            binding.category5.setBackgroundResource(R.drawable.category_border)
+            binding.category5.setTextColor(Color.BLACK)
         }
         binding.category3.setOnClickListener {
             binding.sellerProductRecyclerview.adapter?.let { a->
@@ -111,6 +135,16 @@ class Home : Fragment(), ProductInterface {
                     a.notifyDataSetChanged()
                 }
             }
+            binding.category1.setBackgroundResource(R.drawable.category_border)
+            binding.category1.setTextColor(Color.BLACK)
+            binding.category2.setBackgroundResource(R.drawable.category_border)
+            binding.category2.setTextColor(Color.BLACK)
+            binding.category3.setBackgroundResource(R.drawable.selected_category_border)
+            binding.category3.setTextColor(Color.WHITE)
+            binding.category4.setBackgroundResource(R.drawable.category_border)
+            binding.category4.setTextColor(Color.BLACK)
+            binding.category5.setBackgroundResource(R.drawable.category_border)
+            binding.category5.setTextColor(Color.BLACK)
         }
         binding.category4.setOnClickListener {
             binding.sellerProductRecyclerview.adapter?.let { a->
@@ -120,6 +154,16 @@ class Home : Fragment(), ProductInterface {
                     a.notifyDataSetChanged()
                 }
             }
+            binding.category1.setBackgroundResource(R.drawable.category_border)
+            binding.category1.setTextColor(Color.BLACK)
+            binding.category2.setBackgroundResource(R.drawable.category_border)
+            binding.category2.setTextColor(Color.BLACK)
+            binding.category3.setBackgroundResource(R.drawable.category_border)
+            binding.category3.setTextColor(Color.BLACK)
+            binding.category4.setBackgroundResource(R.drawable.selected_category_border)
+            binding.category4.setTextColor(Color.WHITE)
+            binding.category5.setBackgroundResource(R.drawable.category_border)
+            binding.category5.setTextColor(Color.BLACK)
         }
         binding.category5.setOnClickListener {
             binding.sellerProductRecyclerview.adapter?.let { a->
@@ -129,6 +173,16 @@ class Home : Fragment(), ProductInterface {
                     a.notifyDataSetChanged()
                 }
             }
+            binding.category1.setBackgroundResource(R.drawable.category_border)
+            binding.category1.setTextColor(Color.BLACK)
+            binding.category2.setBackgroundResource(R.drawable.category_border)
+            binding.category2.setTextColor(Color.BLACK)
+            binding.category3.setBackgroundResource(R.drawable.category_border)
+            binding.category3.setTextColor(Color.BLACK)
+            binding.category4.setBackgroundResource(R.drawable.category_border)
+            binding.category4.setTextColor(Color.BLACK)
+            binding.category5.setBackgroundResource(R.drawable.selected_category_border)
+            binding.category5.setTextColor(Color.WHITE)
         }
         binding.imgPoster.setOnClickListener {
             val search = binding.editText.text.toString()

@@ -42,14 +42,17 @@
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_profile_detail.xml" value="0.4064665127020785" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_register.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_sell.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_sell_preview.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_seller__product__add.xml" value="0.36476683937823834" />
-        <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_setting_acc.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/product_sold.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/menu/bottom_navigation.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/button_border.xml" value="0.209" />
+        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/category_border.xml" value="0.209" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/ic_fi_camera.xml" value="0.209" />
+        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/ic_search_clicked.xml" value="0.209" />
+        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/ic_search_unclicked.xml" value="0.209" />
+        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/selected_category_border.xml" value="0.209" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/activity_main.xml" value="0.14221014492753623" />
+        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/dropdown_item.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_buyer__product__add.xml" value="0.22" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_buyer_info.xml" value="0.25" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_change_acc.xml" value="0.25" />
@@ -69,7 +72,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_16" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

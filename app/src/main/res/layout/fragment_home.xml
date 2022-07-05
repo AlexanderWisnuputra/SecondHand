@@ -177,10 +177,9 @@
                 android:layout_height="43dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/category_border"
-                android:backgroundTint="@color/purple_500"
-                android:drawableLeft="@drawable/ic_search_clicked"
+                android:drawableLeft="@drawable/ic_search_unclicked"
                 android:text="Semua "
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textAllCaps="false" />
 
             <android.widget.Button
