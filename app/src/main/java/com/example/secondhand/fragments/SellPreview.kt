@@ -28,6 +28,8 @@ import kotlinx.coroutines.launch
 import okio.ByteString.Companion.decodeBase64
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
 
 
 class SellPreview : Fragment() {
@@ -60,7 +62,7 @@ class SellPreview : Fragment() {
         val hargaProduk = sharedPref.getSell("harga")
         val kategori = sharedPref.getSell("kategori")
         val deskripsi = sharedPref.getSell("deskripsi")
-        val gambar = sharedPref.getAT("image")
+        val gambar = sharedPref.getFilter("picture")
 
         Glide.with(requireActivity())
             .load(gambar)
@@ -78,21 +80,26 @@ class SellPreview : Fragment() {
 
         var q =BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 
-        var image = convertBitmapToFile(requireContext(),q)
+        convertBitmapToFile(q)
 
-        val xs =
+        val file = File(Environment.getExternalStorageDirectory(),"image/png")
             vmod.PostProduct(
                 acstkn = x,"${binding.textView5.text}","${binding.smallerDetail.text}",binding.textView7.text.toString().toInt(),
-                listOf(100),"Jakarta",image
+                listOf(100),"Jakarta",file
             )
     }
-    fun convertBitmapToFile(context: Context,bitmap: Bitmap): File {
-        val file = File(Environment.getExternalStorageDirectory().toString() + File.separator + "save")
+    fun convertBitmapToFile(bitmap: Bitmap):File {
+        val file = File(Environment.getExternalStorageDirectory(),"image/png")
         file.createNewFile()
-        // Convert bitmap to byte array
+        if (!file.exists()) {
+            file.mkdirs();
+        }
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 50, baos) // It can be also saved it as JPEG
         val bitmapdata = baos.toByteArray()
+        FileOutputStream(file).write(bitmapdata)
+        FileOutputStream(file).flush()
+        FileOutputStream(file).close()
         return file
     }
 }

@@ -177,7 +177,7 @@
                 android:layout_height="43dp"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/category_border"
-                android:drawableLeft="@drawable/ic_search_unclicked"
+                android:drawableLeft="@drawable/ic_search_clicked"
                 android:text="Semua "
                 android:textColor="@color/black"
                 android:textAllCaps="false" />
@@ -190,7 +190,7 @@
                 android:layout_marginTop="4dp"
                 android:background="@drawable/category_border"
                 android:drawableLeft="@drawable/ic_search_unclicked"
-                android:text="Kursus"
+                android:text="Elektronik"
                 android:textAllCaps="false"
                 android:textColor="@color/black" />
 
@@ -202,7 +202,7 @@
                 android:layout_marginTop="4dp"
                 android:background="@drawable/category_border"
                 android:drawableLeft="@drawable/ic_search_unclicked"
-                android:text="Sport"
+                android:text="Otomotif"
                 android:textAllCaps="false"
                 tools:layout_editor_absoluteX="56dp"
                 tools:layout_editor_absoluteY="476dp" />
@@ -218,6 +218,7 @@
                 android:textAllCaps="false"
                 tools:layout_editor_absoluteX="56dp"
                 tools:layout_editor_absoluteY="476dp" />
+
             <android.widget.Button
                 android:id="@+id/category5"
                 android:layout_width="140dp"
@@ -226,7 +227,7 @@
                 android:layout_marginTop="4dp"
                 android:background="@drawable/category_border"
                 android:drawableLeft="@drawable/ic_search_unclicked"
-                android:text="Hobi"
+                android:text="Fotografi"
                 android:textAllCaps="false"
                 tools:layout_editor_absoluteX="56dp"
                 tools:layout_editor_absoluteY="476dp" />

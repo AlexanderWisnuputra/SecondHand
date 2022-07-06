@@ -71,16 +71,14 @@ class Sell : Fragment() {
     fun BitMapToString(bitmap: Bitmap): String {
         val baos = ByteArrayOutputStream()
         bitmap.compress(Bitmap.CompressFormat.PNG, 50, baos)
-        Bitmap.createScaledBitmap(bitmap, 88, 88, false)
         val b = baos.toByteArray()
-        return Base64.encodeToString(b, Base64.DEFAULT)
+        return Base64.encodeToString(b, 0)
 
     }
 
     private fun handleCameraImage(intent: Intent?) {
         val uri = intent?.extras?.get("data") as Bitmap
-        val x = BitMapToString(uri)
-        sharedPref.putSell("picture",x)
+        sharedPref.putFilter("picture",uri.toString())
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

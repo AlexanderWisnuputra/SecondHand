@@ -100,7 +100,7 @@ class SPViewModel : ViewModel() {
 
         viewModelScope.launch{
            val at = acstkn
-            val requestFile = productImage.asRequestBody("image/jpeg".toMediaTypeOrNull())
+            val requestFile = productImage.asRequestBody("image/png".toMediaTypeOrNull())
             val requestImage = MultipartBody.Part.createFormData("image", productImage.name,requestFile)
             val name = name.toRequestBody("text/plain".toMediaTypeOrNull())
             val desc = description.toRequestBody("text/plain".toMediaTypeOrNull())

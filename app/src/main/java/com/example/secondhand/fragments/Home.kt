@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
+import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
@@ -98,6 +99,11 @@ class Home : Fragment(), ProductInterface {
             }
             binding.category1.setBackgroundResource(R.drawable.selected_category_border)
             binding.category1.setTextColor(Color.WHITE)
+            binding.category1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_clicked,0,0,0)
+            binding.category2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category3.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category4.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category5.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
             binding.category2.setBackgroundResource(R.drawable.category_border)
             binding.category2.setTextColor(Color.BLACK)
             binding.category3.setBackgroundResource(R.drawable.category_border)
@@ -119,6 +125,11 @@ class Home : Fragment(), ProductInterface {
             binding.category1.setBackgroundResource(R.drawable.category_border)
             binding.category1.setTextColor(Color.BLACK)
             binding.category2.setBackgroundResource(R.drawable.selected_category_border)
+            binding.category2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_clicked,0,0,0)
+            binding.category1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category3.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category4.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category5.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
             binding.category2.setTextColor(Color.WHITE)
             binding.category3.setBackgroundResource(R.drawable.category_border)
             binding.category3.setTextColor(Color.BLACK)
@@ -141,6 +152,11 @@ class Home : Fragment(), ProductInterface {
             binding.category2.setTextColor(Color.BLACK)
             binding.category3.setBackgroundResource(R.drawable.selected_category_border)
             binding.category3.setTextColor(Color.WHITE)
+            binding.category3.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_clicked,0,0,0)
+            binding.category2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category4.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category5.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
             binding.category4.setBackgroundResource(R.drawable.category_border)
             binding.category4.setTextColor(Color.BLACK)
             binding.category5.setBackgroundResource(R.drawable.category_border)
@@ -162,6 +178,11 @@ class Home : Fragment(), ProductInterface {
             binding.category3.setTextColor(Color.BLACK)
             binding.category4.setBackgroundResource(R.drawable.selected_category_border)
             binding.category4.setTextColor(Color.WHITE)
+            binding.category1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category3.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category5.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category4.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_clicked,0,0,0)
             binding.category5.setBackgroundResource(R.drawable.category_border)
             binding.category5.setTextColor(Color.BLACK)
         }
@@ -183,6 +204,12 @@ class Home : Fragment(), ProductInterface {
             binding.category4.setTextColor(Color.BLACK)
             binding.category5.setBackgroundResource(R.drawable.selected_category_border)
             binding.category5.setTextColor(Color.WHITE)
+            binding.category5.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_clicked,0,0,0)
+            binding.category1.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category2.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category3.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+            binding.category4.setCompoundDrawablesRelativeWithIntrinsicBounds(R.drawable.ic_search_unclicked,0,0,0)
+
         }
         binding.imgPoster.setOnClickListener {
             val search = binding.editText.text.toString()
