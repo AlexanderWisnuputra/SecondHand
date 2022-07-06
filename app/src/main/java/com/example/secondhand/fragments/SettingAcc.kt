@@ -12,7 +12,7 @@ import com.example.secondhand.Helper
 import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentSettingAccBinding
 import com.example.secondhand.entity.Password
-import com.example.secondhand.Api.ServiceBuilder
+import com.example.secondhand.api.ServiceBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

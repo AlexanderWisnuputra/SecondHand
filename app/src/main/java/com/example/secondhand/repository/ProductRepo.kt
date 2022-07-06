@@ -1,8 +1,9 @@
-package com.example.secondhand.Repository
+package com.example.secondhand.repository
 
 import com.example.secondhand.entity.Product
 import com.example.secondhand.entity.SellerProductItem
-import com.example.secondhand.Api.ServiceBuilder
+import com.example.secondhand.api.ServiceBuilder
+import com.example.secondhand.entity.History
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -22,6 +23,28 @@ class ProductRepo {
             override fun onResponse(
                 call: Call<List<SellerProductItem>>,
                 response: Response<List<SellerProductItem>>
+            ) {
+                when {
+                    response.isSuccessful -> {
+                        completion(response.body(), null)
+                    }
+                    !response.isSuccessful -> {
+                        completion(null, Error("Cannot get data"))
+                    }
+                }
+            }
+        })
+    }
+    fun getHistory(accestoken: String?,completion: (List<History>?, Error?) -> Unit) {
+        api.getNotification(accestoken).enqueue(object : Callback<List<History>> {
+            override fun onFailure(call: Call<List<History>>, t: Throwable) {
+                println(t.message)
+                completion(null, Error(t.message))
+            }
+
+            override fun onResponse(
+                call: Call<List<History>>,
+                response: Response<List<History>>
             ) {
                 when {
                     response.isSuccessful -> {

@@ -18,7 +18,7 @@ import com.example.secondhand.R
 import com.example.secondhand.dao.UserViewModel
 import com.example.secondhand.databinding.FragmentLoginBinding
 import com.example.secondhand.entity.UserAcessToken
-import com.example.secondhand.Api.ServiceBuilder
+import com.example.secondhand.api.ServiceBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

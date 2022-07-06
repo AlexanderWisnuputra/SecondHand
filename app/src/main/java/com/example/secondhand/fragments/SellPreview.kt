@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
 import com.example.secondhand.databinding.FragmentSellPreviewBinding
@@ -36,6 +37,7 @@ class SellPreview : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupViewModel()
         sharedPref = Helper(requireContext())
         binding.button5.setOnClickListener {
                 sellProduct()
@@ -61,33 +63,41 @@ class SellPreview : Fragment() {
         binding.textView6.setText("$kategori").toString()
         binding.smallerDetail.setText("$deskripsi").toString()
     }
+
+    private fun setupViewModel(){
+        vmod = ViewModelProvider(this).get(SPViewModel::class.java)
+    }
     private fun sellProduct() {
         var x = sharedPref.getAT("AT")
-        val gambar = sharedPref.getSell("picture")
+        val gambar = sharedPref.getFilter("picture")
         var imageBytes = Base64.decode(gambar, 0)
 
         var q =BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
 
-        convertBitmapToFile(q)
 
-        val file = File(Environment.getExternalStorageDirectory(),"image/png")
+        var imeg = convertBitmapToFile(q,"random")
             vmod.PostProduct(
                 acstkn = x,"${binding.textView5.text}","${binding.smallerDetail.text}",binding.textView7.text.toString().toInt(),
-                listOf(100),"Jakarta",file
+                listOf(100),"Jakarta",imeg!!
             )
     }
-    fun convertBitmapToFile(bitmap: Bitmap):File {
-        val file = File(Environment.getExternalStorageDirectory(),"image/png")
-        file.createNewFile()
-        if (!file.exists()) {
-            file.mkdirs();
+    fun convertBitmapToFile(bitmap: Bitmap, fileNameToSave: String):File? {
+        var file: File? = null
+        return try {
+            file = File(Environment.getExternalStorageDirectory().toString() + File.separator + fileNameToSave)
+            file.createNewFile()
+            val baos = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 0, baos) // It can be also saved it as JPEG
+            val bitmapdata = baos.toByteArray()
+            val fos = FileOutputStream(file)
+                fos.write(bitmapdata)
+            fos.flush()
+            fos.close()
+            return file
         }
-        val baos = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG, 50, baos) // It can be also saved it as JPEG
-        val bitmapdata = baos.toByteArray()
-        FileOutputStream(file).write(bitmapdata)
-        FileOutputStream(file).flush()
-        FileOutputStream(file).close()
-        return file
+        catch (e: Exception) {
+            e.printStackTrace()
+            file // it will return null
+        }
     }
 }

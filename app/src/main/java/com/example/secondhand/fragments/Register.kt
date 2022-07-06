@@ -12,7 +12,7 @@ import com.example.secondhand.R
 import com.example.secondhand.dao.UserViewModel
 import com.example.secondhand.databinding.FragmentRegisterBinding
 import com.example.secondhand.entity.User
-import com.example.secondhand.Api.ServiceBuilder
+import com.example.secondhand.api.ServiceBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

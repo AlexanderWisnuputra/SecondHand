@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.secondhand.dao.UserDao
 import com.example.secondhand.dao.UserDatabase
 import com.example.secondhand.dao.UserViewModel
+import com.example.secondhand.sellerProduct.SPViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module

@@ -1,10 +1,8 @@
-package com.example.secondhand.Api
+package com.example.secondhand.api
 
-import android.content.ClipDescription
 import com.example.secondhand.entity.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -12,6 +10,9 @@ import retrofit2.http.*
 interface ServiceAPI {
     @GET("buyer/product")
     fun getProductSold () : Call<List<SellerProductItem>>
+
+    @GET("history")
+    fun getNotification (@Header("access_token") access_token:String?) : Call<List<History>>
 
     @GET("buyer/product/")
     fun getProductSoldbyID (@Query("id") id:Int) : Call<SellerProductItem>

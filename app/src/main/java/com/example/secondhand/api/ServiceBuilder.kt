@@ -1,4 +1,4 @@
-package com.example.secondhand.Api
+package com.example.secondhand.api
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

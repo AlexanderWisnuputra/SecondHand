@@ -1,14 +1,9 @@
 package com.example.secondhand.sellerProduct
-import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
@@ -23,10 +18,10 @@ class Adapters(private val products: MutableList<SellerProductItem>, private val
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var product_image = itemView.findViewById<ImageView>(R.id.seller_product_image)
-        var product_price = itemView.findViewById<TextView>(R.id.product_price)
-        var product_name = itemView.findViewById<TextView>(R.id.product_name)
-        var product_category = itemView.findViewById<TextView>(R.id.product_category)
+        var product_image = itemView.findViewById<ImageView>(R.id.history_image)
+        var product_price = itemView.findViewById<TextView>(R.id.history_price)
+        var product_name = itemView.findViewById<TextView>(R.id.history_name)
+        var product_category = itemView.findViewById<TextView>(R.id.history_category)
 
         fun bind(product: SellerProductItem) {
             val price = "Rp ${product.basePrice}"
