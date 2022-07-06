@@ -18,11 +18,9 @@ import com.example.secondhand.R
 import com.example.secondhand.dao.UserViewModel
 import com.example.secondhand.databinding.FragmentLoginBinding
 import com.example.secondhand.entity.UserAcessToken
-import com.example.secondhand.sellerProduct.ServiceBuilder
+import com.example.secondhand.Api.ServiceBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import okhttp3.ResponseBody
-import org.json.JSONObject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.Call
 import retrofit2.Callback

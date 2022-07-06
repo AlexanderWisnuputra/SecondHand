@@ -6,28 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.preferencesKey
-import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import com.example.secondhand.Helper
 import com.example.secondhand.R
-import com.example.secondhand.dao.UserViewModel
-import com.example.secondhand.databinding.FragmentChangeAccBinding
 import com.example.secondhand.databinding.FragmentSettingAccBinding
-import com.example.secondhand.entity.Login
 import com.example.secondhand.entity.Password
-import com.example.secondhand.entity.User
-import com.example.secondhand.sellerProduct.ServiceBuilder
+import com.example.secondhand.Api.ServiceBuilder
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class SettingAcc : Fragment() {

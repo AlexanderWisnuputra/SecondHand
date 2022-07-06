@@ -1,7 +1,6 @@
 package com.example.secondhand.entity
 
 
-import com.example.secondhand.sellerProduct.Category
 import com.google.gson.annotations.SerializedName
 
 data class SellerProductItem(

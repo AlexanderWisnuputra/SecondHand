@@ -1,4 +1,4 @@
-package com.example.secondhand.sellerProduct
+package com.example.secondhand.Api
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

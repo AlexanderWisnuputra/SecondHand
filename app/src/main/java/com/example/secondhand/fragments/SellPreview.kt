@@ -1,10 +1,7 @@
 package com.example.secondhand.fragments
 
-import android.content.Context
-import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.util.Base64
@@ -14,21 +11,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
-import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
 import com.example.secondhand.databinding.FragmentSellPreviewBinding
-import com.example.secondhand.entity.Product
 import com.example.secondhand.sellerProduct.SPViewModel
-import com.example.secondhand.sellerProduct.ServiceBuilder
-import kotlinx.android.synthetic.main.fragment_sell.*
-import kotlinx.android.synthetic.main.fragment_sell.view.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import okio.ByteString.Companion.decodeBase64
 import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.FileInputStream
 import java.io.FileOutputStream
 
 

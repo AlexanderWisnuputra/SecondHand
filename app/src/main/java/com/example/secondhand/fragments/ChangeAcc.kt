@@ -18,11 +18,9 @@ import com.example.secondhand.Helper
 import com.example.secondhand.R
 import com.example.secondhand.dao.UserViewModel
 import com.example.secondhand.databinding.FragmentChangeAccBinding
-import com.example.secondhand.entity.Login
 import com.example.secondhand.entity.User
-import com.example.secondhand.sellerProduct.ServiceBuilder
+import com.example.secondhand.Api.ServiceBuilder
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel

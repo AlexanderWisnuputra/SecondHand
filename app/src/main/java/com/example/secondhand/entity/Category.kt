@@ -1,4 +1,4 @@
-package com.example.secondhand.sellerProduct
+package com.example.secondhand.entity
 
 
 import com.google.gson.annotations.SerializedName

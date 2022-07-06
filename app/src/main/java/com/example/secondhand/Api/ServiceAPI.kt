@@ -1,4 +1,4 @@
-package com.example.secondhand.sellerProduct
+package com.example.secondhand.Api
 
 import android.content.ClipDescription
 import com.example.secondhand.entity.*

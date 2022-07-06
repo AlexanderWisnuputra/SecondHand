@@ -1,12 +1,12 @@
 package com.example.secondhand.sellerProduct
 
-import android.net.Uri
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.secondhand.Api.ServiceBuilder
 import com.example.secondhand.Helper
 import com.example.secondhand.entity.SellerProductItem
-import com.example.secondhand.sellerProduct.bprepository.ProductRepo
+import com.example.secondhand.Repository.ProductRepo
 import kotlinx.coroutines.launch
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
