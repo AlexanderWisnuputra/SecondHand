@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.secondhand.api.ServiceBuilder
 import com.example.secondhand.Helper
 import com.example.secondhand.URIPathHelper
+import com.example.secondhand.entity.Category
 import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.repository.ProductRepo
 import kotlinx.coroutines.launch
@@ -19,12 +20,24 @@ import java.io.File
 class SPViewModel : ViewModel() {
     private val state = MutableLiveData<MainState>()
     private val products = MutableLiveData<List<SellerProductItem>>()
+    private val category = MutableLiveData<List<Category>>()
     private val repo = ProductRepo()
     private lateinit var sharedPref: Helper
     val showResponseSuccess: MutableLiveData<String> = MutableLiveData()
 
     private fun loading(b: Boolean){
         state.value = MainState.Loading(b)
+    }
+
+    fun fetchCategory(){
+        loading(true)
+        repo.category{
+                sproduct, error ->
+            loading(false)
+            error?.let{it.message?.let { message -> println(message) }}
+            sproduct?.let { category.postValue(it) }
+        }
+
     }
 
     fun fetchProducts(){

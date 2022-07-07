@@ -24,16 +24,13 @@ interface ServiceAPI {
     fun getProductSearchBar (@Query("search") search:String) : Call<List<SellerProductItem>>
 
     @GET("buyer/product/")
-    fun getProductCategory1 (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
+    fun getProductCategory (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
 
-    @GET("buyer/product/")
-    fun getProductCategory2 (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
+    @GET("seller/category/")
+    fun categorybyID (@Query("id") id:Int) : Call<Category>
 
-    @GET("buyer/product/")
-    fun getProductCategory3 (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
-
-    @GET("buyer/product/")
-    fun getProductCategory4 (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
+    @GET("seller/category/")
+    fun category () : Call<List<Category>>
 
     @Multipart
     @POST("seller/product")

@@ -84,9 +84,9 @@ class SellList : Fragment(), HistoryInterface {
 
     private fun isLoading(b: Boolean) {
         if (b) {
-            binding.imageView2.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.VISIBLE
         } else {
-            binding.imageView2.visibility = View.GONE
+            binding.progressBar.visibility = View.GONE
         }
     }
 
