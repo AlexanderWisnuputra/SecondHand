@@ -203,7 +203,7 @@ class ProductRepo {
         baseprice: RequestBody,
         category: RequestBody,
         location: RequestBody,
-        requestimage: MultipartBody.Part,
+        requestimage: MultipartBody.Part?,
     ): Response<Product> {
         return api.addProduct(
             access_token = accestoken,

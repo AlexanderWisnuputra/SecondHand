@@ -41,7 +41,7 @@ interface ServiceAPI {
         @Part ("base_price") basePrice: RequestBody,
         @Part ("category_ids") categoryId: RequestBody,
         @Part ("location") location: RequestBody,
-        @Part productImage: MultipartBody.Part
+        @Part productImage: MultipartBody.Part?
     ): Response<Product>
 
     @POST("auth/register")

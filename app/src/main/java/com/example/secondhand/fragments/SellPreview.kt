@@ -68,18 +68,6 @@ class SellPreview : Fragment() {
         vmod = ViewModelProvider(this).get(SPViewModel::class.java)
     }
     private fun sellProduct() {
-        var x = sharedPref.getAT("AT")
-        val gambar = sharedPref.getFilter("picture")
-        var imageBytes = Base64.decode(gambar, 0)
-
-        var q =BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.size)
-
-
-        var imeg = convertBitmapToFile(q,"random")
-            vmod.PostProduct(
-                acstkn = x,"${binding.textView5.text}","${binding.smallerDetail.text}",binding.textView7.text.toString().toInt(),
-                listOf(100),"Jakarta",imeg!!
-            )
     }
     fun convertBitmapToFile(bitmap: Bitmap, fileNameToSave: String):File? {
         var file: File? = null
