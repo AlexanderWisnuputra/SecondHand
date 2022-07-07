@@ -27,10 +27,19 @@ interface ServiceAPI {
     fun getProductCategory (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
 
     @GET("seller/category/")
-    fun categorybyID (@Query("id") id:Int) : Call<Category>
+    fun category () : Call<List<Category>>
 
     @GET("seller/category/")
-    fun category () : Call<List<Category>>
+    fun categorybyID (@Query("id") id:Int) : Call<Category>
+
+    @GET("notification")
+    fun notif (@Header("access_token") access_token:String?) : Call<List<Notification>>
+
+    @GET("notification/")
+    fun notifbyID (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>
+
+    @PATCH("notification/")
+    fun notifPatch (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>
 
     @Multipart
     @POST("seller/product")
