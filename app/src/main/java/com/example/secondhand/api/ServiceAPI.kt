@@ -12,7 +12,10 @@ interface ServiceAPI {
     fun getProductSold () : Call<List<SellerProductItem>>
 
     @GET("history")
-    fun getNotification (@Header("access_token") access_token:String?) : Call<List<History>>
+    fun getHistory (@Header("access_token") access_token:String?) : Call<List<History>>
+
+    @GET("history")
+    fun getHistorybyID (@Header("access_token") access_token:String?, @Query("id") id:Int) : Call<History>
 
     @GET("buyer/product/")
     fun getProductSoldbyID (@Query("id") id:Int) : Call<SellerProductItem>

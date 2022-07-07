@@ -35,30 +35,8 @@ class ProductRepo {
             }
         })
     }
-    fun getHistory(accestoken: String?,completion: (List<History>?, Error?) -> Unit) {
-        api.getNotification(accestoken).enqueue(object : Callback<List<History>> {
-            override fun onFailure(call: Call<List<History>>, t: Throwable) {
-                println(t.message)
-                completion(null, Error(t.message))
-            }
-
-            override fun onResponse(
-                call: Call<List<History>>,
-                response: Response<List<History>>
-            ) {
-                when {
-                    response.isSuccessful -> {
-                        completion(response.body(), null)
-                    }
-                    !response.isSuccessful -> {
-                        completion(null, Error("Cannot get data"))
-                    }
-                }
-            }
-        })
-    }
-
-    fun categoryKursus(completion: (List<SellerProductItem>?, Error?) -> Unit) {
+    
+    fun category1(completion: (List<SellerProductItem>?, Error?) -> Unit) {
         api.getProductCategory1(96).enqueue(object : Callback<List<SellerProductItem>> {
             override fun onFailure(call: Call<List<SellerProductItem>>, t: Throwable) {
                 println(t.message)
@@ -81,7 +59,7 @@ class ProductRepo {
         })
     }
 
-    fun categorySport(completion: (List<SellerProductItem>?, Error?) -> Unit) {
+    fun Category2(completion: (List<SellerProductItem>?, Error?) -> Unit) {
         api.getProductCategory2(114).enqueue(object : Callback<List<SellerProductItem>> {
             override fun onFailure(call: Call<List<SellerProductItem>>, t: Throwable) {
                 println(t.message)

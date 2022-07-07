@@ -48,8 +48,8 @@ class Home : Fragment(), ProductInterface {
     }
 
     private fun getdata() = vmod.fetchProducts()
-    private fun getdataCategory1() = vmod.fetchProductsbyKursus()
-    private fun getdataCategory2() = vmod.fetchProductsbySport()
+    private fun getdataCategory1() = vmod.fetchCategory1()
+    private fun getdataCategory2() = vmod.fetchCategory2()
     private fun getdataCategory3() = vmod.fetchProductsbyMakanan()
     private fun getdataCategory4() = vmod.fetchProductsbyHobi()
     private fun getdataSearch(search: String) = vmod.fetchProductsbySearch(search)

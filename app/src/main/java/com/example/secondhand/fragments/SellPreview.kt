@@ -52,10 +52,9 @@ class SellPreview : Fragment() {
         val hargaProduk = sharedPref.getSell("harga")
         val kategori = sharedPref.getSell("kategori")
         val deskripsi = sharedPref.getSell("deskripsi")
-        val gambar = sharedPref.getFilter("picture")
-
+        //pake shared pref AMBIL GAMBAR
         Glide.with(requireActivity())
-            .load(gambar)
+            .load("gambar")
             .into(binding.imageView3)
 
         binding.textView5.setText("$namaProduk").toString()

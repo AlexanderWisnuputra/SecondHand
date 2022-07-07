@@ -37,18 +37,18 @@ class SPViewModel : ViewModel() {
         }
 
     }
-    fun fetchProductsbyKursus() {
+    fun fetchCategory1() {
         loading(true)
 
-        repo.categoryKursus { sproduct, error ->
+        repo.category1 { sproduct, error ->
             loading(false)
             error?.let { it.message?.let { message -> println(message) } }
             sproduct?.let { products.postValue(it) }
         }
     }
-    fun fetchProductsbySport() {
+    fun fetchCategory2() {
         loading(true)
-        repo.categorySport { sproduct, error ->
+        repo.Category2 { sproduct, error ->
             loading(false)
             error?.let { it.message?.let { message -> println(message) } }
             sproduct?.let { products.postValue(it) }

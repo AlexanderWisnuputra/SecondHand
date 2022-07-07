@@ -1,9 +1,7 @@
-package com.example.secondhand.repository
+package com.example.secondhand.history
 
 import com.example.secondhand.entity.History
-import com.example.secondhand.entity.SellerProductItem
 
 interface HistoryInterface {
         fun click(item: History)
-
 }

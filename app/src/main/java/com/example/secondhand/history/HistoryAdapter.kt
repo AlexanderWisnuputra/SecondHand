@@ -9,8 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
 import com.example.secondhand.entity.History
-import com.example.secondhand.entity.SellerProductItem
-import com.example.secondhand.repository.HistoryInterface
 
 
 class HistoryAdapter(private val sejarah: MutableList<History>, private val mainInterface: HistoryInterface)

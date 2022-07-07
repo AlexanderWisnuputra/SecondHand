@@ -13,12 +13,10 @@ import com.example.secondhand.Helper
 import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentListBinding
 import com.example.secondhand.entity.History
-import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.history.HistoryAdapter
 import com.example.secondhand.history.HistoryState
 import com.example.secondhand.history.HistoryVM
-import com.example.secondhand.repository.HistoryInterface
-import com.example.secondhand.sellerProduct.Adapters
+import com.example.secondhand.history.HistoryInterface
 
 
 class SellList : Fragment(), HistoryInterface {
@@ -61,6 +59,10 @@ class SellList : Fragment(), HistoryInterface {
         var x = sharedPref.getAT("AT")
         SellVM.getHistory(x)
     }
+    private fun getdatabyID(id:Int) {
+        var x = sharedPref.getAT("AT")
+        SellVM.getByID(x,id)
+    }
 
 
     private fun observe() {
@@ -99,15 +101,14 @@ class SellList : Fragment(), HistoryInterface {
 
 
     override fun click(item: History) {
-        TODO("Not yet implemented")
-       /* var x = item.id
-        getbyID(x)
+        var x = item.id
+        getdatabyID(x)
         val mBundle = Bundle()
-        mBundle.putString("name_product", item.name)
-        mBundle.putString("category_product", item.categories[0].name)
+        mBundle.putString("name_product", item.productName)
+        mBundle.putString("category_product", item.category)
         mBundle.putString("poster", item.imageUrl)
-        mBundle.putString("description_product", item.description)
-        mBundle.putString("price_product", "Price ${item.basePrice}")
-        findNavController().navigate(R.id.action_home_to_buyer_Product_Add, mBundle)*/
+        mBundle.putString("status", item.status)
+        mBundle.putString("price_product", "Price ${item.price}")
+        findNavController().navigate(R.id.action_list_to_historyDetail, mBundle)
     }
 }
