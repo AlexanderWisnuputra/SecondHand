@@ -18,8 +18,12 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 
 
-class SPViewModel : ViewModel() {
+class SPViewModel(
+) : ViewModel() {
+    private val repo= ProductRepo()
     private val state = MutableLiveData<MainState>()
+SellPreview
+    private val products= MutableLiveData<List<SellerProductItem>>()
     private val products = MutableLiveData<List<SellerProductItem>>()
     private val category = MutableLiveData<List<Category>>()
     private val repo = ProductRepo()
@@ -27,19 +31,9 @@ class SPViewModel : ViewModel() {
     private lateinit var sharedPref: Helper
     val showResponseSuccess: MutableLiveData<String> = MutableLiveData()
 
+main
     private fun loading(b: Boolean){
         state.value = MainState.Loading(b)
-    }
-
-    fun fetchCategory(){
-        loading(true)
-        repo.category{
-                sproduct, error ->
-            loading(false)
-            error?.let{it.message?.let { message -> println(message) }}
-            sproduct?.let { category.postValue(it) }
-        }
-
     }
 
     fun fetchProducts(){
@@ -52,39 +46,16 @@ class SPViewModel : ViewModel() {
         }
 
     }
-    fun fetchCategory1() {
+    fun fetchCategorybyId(id: Int) {
         loading(true)
 
-        repo.category1 { sproduct, error ->
+        repo.categorybyId(id) { sproduct, error ->
             loading(false)
             error?.let { it.message?.let { message -> println(message) } }
             sproduct?.let { products.postValue(it) }
         }
     }
-    fun fetchCategory2() {
-        loading(true)
-        repo.Category2 { sproduct, error ->
-            loading(false)
-            error?.let { it.message?.let { message -> println(message) } }
-            sproduct?.let { products.postValue(it) }
-        }
-    }
-    fun fetchProductsbyMakanan() {
-        loading(true)
-        repo.categoryMakanan() { sproduct, error ->
-            loading(false)
-            error?.let { it.message?.let { message -> println(message) } }
-            sproduct?.let { products.postValue(it) }
-        }
-    }
-    fun fetchProductsbyHobi() {
-        loading(true)
-        repo.categoryhobi() { sproduct, error ->
-            loading(false)
-            error?.let { it.message?.let { message -> println(message) } }
-            sproduct?.let { products.postValue(it) }
-        }
-    }
+
     fun fetchProductsbySearch(search: String) {
         loading(true)
         repo.searchBar(search) { sproduct, error ->
@@ -118,7 +89,6 @@ class SPViewModel : ViewModel() {
     fun getState() =state
     fun getProduct() = products
 }
-
 
 sealed class MainState{
     data class Loading(val isLoading: Boolean) : MainState()

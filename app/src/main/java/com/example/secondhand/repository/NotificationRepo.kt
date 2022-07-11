@@ -8,7 +8,6 @@ import retrofit2.Response
 
 class NotificationRepo {
     private val api = ServiceBuilder.instance()
-
     fun getNotification(accestoken: String?, completion: (List<Notification>?, Error?) -> Unit) {
         api.notif(accestoken).enqueue(object : Callback<List<Notification>> {
             override fun onFailure(call: Call<List<Notification>>, t: Throwable) {
@@ -31,6 +30,7 @@ class NotificationRepo {
             }
         })
     }
+
     fun getNotificationbyID(accestoken: String?,id:Int, completion: (Notification?, Error?) -> Unit) {
         api.notifbyID(accestoken,id).enqueue(object : Callback<Notification> {
             override fun onFailure(call: Call<Notification>, t: Throwable) {
@@ -53,6 +53,7 @@ class NotificationRepo {
             }
         })
     }
+
     fun patchNotification(accestoken: String?,id:Int, completion: (Notification?, Error?) -> Unit) {
         api.notifPatch(accestoken,id).enqueue(object : Callback<Notification> {
             override fun onFailure(call: Call<Notification>, t: Throwable) {

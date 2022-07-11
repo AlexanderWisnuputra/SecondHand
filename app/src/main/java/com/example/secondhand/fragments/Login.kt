@@ -33,7 +33,6 @@ class Login : Fragment() {
 
     private val viewModel: UserViewModel by viewModel()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -85,10 +84,9 @@ class Login : Fragment() {
     private fun toRegister(){
         findNavController().navigate(R.id.action_login_to_register)
     }
-    private fun saveSession(email: String) {
 
-        sharedPref.putEmail("email", email)
-    }
+    private fun saveSession(email: String) {sharedPref.putEmail("email", email)}
+
     private fun blankInputCheck(): Boolean {
         return viewModel.isInputEmpty(
             binding.etEmail.text.toString(),

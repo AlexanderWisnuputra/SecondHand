@@ -8,21 +8,15 @@ import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
-import com.example.secondhand.databinding.FragmentBuyerProductAddBinding
 import com.example.secondhand.databinding.FragmentHistoryDetailBinding
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class HistoryDetail : Fragment() {
-
     private lateinit var binding: FragmentHistoryDetailBinding
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val fragmentHistoryDetailBinding = FragmentHistoryDetailBinding.inflate(inflater, container, false)
         binding = fragmentHistoryDetailBinding
         return fragmentHistoryDetailBinding.root

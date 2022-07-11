@@ -9,8 +9,6 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentBuyerProductAddBinding
-import com.example.secondhand.entity.SellerProductItem
-import com.example.secondhand.sellerProduct.Adapters
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 
@@ -18,14 +16,10 @@ class Buyer_Product_Add : Fragment() {
 
     private lateinit var binding: FragmentBuyerProductAddBinding
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_buyer__product__add, container, false)
         val buyerProductAddBinding = FragmentBuyerProductAddBinding.inflate(inflater, container, false)
         binding = buyerProductAddBinding
         return buyerProductAddBinding.root
@@ -60,8 +54,6 @@ class Buyer_Product_Add : Fragment() {
         }
         val fragment = BottomSheetDialogFragment()
         fragment.arguments = bundle
-
-
         binding.button5.setOnClickListener {
             it.findNavController().navigate(R.id.action_buyer_Product_Add_to_bottom_sheet_dialog, bundle)
         }

@@ -10,7 +10,6 @@ import com.bumptech.glide.Glide
 import com.example.secondhand.R
 import com.example.secondhand.entity.History
 
-
 class HistoryAdapter(private val sejarah: MutableList<History>, private val mainInterface: HistoryInterface)
     : RecyclerView.Adapter<HistoryAdapter.ViewHolder>(){
 
@@ -43,8 +42,6 @@ class HistoryAdapter(private val sejarah: MutableList<History>, private val main
         sejarah.addAll(it)
         notifyDataSetChanged()
     }
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 

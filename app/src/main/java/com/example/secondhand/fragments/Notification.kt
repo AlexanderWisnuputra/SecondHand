@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.secondhand.Helper
 import com.example.secondhand.databinding.FragmentNotificationBinding
@@ -14,10 +13,11 @@ import com.example.secondhand.entity.Notification
 import com.example.secondhand.notification.NotificationAdapter
 import com.example.secondhand.notification.NotificationVM
 import com.example.secondhand.notification.notificationState
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class Notification : Fragment() {
     private lateinit var binding: FragmentNotificationBinding
-    private lateinit var notifVM: NotificationVM
+    private val notifVM: NotificationVM by viewModel()
     private lateinit var sharedPref: Helper
 
 
@@ -34,7 +34,6 @@ class Notification : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         sharedPref = Helper(requireContext())
         setupRecyclerView()
-        setupViewModel()
         getdata()
         observe()
     }
@@ -48,9 +47,6 @@ class Notification : Fragment() {
         }
     }
 
-    private fun setupViewModel() {
-        notifVM = ViewModelProvider(this).get(NotificationVM::class.java)
-    }
     private fun getdata() {
         var x = sharedPref.getAT("AT")
         notifVM.getnotification(x)

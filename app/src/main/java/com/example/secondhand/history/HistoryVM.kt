@@ -4,13 +4,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.secondhand.entity.History
 import com.example.secondhand.repository.HistoryRepo
-import com.example.secondhand.repository.ProductRepo
 
 
-class HistoryVM : ViewModel() {
+class HistoryVM() : ViewModel() {
+    private val repo= HistoryRepo()
     private val state = MutableLiveData<HistoryState>()
     private val history = MutableLiveData<List<History>>()
-    private val repo = HistoryRepo()
+
 
     private fun loading(b: Boolean) {
         state.value = HistoryState.Loading(b)

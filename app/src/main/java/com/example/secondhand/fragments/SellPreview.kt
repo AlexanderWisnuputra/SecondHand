@@ -1,31 +1,31 @@
 package com.example.secondhand.fragments
 
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
-import android.os.Environment
-import android.util.Base64
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.datastore.core.DataStore
-import androidx.datastore.preferences.core.Preferences
-import androidx.lifecycle.ViewModelProvider
+import androidx.core.net.toUri
+import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
+import com.example.secondhand.URIPathHelper
 import com.example.secondhand.databinding.FragmentSellPreviewBinding
-import com.example.secondhand.sellerProduct.SPViewModel
-import java.io.ByteArrayOutputStream
+import com.example.secondhand.repository.ProductRepo
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
-import java.io.FileOutputStream
-
 
 class SellPreview : Fragment() {
     private lateinit var binding: FragmentSellPreviewBinding
-    private lateinit var dataStore: DataStore<Preferences>
     private lateinit var sharedPref: Helper
-    private lateinit var vmod: SPViewModel
+    private var imageUri : Uri?= null
+    private val repo = ProductRepo()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -37,7 +37,6 @@ class SellPreview : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupViewModel()
         sharedPref = Helper(requireContext())
         binding.button5.setOnClickListener {
                 sellProduct()
@@ -52,9 +51,10 @@ class SellPreview : Fragment() {
         val hargaProduk = sharedPref.getSell("harga")
         val kategori = sharedPref.getSell("kategori")
         val deskripsi = sharedPref.getSell("deskripsi")
-        //pake shared pref AMBIL GAMBAR
+        val image = sharedPref.getSell("image")
+        imageUri = image.toString().toUri()
         Glide.with(requireActivity())
-            .load("gambar")
+            .load(image)
             .into(binding.imageView3)
 
         binding.textView5.setText("$namaProduk").toString()
@@ -63,28 +63,36 @@ class SellPreview : Fragment() {
         binding.smallerDetail.setText("$deskripsi").toString()
     }
 
-    private fun setupViewModel(){
-        vmod = ViewModelProvider(this).get(SPViewModel::class.java)
-    }
     private fun sellProduct() {
+        val namaProduk = sharedPref.getSell("nama")
+        val hargaProduk = sharedPref.getSell("harga")
+        val deskripsi = sharedPref.getSell("deskripsi")
+    val imageFile = if(imageUri == null) {
+        null
+    }else{
+        File(URIPathHelper.getPath(requireContext(), imageUri!!).toString())
     }
-    fun convertBitmapToFile(bitmap: Bitmap, fileNameToSave: String):File? {
-        var file: File? = null
-        return try {
-            file = File(Environment.getExternalStorageDirectory().toString() + File.separator + fileNameToSave)
-            file.createNewFile()
-            val baos = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG, 0, baos) // It can be also saved it as JPEG
-            val bitmapdata = baos.toByteArray()
-            val fos = FileOutputStream(file)
-                fos.write(bitmapdata)
-            fos.flush()
-            fos.close()
-            return file
+        val nameBody = namaProduk?.toRequestBody("text/plain".toMediaTypeOrNull())
+        val priceBody = hargaProduk?.toRequestBody("text/plain".toMediaTypeOrNull())
+        val cityBody = "Nikothin".toRequestBody("text/plain".toMediaTypeOrNull())
+        val categoryBody = "96".toRequestBody("text/plain".toMediaTypeOrNull())
+        val descriptionBody = deskripsi?.toRequestBody("text/plain".toMediaTypeOrNull())
+        val requestImage = imageFile?.asRequestBody("image/jpeg".toMediaTypeOrNull())
+        val imageBody = requestImage?.let{
+            MultipartBody.Part.createFormData("image", imageFile?.name, it)
         }
-        catch (e: Exception) {
-            e.printStackTrace()
-            file // it will return null
+        lifecycleScope.launch(Dispatchers.IO) {
+            var x = sharedPref.getAT("AT")
+
+            repo.addProuct(
+                x,
+                nameBody!!,
+                descriptionBody!!,
+                priceBody!!,
+                categoryBody!!,
+                cityBody!!,
+                imageBody
+            )
+        }
         }
     }
-}

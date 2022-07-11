@@ -57,77 +57,8 @@ class ProductRepo {
         })
     }
 
-    fun category1(completion: (List<SellerProductItem>?, Error?) -> Unit) {
-        api.getProductCategory(96).enqueue(object : Callback<List<SellerProductItem>> {
-            override fun onFailure(call: Call<List<SellerProductItem>>, t: Throwable) {
-                println(t.message)
-                completion(null, Error(t.message))
-            }
-
-            override fun onResponse(
-                call: Call<List<SellerProductItem>>,
-                response: Response<List<SellerProductItem>>
-            ) {
-                when {
-                    response.isSuccessful -> {
-                        completion(response.body(), null)
-                    }
-                    !response.isSuccessful -> {
-                        completion(null, Error("Cannot get data"))
-                    }
-                }
-            }
-        })
-    }
-
-    fun Category2(completion: (List<SellerProductItem>?, Error?) -> Unit) {
-        api.getProductCategory(114).enqueue(object : Callback<List<SellerProductItem>> {
-            override fun onFailure(call: Call<List<SellerProductItem>>, t: Throwable) {
-                println(t.message)
-                completion(null, Error(t.message))
-            }
-
-            override fun onResponse(
-                call: Call<List<SellerProductItem>>,
-                response: Response<List<SellerProductItem>>
-            ) {
-                when {
-                    response.isSuccessful -> {
-                        completion(response.body(), null)
-                    }
-                    !response.isSuccessful -> {
-                        completion(null, Error("Cannot get data"))
-                    }
-                }
-            }
-        })
-    }
-
-    fun categoryMakanan(completion: (List<SellerProductItem>?, Error?) -> Unit) {
-        api.getProductCategory(105).enqueue(object : Callback<List<SellerProductItem>> {
-            override fun onFailure(call: Call<List<SellerProductItem>>, t: Throwable) {
-                println(t.message)
-                completion(null, Error(t.message))
-            }
-
-            override fun onResponse(
-                call: Call<List<SellerProductItem>>,
-                response: Response<List<SellerProductItem>>
-            ) {
-                when {
-                    response.isSuccessful -> {
-                        completion(response.body(), null)
-                    }
-                    !response.isSuccessful -> {
-                        completion(null, Error("Cannot get data"))
-                    }
-                }
-            }
-        })
-    }
-
-    fun categoryhobi(completion: (List<SellerProductItem>?, Error?) -> Unit) {
-        api.getProductCategory(119).enqueue(object : Callback<List<SellerProductItem>> {
+    fun categorybyId(id:Int, completion: (List<SellerProductItem>?, Error?) -> Unit) {
+        api.getProductCategory(id).enqueue(object : Callback<List<SellerProductItem>> {
             override fun onFailure(call: Call<List<SellerProductItem>>, t: Throwable) {
                 println(t.message)
                 completion(null, Error(t.message))
