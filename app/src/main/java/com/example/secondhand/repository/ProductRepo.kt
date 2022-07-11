@@ -1,10 +1,7 @@
 package com.example.secondhand.repository
 
-import com.example.secondhand.entity.Product
-import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.api.ServiceBuilder
-import com.example.secondhand.entity.Category
-import com.example.secondhand.entity.History
+import com.example.secondhand.entity.*
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -194,6 +191,26 @@ class ProductRepo {
                         completion(null, Error("Cannot get data"))
                     }
                 }
+            }
+        })
+    }
+
+    fun banner(completion: (List<Banner>?, Error?) -> Unit) {
+        api.banner().enqueue(object : Callback<List<Banner>> {
+            override fun onResponse(call: Call<List<Banner>?>, response: Response<List<Banner>>) {
+                when {
+                    response.isSuccessful -> {
+                        completion(response.body(), null)
+                    }
+                    !response.isSuccessful -> {
+                        completion(null, Error("Cannot get data"))
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<List<Banner>>, t: Throwable) {
+                println(t.message)
+                completion(null, Error(t.message))
             }
         })
     }
