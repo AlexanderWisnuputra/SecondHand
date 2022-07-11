@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.secondhand.Helper
 import com.example.secondhand.R
+import com.example.secondhand.banner.BannerAdapter
 import com.example.secondhand.databinding.FragmentHomeBinding
 import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.sellerProduct.*
@@ -42,6 +43,8 @@ class Home : Fragment(), ProductInterface {
         doubleBackToExit()
         binding.category1.setBackgroundResource(R.drawable.selected_category_border)
         binding.category1.setTextColor(Color.WHITE)
+        banner()
+        setupBannerView()
     }
 
     private fun getdata() = vmod.fetchProducts()
@@ -50,6 +53,7 @@ class Home : Fragment(), ProductInterface {
     private fun getdataCategory3() = vmod.fetchCategorybyId(105)
     private fun getdataCategory4() = vmod.fetchCategorybyId(119)
     private fun getdataSearch(search: String) = vmod.fetchProductsbySearch(search)
+    private fun banner() = vmod.banner()
     private fun getbyID(id: Int) = vmod.getByID(id)
     private fun observeState() = vmod.getState().observe(viewLifecycleOwner, Observer { handlestate(it)})
     private fun observeProduct() = vmod.getProduct().observe(viewLifecycleOwner, Observer { handleproduct(it)})
@@ -220,6 +224,14 @@ class Home : Fragment(), ProductInterface {
                 adapter = Adapters(mutableListOf(), this@Home)
             }
         }
+
+    private fun setupBannerView() {
+        binding.banner.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false )
+            adapter = BannerAdapter(mutableListOf())
+        }
+    }
 
     override fun click(item: SellerProductItem) {
         var x = item.id

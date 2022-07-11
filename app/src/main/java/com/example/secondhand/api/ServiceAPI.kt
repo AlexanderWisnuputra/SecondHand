@@ -38,6 +38,9 @@ interface ServiceAPI {
     @GET("notification/")
     fun notifbyID (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>
 
+    @GET("seller/banner")
+    fun banner() : Call<List<Banner>>
+
     @PATCH("notification/")
     fun notifPatch (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>
 
@@ -62,7 +65,6 @@ interface ServiceAPI {
     fun loginUser(
         @Body post: UserAcessToken
     ): Call<UserAcessToken>
-
 
     @PUT("auth/user")
     suspend fun changeDetail(

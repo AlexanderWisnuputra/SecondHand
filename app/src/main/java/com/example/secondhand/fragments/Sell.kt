@@ -69,14 +69,18 @@ class Sell : Fragment() {
             btnTerbit.setOnClickListener {
                 val name = binding.namaProduk.text.toString()
                 val price = binding.produkHarga.text.toString()
-                val city = "Nicholas Febrian Sutirta"
+                val city = " "
                 val category =  "1"
                 val description = binding.deskripsi.text.toString()
                 val imageFile = if(imageUri == null) {
                     null
-                }else{
+                }
+SellPreview
+
+                else{
                     File(URIPathHelper.getPath(requireContext(), imageUri!!).toString())
                 }
+main
                 val nameBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
                 val priceBody = price.toRequestBody("text/plain".toMediaTypeOrNull())
                 val cityBody = city.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -88,17 +92,16 @@ class Sell : Fragment() {
                 }
                 lifecycleScope.launch(Dispatchers.IO) {
                 var x = sharedPref.getAT("AT")
-
                   repo.addProuct(
-        x,
-        nameBody,
-        descriptionBody,
-        priceBody,
-        categoryBody,
-        cityBody,
-        imageBody
-    )
-}
+                      x,
+                      nameBody,
+                      descriptionBody,
+                      priceBody,
+                      categoryBody,
+                      cityBody,
+                      imageBody
+                  )
+                }
             }
             fotoProduk.setOnClickListener { openImagePicker()}
         }

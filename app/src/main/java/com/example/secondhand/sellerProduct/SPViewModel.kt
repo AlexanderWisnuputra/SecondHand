@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.secondhand.api.ServiceBuilder
 import com.example.secondhand.Helper
 import com.example.secondhand.URIPathHelper
+import com.example.secondhand.entity.Banner
 import com.example.secondhand.entity.Category
 import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.repository.ProductRepo
@@ -21,7 +22,16 @@ class SPViewModel(
 ) : ViewModel() {
     private val repo= ProductRepo()
     private val state = MutableLiveData<MainState>()
+SellPreview
     private val products= MutableLiveData<List<SellerProductItem>>()
+    private val products = MutableLiveData<List<SellerProductItem>>()
+    private val category = MutableLiveData<List<Category>>()
+    private val repo = ProductRepo()
+    private val bannerr = MutableLiveData<List<Banner>>()
+    private lateinit var sharedPref: Helper
+    val showResponseSuccess: MutableLiveData<String> = MutableLiveData()
+
+main
     private fun loading(b: Boolean){
         state.value = MainState.Loading(b)
     }
@@ -54,6 +64,17 @@ class SPViewModel(
             sproduct?.let { products.postValue(it) }
         }
     }
+
+    fun banner() {
+        loading(true)
+
+        repo.banner() { banner, error ->
+            loading(false)
+            error?.let { it.message?.let { message -> println(message) } }
+            banner?.let { bannerr.postValue(it) }
+        }
+    }
+
     fun getByID(id: Int) {
         loading(true)
 
