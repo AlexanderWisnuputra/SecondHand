@@ -22,16 +22,12 @@ class SPViewModel(
 ) : ViewModel() {
     private val repo= ProductRepo()
     private val state = MutableLiveData<MainState>()
-SellPreview
-    private val products= MutableLiveData<List<SellerProductItem>>()
     private val products = MutableLiveData<List<SellerProductItem>>()
     private val category = MutableLiveData<List<Category>>()
-    private val repo = ProductRepo()
     private val bannerr = MutableLiveData<List<Banner>>()
     private lateinit var sharedPref: Helper
     val showResponseSuccess: MutableLiveData<String> = MutableLiveData()
 
-main
     private fun loading(b: Boolean){
         state.value = MainState.Loading(b)
     }

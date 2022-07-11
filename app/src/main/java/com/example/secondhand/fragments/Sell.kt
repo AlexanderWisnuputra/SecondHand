@@ -75,12 +75,9 @@ class Sell : Fragment() {
                 val imageFile = if(imageUri == null) {
                     null
                 }
-SellPreview
-
                 else{
                     File(URIPathHelper.getPath(requireContext(), imageUri!!).toString())
                 }
-main
                 val nameBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
                 val priceBody = price.toRequestBody("text/plain".toMediaTypeOrNull())
                 val cityBody = city.toRequestBody("text/plain".toMediaTypeOrNull())
