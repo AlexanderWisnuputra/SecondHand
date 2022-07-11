@@ -41,7 +41,6 @@ class NotificationAdapter(private val notification: MutableList<Notification>)
         notifyDataSetChanged()
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
         val view = LayoutInflater.from(parent.context).inflate(R.layout.notification_item, parent, false)

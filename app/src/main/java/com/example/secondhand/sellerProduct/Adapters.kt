@@ -9,12 +9,8 @@ import com.bumptech.glide.Glide
 import com.example.secondhand.R
 import com.example.secondhand.entity.SellerProductItem
 
-
 class Adapters(private val products: MutableList<SellerProductItem>, private val mainInterface:ProductInterface)
     : RecyclerView.Adapter<Adapters.ViewHolder>(){
-    var allDataList : List<SellerProductItem> = listOf()
-    var dataList : List<SellerProductItem> = listOf()
-
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -40,13 +36,12 @@ class Adapters(private val products: MutableList<SellerProductItem>, private val
         }
 
     }
+
     fun updateList(it: List<SellerProductItem>){
         products.clear()
         products.addAll(it)
         notifyDataSetChanged()
     }
-
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 

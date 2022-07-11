@@ -25,7 +25,6 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
 class ChangeAcc : Fragment() {
     private lateinit var binding: FragmentChangeAccBinding
     private lateinit var dataStore: DataStore<Preferences>
@@ -37,7 +36,6 @@ class ChangeAcc : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         val changeAccBinding = FragmentChangeAccBinding.inflate(inflater, container, false)
         binding = changeAccBinding
         return changeAccBinding.root

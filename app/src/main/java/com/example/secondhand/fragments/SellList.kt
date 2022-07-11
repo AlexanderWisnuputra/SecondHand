@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.secondhand.Helper
@@ -17,12 +16,12 @@ import com.example.secondhand.history.HistoryAdapter
 import com.example.secondhand.history.HistoryState
 import com.example.secondhand.history.HistoryVM
 import com.example.secondhand.history.HistoryInterface
-
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SellList : Fragment(), HistoryInterface {
     private lateinit var binding: FragmentListBinding
     private lateinit var sharedPref: Helper
-    private lateinit var SellVM: HistoryVM
+    private val SellVM: HistoryVM by viewModel()
 
 
     override fun onCreateView(
@@ -38,7 +37,6 @@ class SellList : Fragment(), HistoryInterface {
         super.onViewCreated(view, savedInstanceState)
         sharedPref = Helper(requireContext())
         setupRecyclerView()
-        setupViewModel()
         getdata()
         observe()
     }
@@ -51,30 +49,24 @@ class SellList : Fragment(), HistoryInterface {
         }
     }
 
-    private fun setupViewModel() {
-        SellVM = ViewModelProvider(this).get(HistoryVM::class.java)
-    }
-
     private fun getdata() {
         var x = sharedPref.getAT("AT")
         SellVM.getHistory(x)
     }
+
     private fun getdatabyID(id:Int) {
         var x = sharedPref.getAT("AT")
         SellVM.getByID(x,id)
     }
-
 
     private fun observe() {
         observeState()
         observeProduct()
     }
 
-    private fun observeState() =
-        SellVM.getState().observe(viewLifecycleOwner, Observer { handlestate(it) })
+    private fun observeState() = SellVM.getState().observe(viewLifecycleOwner, Observer { handlestate(it) })
 
-    private fun observeProduct() =
-        SellVM.getHistory().observe(viewLifecycleOwner, Observer { handleproduct(it) })
+    private fun observeProduct() = SellVM.getHistory().observe(viewLifecycleOwner, Observer { handleproduct(it) })
 
     private fun handlestate(it: HistoryState) {
         when (it) {
@@ -85,8 +77,11 @@ class SellList : Fragment(), HistoryInterface {
     private fun isLoading(b: Boolean) {
         if (b) {
             binding.progressBar.visibility = View.VISIBLE
+            binding.imageView2.visibility = View.VISIBLE
+
         } else {
             binding.progressBar.visibility = View.GONE
+            binding.imageView2.visibility = View.GONE
         }
     }
 
@@ -97,8 +92,6 @@ class SellList : Fragment(), HistoryInterface {
             }
         }
     }
-
-
 
     override fun click(item: History) {
         var x = item.id

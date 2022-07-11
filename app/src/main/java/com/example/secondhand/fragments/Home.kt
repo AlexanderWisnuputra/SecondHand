@@ -8,9 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.secondhand.Helper
@@ -18,12 +16,12 @@ import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentHomeBinding
 import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.sellerProduct.*
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class Home : Fragment(), ProductInterface {
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var vmod: SPViewModel
-    private var products = MutableLiveData<List<SellerProductItem>>()
+    private val vmod: SPViewModel by viewModel()
     private lateinit var sharedPref: Helper
 
     override fun onCreateView(
@@ -39,7 +37,6 @@ class Home : Fragment(), ProductInterface {
         super.onViewCreated(view, savedInstanceState)
         sharedPref = Helper(requireContext())
         setupRecyclerView()
-        setupViewModel()
         observe()
         getdata()
         doubleBackToExit()
@@ -48,24 +45,19 @@ class Home : Fragment(), ProductInterface {
     }
 
     private fun getdata() = vmod.fetchProducts()
-    private fun getdataCategory1() = vmod.fetchCategory1()
-    private fun getdataCategory2() = vmod.fetchCategory2()
-    private fun getdataCategory3() = vmod.fetchProductsbyMakanan()
-    private fun getdataCategory4() = vmod.fetchProductsbyHobi()
+    private fun getdataCategory1() = vmod.fetchCategorybyId(96)
+    private fun getdataCategory2() = vmod.fetchCategorybyId(114)
+    private fun getdataCategory3() = vmod.fetchCategorybyId(105)
+    private fun getdataCategory4() = vmod.fetchCategorybyId(119)
     private fun getdataSearch(search: String) = vmod.fetchProductsbySearch(search)
     private fun getbyID(id: Int) = vmod.getByID(id)
-
-    private fun setupViewModel(){
-        vmod = ViewModelProvider(this).get(SPViewModel::class.java)
-    }
+    private fun observeState() = vmod.getState().observe(viewLifecycleOwner, Observer { handlestate(it)})
+    private fun observeProduct() = vmod.getProduct().observe(viewLifecycleOwner, Observer { handleproduct(it)})
 
     private fun observe(){
         observeState()
         observeProduct()
     }
-
-    private fun observeState() = vmod.getState().observe(viewLifecycleOwner, Observer { handlestate(it)})
-    private fun observeProduct() = vmod.getProduct().observe(viewLifecycleOwner, Observer { handleproduct(it)})
 
     private fun handlestate(it: MainState){
         when(it){

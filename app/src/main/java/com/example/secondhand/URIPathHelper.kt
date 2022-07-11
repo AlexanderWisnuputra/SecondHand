@@ -13,9 +13,7 @@ object URIPathHelper {
     fun getPath(context: Context, uri: Uri): String? {
         val isKitKatorAbove = true
 
-        // DocumentProvider
         if (isKitKatorAbove && DocumentsContract.isDocumentUri(context, uri)) {
-            // ExternalStorageProvider
             if (isExternalStorageDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
                 val split = docId.split(":".toRegex()).toTypedArray()

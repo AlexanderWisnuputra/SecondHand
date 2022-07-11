@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.example.secondhand.dao.UserDao
 import com.example.secondhand.dao.UserDatabase
 import com.example.secondhand.dao.UserViewModel
+import com.example.secondhand.history.HistoryVM
+import com.example.secondhand.notification.NotificationVM
 import com.example.secondhand.sellerProduct.SPViewModel
 import org.koin.android.ext.koin.androidApplication
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -27,5 +29,22 @@ val userDB= module {
 val roomVModel = module {
     viewModel {
         UserViewModel(get())
+    }
+}
+
+val ProductVM = module {
+    viewModel {
+        SPViewModel()
+    }
+}
+
+val NotifVM = module {
+    viewModel {
+        NotificationVM()
+    }
+}
+val HistoVM = module {
+    viewModel {
+        HistoryVM()
     }
 }

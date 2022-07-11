@@ -19,7 +19,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class Register : Fragment() {
     private lateinit var binding: FragmentRegisterBinding
-
     private val viewModel: UserViewModel by viewModel()
 
     override fun onCreateView(
