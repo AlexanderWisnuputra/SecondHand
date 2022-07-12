@@ -64,10 +64,10 @@ class SPViewModel(
     fun banner() {
         loading(true)
 
-        repo.banner() { banner, error ->
+        repo.banner() { bner, error ->
             loading(false)
             error?.let { it.message?.let { message -> println(message) } }
-            banner?.let { bannerr.postValue(it) }
+            bner?.let { bannerr.postValue(it) }
         }
     }
 
@@ -84,6 +84,7 @@ class SPViewModel(
 
     fun getState() =state
     fun getProduct() = products
+    fun getBanner() = bannerr
 }
 
 sealed class MainState{

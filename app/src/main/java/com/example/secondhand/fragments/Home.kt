@@ -15,6 +15,7 @@ import com.example.secondhand.Helper
 import com.example.secondhand.R
 import com.example.secondhand.banner.BannerAdapter
 import com.example.secondhand.databinding.FragmentHomeBinding
+import com.example.secondhand.entity.Banner
 import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.sellerProduct.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -57,10 +58,12 @@ class Home : Fragment(), ProductInterface {
     private fun getbyID(id: Int) = vmod.getByID(id)
     private fun observeState() = vmod.getState().observe(viewLifecycleOwner, Observer { handlestate(it)})
     private fun observeProduct() = vmod.getProduct().observe(viewLifecycleOwner, Observer { handleproduct(it)})
+    private fun observeBanner() = vmod.getBanner().observe(viewLifecycleOwner, Observer { handlebanner(it)})
 
     private fun observe(){
         observeState()
         observeProduct()
+        observeBanner()
     }
 
     private fun handlestate(it: MainState){
@@ -76,7 +79,13 @@ class Home : Fragment(), ProductInterface {
             binding.loading.visibility = View.GONE
         }
     }
-
+    private fun handlebanner( sp: List<Banner>) {
+        binding.banner.adapter?.let { a ->
+            if (a is BannerAdapter) {
+                a.updateList(sp)
+            }
+        }
+    }
     private fun handleproduct( sp: List<SellerProductItem>){
         binding.sellerProductRecyclerview.adapter?.let { a->
             if(a is Adapters){
