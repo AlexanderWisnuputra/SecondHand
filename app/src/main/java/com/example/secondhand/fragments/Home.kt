@@ -11,7 +11,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.secondhand.Helper
+import com.example.secondhand.HorizontalMarginItemDecoration
 import com.example.secondhand.R
 import com.example.secondhand.banner.BannerAdapter
 import com.example.secondhand.databinding.FragmentHomeBinding
@@ -19,6 +21,7 @@ import com.example.secondhand.entity.Banner
 import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.sellerProduct.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import kotlin.math.abs
 
 
 class Home : Fragment(), ProductInterface {
@@ -45,7 +48,7 @@ class Home : Fragment(), ProductInterface {
         binding.category1.setBackgroundResource(R.drawable.selected_category_border)
         binding.category1.setTextColor(Color.WHITE)
         banner()
-        setupBannerView()
+        showHomeBanner()
     }
 
     private fun getdata() = vmod.fetchProducts()
@@ -58,12 +61,10 @@ class Home : Fragment(), ProductInterface {
     private fun getbyID(id: Int) = vmod.getByID(id)
     private fun observeState() = vmod.getState().observe(viewLifecycleOwner, Observer { handlestate(it)})
     private fun observeProduct() = vmod.getProduct().observe(viewLifecycleOwner, Observer { handleproduct(it)})
-    private fun observeBanner() = vmod.getBanner().observe(viewLifecycleOwner, Observer { handlebanner(it)})
 
     private fun observe(){
         observeState()
         observeProduct()
-        observeBanner()
     }
 
     private fun handlestate(it: MainState){
@@ -77,13 +78,6 @@ class Home : Fragment(), ProductInterface {
             binding.loading.visibility = View.VISIBLE
         }else{
             binding.loading.visibility = View.GONE
-        }
-    }
-    private fun handlebanner( sp: List<Banner>) {
-        binding.banner.adapter?.let { a ->
-            if (a is BannerAdapter) {
-                a.updateList(sp)
-            }
         }
     }
     private fun handleproduct( sp: List<SellerProductItem>){
@@ -234,12 +228,33 @@ class Home : Fragment(), ProductInterface {
             }
         }
 
-    private fun setupBannerView() {
-        binding.banner.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false )
-            adapter = BannerAdapter(mutableListOf())
-        }
+    private fun showHomeBanner(data: Banner?) {
+            val adapter = BannerAdapter {
+                //onclick item
+            }
+
+            binding.vpHomeBanner.adapter = adapter
+            binding.vpHomeBanner.offscreenPageLimit = 1
+            val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
+            val currentItemHorizontalMarginPx =
+                resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
+            val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
+            val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
+
+                page.translationX = -pageTranslationX * position
+                page.scaleY = 1 - (0.25f * abs(position))
+
+            }
+            binding.vpHomeBanner.setPageTransformer(pageTransformer)
+
+            val itemDecoration = HorizontalMarginItemDecoration(
+                requireContext(),
+                R.dimen.viewpager_current_item_horizontal_margin
+            )
+
+            binding.vpHomeBanner.addItemDecoration(itemDecoration)
+
+            adapter.submitList(data)
     }
 
     override fun click(item: SellerProductItem) {

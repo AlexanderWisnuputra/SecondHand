@@ -1,41 +1,60 @@
 package com.example.secondhand.banner
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.secondhand.entity.Banner
-import com.example.secondhand.R
-import com.example.secondhand.entity.SellerProductItem
-import com.example.secondhand.history.HistoryAdapter
-import kotlinx.android.synthetic.main.fragment_home.view.*
+import com.example.secondhand.databinding.HomeBannerListLayoutBinding
 
-class BannerAdapter (private val bayner: MutableList<Banner>) : RecyclerView.Adapter<BannerAdapter.ViewHolder>() {
+class BannerAdapter(private val onClick: (Banner) -> Unit) :
+    ListAdapter<BannerAdapter, BannerAdapter.ViewHolder>(CommunityComparator()) {
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var bannerPicture = itemView.findViewById<ImageView>(R.id.bannerr)
 
-        fun bind(banner: Banner) {
-            Glide.with(itemView)
-                .load(banner.imageUrl)
-                .into(bannerPicture)
+    class ViewHolder(private val binding: HomeBannerListLayoutBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(
+            currentBanner: Banner,
+            onClick: (Banner) -> Unit
+        ) {
+            binding.root.setOnClickListener {
+                onClick(currentBanner)
+            }
+            Glide.with(binding.ivBanner).load(currentBanner.imageUrl).into(binding.ivBanner)
+
         }
+
     }
-    fun updateList(it: List<Banner>){
-        bayner.clear()
-        bayner.addAll(it)
-        notifyDataSetChanged()
+
+    class CommunityComparator : DiffUtil.ItemCallback<Banner>() {
+        override fun areItemsTheSame(
+            oldItem: Banner,
+            newItem: Banner
+        ): Boolean {
+            return oldItem === newItem
+        }
+
+        override fun areContentsTheSame(
+            oldItem: Banner,
+            newItem: Banner
+        ): Boolean {
+            return oldItem.hashCode() == newItem.hashCode()
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.banner, parent, false)
-        return ViewHolder(view)
+        val binding = HomeBannerListLayoutBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+
+        return ViewHolder(binding)
     }
 
-    override fun getItemCount() = bayner.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(bayner[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.bind(getItem(position), onClick)
+    }
 
 }
