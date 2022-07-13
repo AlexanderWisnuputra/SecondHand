@@ -40,7 +40,7 @@ class SellPreview : Fragment() {
         sharedPref = Helper(requireContext())
         binding.button5.setOnClickListener {
                 sellProduct()
-
+            clear()
         }
     }
 
@@ -67,18 +67,18 @@ class SellPreview : Fragment() {
         val namaProduk = sharedPref.getSell("nama")
         val hargaProduk = sharedPref.getSell("harga")
         val deskripsi = sharedPref.getSell("deskripsi")
-    val imageFile = if(imageUri == null) {
-        null
-    }else{
-        File(URIPathHelper.getPath(requireContext(), imageUri!!).toString())
-    }
+        val imageFile = if (imageUri == null) {
+            null
+        } else {
+            File(URIPathHelper.getPath(requireContext(), imageUri!!).toString())
+        }
         val nameBody = namaProduk?.toRequestBody("text/plain".toMediaTypeOrNull())
         val priceBody = hargaProduk?.toRequestBody("text/plain".toMediaTypeOrNull())
         val cityBody = "Nikothin".toRequestBody("text/plain".toMediaTypeOrNull())
         val categoryBody = "96".toRequestBody("text/plain".toMediaTypeOrNull())
         val descriptionBody = deskripsi?.toRequestBody("text/plain".toMediaTypeOrNull())
         val requestImage = imageFile?.asRequestBody("image/jpeg".toMediaTypeOrNull())
-        val imageBody = requestImage?.let{
+        val imageBody = requestImage?.let {
             MultipartBody.Part.createFormData("image", imageFile?.name, it)
         }
         lifecycleScope.launch(Dispatchers.IO) {
@@ -94,5 +94,12 @@ class SellPreview : Fragment() {
                 imageBody
             )
         }
-        }
+    }
+    private fun clear(){
+       sharedPref.putSell("nama","")
+       sharedPref.putSell("harga","")
+       sharedPref.putSell("kategori","")
+       sharedPref.putSell("deskripsi","")
+       sharedPref.putSell("image","")
+       }
     }

@@ -1,4 +1,4 @@
-package com.example.secondhand
+package com.example.secondhand.app
 
 import com.example.secondhand.history.HistoryVM
 import com.example.secondhand.notification.NotificationVM

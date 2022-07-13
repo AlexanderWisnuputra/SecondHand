@@ -28,11 +28,4 @@ class Helper(context: Context) {
     fun getSell(key: String): String? {
         return sharedPref.getString(key, null)
     }
-
-    fun putFilter(key: String, value: String) {
-        editor.putString(key, value).apply()
-    }
-    fun getFilter(key: String): String? {
-        return sharedPref.getString(key, null)
-    }
 }

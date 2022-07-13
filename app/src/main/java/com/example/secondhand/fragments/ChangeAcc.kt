@@ -64,12 +64,12 @@ class ChangeAcc : Fragment() {
         dataStore = requireContext().createDataStore(name = "user")
         binding.apply {
             btnEdit.setOnClickListener {
-                    val name = "di"
-                    val email = "countlin@mail.com"
-                    val password = "123456"
-                    val phonenumber =  "80"
-                    val city =  "k"
-                    val address = "j"
+                    val name = binding.namaUbah.text.toString()
+                    val email = sharedPref.getEmail("em").toString()
+                    val password = sharedPref.getEmail("pass").toString()
+                    val phonenumber =  binding.noTelp.text.toString()
+                    val city =  binding.kota.text.toString()
+                    val address = binding.alamat.text.toString()
                     val imageFile = if(imageUri == null) {
                         null
                     }

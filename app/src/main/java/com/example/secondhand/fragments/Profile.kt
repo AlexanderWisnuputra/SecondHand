@@ -18,9 +18,7 @@ import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
 import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentProfileBinding
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class Profile : Fragment() {
     private lateinit var binding: FragmentProfileBinding
@@ -61,6 +59,10 @@ class Profile : Fragment() {
             .setPositiveButton("Ya") {_, _->
                 lifecycleScope.launch{
                     save("login", "")
+                    sharedPref.putEmail("em","")
+                    sharedPref.putEmail("pass","")
+                    sharedPref.putAT("AT", "")
+                    sharedPref.putSell("imageusr","")
                 }
                 Toast.makeText(requireContext(), "Anda berhasil logout!", Toast.LENGTH_LONG).show()
             }

@@ -132,7 +132,7 @@
         tools:layout="@layout/fragment_sell_preview" />
     <dialog
         android:id="@+id/bottom_sheet_dialog"
-        android:name="com.example.secondhand.bottom_sheet_dialog"
+        android:name="com.example.secondhand.fragments.bottom_sheet_dialog"
         android:label="fragment_bottom_sheet_dialog"
         tools:layout="@layout/fragment_bottom_sheet_dialog" >
         <action

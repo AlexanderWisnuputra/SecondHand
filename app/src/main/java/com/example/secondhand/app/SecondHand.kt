@@ -1,4 +1,4 @@
-package com.example.secondhand
+package com.example.secondhand.app
 
 import android.app.Application
 import org.koin.android.ext.koin.androidContext

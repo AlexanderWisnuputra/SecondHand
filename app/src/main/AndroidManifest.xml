@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".SecondHand"
+        android:name=".app.SecondHand"
         android:allowBackup="true"
         android:icon="@mipmap/ic_second_hand"
         android:label="@string/app_name"

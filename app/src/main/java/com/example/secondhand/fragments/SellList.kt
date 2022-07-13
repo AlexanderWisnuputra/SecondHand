@@ -53,9 +53,6 @@ class SellList : Fragment(), HistoryInterface {
             findNavController().navigate(R.id.action_list_to_changeAcc)
         }
             getUserDetail()
-        binding.textView5.text = sharedPref.getAT("userfname")
-        binding.textView6.text = sharedPref.getAT("addresss")
-
     }
 
     private fun setupRecyclerView() {
@@ -126,10 +123,6 @@ class SellList : Fragment(), HistoryInterface {
         ServiceBuilder.instance().getUser(x).enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
-
-                    sharedPref.putAT("userfname", response.body()?.fullName.toString())
-                    sharedPref.putAT("addresss", response.body()?.address.toString())
-
                     Glide.with(requireContext())
                         .load(response.body()!!.imageUrl)
                         .into(binding.imgPoster)
