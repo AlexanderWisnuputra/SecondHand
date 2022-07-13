@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_host"
+    app:startDestination="@id/home">
+
+    <fragment
+        android:id="@+id/home"
+        android:name="com.example.secondhand.fragments.Home"
+        android:label="fragment_user"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_home_to_buyer_Product_Add"
+            app:destination="@id/buyer_Product_Add" />
+    </fragment>
+    <fragment
+        android:id="@+id/notification"
+        android:name="com.example.secondhand.fragments.Notification"
+        android:label="fragment_favourite"
+        tools:layout="@layout/fragment_notification" />
+    <fragment
+        android:id="@+id/sell"
+        android:name="com.example.secondhand.fragments.Sell"
+        android:label="fragment_notification"
+        tools:layout="@layout/fragment_sell" >
+        <action
+            android:id="@+id/action_sell_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_sell_to_home"
+            app:destination="@id/home" />
+        <action
+            android:id="@+id/action_sell_to_seller_Product_Add"
+            app:destination="@id/seller_Product_Add" />
+    </fragment>
+    <fragment
+        android:id="@+id/list"
+        android:name="com.example.secondhand.fragments.SellList"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_list" >
+        <action
+            android:id="@+id/action_list_to_historyDetail"
+            app:destination="@id/historyDetail" />
+        <action
+            android:id="@+id/action_list_to_changeAcc"
+            app:destination="@id/changeAcc" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileDetail"
+        android:name="com.example.secondhand.fragments.Profile"
+        android:label="fragment_list"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileDetail_to_login"
+            app:destination="@id/login" />
+        <action
+            android:id="@+id/action_profileDetail_to_changeAcc"
+            app:destination="@id/changeAcc" />
+        <action
+            android:id="@+id/action_profileDetail_to_settingAcc"
+            app:destination="@id/settingAcc" />
+    </fragment>
+    <fragment
+        android:id="@+id/login"
+        android:name="com.example.secondhand.fragments.Login"
+        android:label="Login" >
+        <action
+            android:id="@+id/action_login_to_register"
+            app:destination="@id/register" />
+        <action
+            android:id="@+id/action_login_to_home"
+            app:destination="@id/home" />
+        <action
+            android:id="@+id/action_login_to_profileDetail"
+            app:destination="@id/profileDetail" />
+        <action
+            android:id="@+id/action_login_to_sell"
+            app:destination="@id/sell" />
+    </fragment>
+    <fragment
+        android:id="@+id/register"
+        android:name="com.example.secondhand.fragments.Register"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_register_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/changeAcc"
+        android:name="com.example.secondhand.fragments.ChangeAcc"
+        android:label="fragment_change_acc"
+        tools:layout="@layout/fragment_change_acc" >
+        <action
+            android:id="@+id/action_changeAcc_to_profileDetail"
+            app:destination="@id/profileDetail" />
+        <action
+            android:id="@+id/action_changeAcc_to_login"
+            app:destination="@id/login" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingAcc"
+        android:name="com.example.secondhand.fragments.SettingAcc"
+        android:label="fragment_setting_acc"
+        tools:layout="@layout/fragment_setting_acc" >
+        <action
+            android:id="@+id/action_settingAcc_to_profileDetail"
+            app:destination="@id/profileDetail" />
+    </fragment>
+    <fragment
+        android:id="@+id/buyer_Product_Add"
+        android:name="com.example.secondhand.fragments.Buyer_Product_Add"
+        android:label="fragment_buyer__product__add"
+        tools:layout="@layout/fragment_buyer__product__add" >
+        <argument
+            android:name="barangmu"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="kosong" />
+        <action
+            android:id="@+id/action_buyer_Product_Add_to_home"
+            app:destination="@id/home" />
+        <action
+            android:id="@+id/action_buyer_Product_Add_to_bottom_sheet_dialog"
+            app:destination="@id/bottom_sheet_dialog" />
+    </fragment>
+    <fragment
+        android:id="@+id/seller_Product_Add"
+        android:name="com.example.secondhand.fragments.SellPreview"
+        android:label="fragment_seller__product__add"
+        tools:layout="@layout/fragment_sell_preview" />
+    <dialog
+        android:id="@+id/bottom_sheet_dialog"
+        android:name="com.example.secondhand.fragments.bottom_sheet_dialog"
+        android:label="fragment_bottom_sheet_dialog"
+        tools:layout="@layout/fragment_bottom_sheet_dialog" >
+        <action
+            android:id="@+id/action_bottom_sheet_dialog_to_buyer_Product_Add"
+            app:destination="@id/buyer_Product_Add" />
+    </dialog>
+    <fragment
+        android:id="@+id/historyDetail"
+        android:name="com.example.secondhand.fragments.HistoryDetail"
+        android:label="fragment_history_detail"
+        tools:layout="@layout/fragment_history_detail" >
+        <action
+            android:id="@+id/action_historyDetail_to_list"
+            app:destination="@id/list" />
+    </fragment>
+
+
+</navigation>
