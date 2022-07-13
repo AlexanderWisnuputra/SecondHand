@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bottom_sheet_background"
-    tools:context=".fragments.bottom_sheet_dialog">
+    tools:context=".fragments.NegotiatePrice">
 
     <TextView
         android:id="@+id/textView1"
@@ -113,14 +113,14 @@
         app:layout_constraintTop_toBottomOf="@+id/buyer" />
 
     <EditText
-        android:id="@+id/etEmail"
+        android:id="@+id/bid"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:background="@drawable/text_border"
         android:hint="Rp. 0,00"
-        android:inputType="textEmailAddress"
+        android:inputType="number"
         android:textColorHint="#7f7f7f"
         android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@+id/hargaTawar" />
@@ -129,18 +129,19 @@
         android:id="@+id/btnKirim"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/button_border"
         android:backgroundTint="@color/purple_500"
         android:elevation="10dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
         android:text="Kirim"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        app:layout_constraintTop_toBottomOf="@+id/bid" />
 
     <TextView
         android:id="@+id/textView13"

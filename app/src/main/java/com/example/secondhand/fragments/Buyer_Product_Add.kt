@@ -27,7 +27,7 @@ class Buyer_Product_Add : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val id = requireArguments().getInt("id")
         val nameProduct = arguments?.getString("name_product")
         val categoryProduct = arguments?.getString("category_product")
         val descriptionProduct = arguments?.getString("description_product")
@@ -48,6 +48,7 @@ class Buyer_Product_Add : Fragment() {
         }
 
         val bundle = Bundle().apply {
+            putInt("id",id)
             putString("named", nameProduct)
             putString("posterd", poster)
             putString("priced", priceProduct)
@@ -55,7 +56,7 @@ class Buyer_Product_Add : Fragment() {
         val fragment = BottomSheetDialogFragment()
         fragment.arguments = bundle
         binding.button5.setOnClickListener {
-            it.findNavController().navigate(R.id.action_buyer_Product_Add_to_bottom_sheet_dialog, bundle)
+            it.findNavController().navigate(R.id.action_buyer_Product_Add_to_NegotiatePrice, bundle)
         }
     }
 

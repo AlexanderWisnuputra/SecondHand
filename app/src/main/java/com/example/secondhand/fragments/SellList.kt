@@ -53,10 +53,13 @@ class SellList : Fragment(), HistoryInterface {
             findNavController().navigate(R.id.action_list_to_changeAcc)
         }
             getUserDetail()
+        binding.listallproduct.setOnClickListener {
+
+        }
     }
 
     private fun setupRecyclerView() {
-        binding.notifRecyclerview.apply {
+        binding.historyrecyclerview.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
             adapter = HistoryAdapter(mutableListOf(), this@SellList)
@@ -100,7 +103,7 @@ class SellList : Fragment(), HistoryInterface {
     }
 
     private fun handleproduct(sp: List<History>) {
-        binding.notifRecyclerview.adapter?.let { a ->
+        binding.historyrecyclerview.adapter?.let { a ->
             if (a is HistoryAdapter) {
                 a.updateList(sp)
             }

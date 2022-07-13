@@ -85,6 +85,20 @@ interface ServiceAPI {
     fun getProductCategory (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
 
     // BUYER ORDER
+    @POST("buyer/order")
+    fun bidPrice (@Header("access_token") access_token:String?, @Body post: Bid) : Call<Bid>
+
+    @GET("buyer/order")
+    fun getOrder (@Header("access_token") access_token:String?) : Call<List<BidStatus>>
+
+    @GET("buyer/order/")
+    fun getOrderbyID (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<BidStatus>
+
+    @PUT("buyer/order/")
+    fun patchOrder (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<BidStatus>
+
+    @DELETE("buyer/order/")
+    fun deleteOrder (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<Bid>
 
     // BUYER WISHLIST
 

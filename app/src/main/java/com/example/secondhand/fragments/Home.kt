@@ -246,6 +246,7 @@ class Home : Fragment(), ProductInterface {
         var x = item.id
         getbyID(x)
         val mBundle = Bundle()
+                mBundle.putInt("id",x)
                 mBundle.putString("name_product", item.name)
                 mBundle.putString("category_product", item.categories[0].name)
                 mBundle.putString("poster", item.imageUrl)

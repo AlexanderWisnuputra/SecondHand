@@ -110,7 +110,7 @@
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
-        android:layout_width="500dp"
+        android:layout_width="700dp"
         android:layout_height="52dp"
         android:layout_marginTop="228dp"
         android:scrollbars="none"
@@ -123,7 +123,7 @@
             android:orientation="horizontal">
 
             <android.widget.Button
-                android:id="@+id/button"
+                android:id="@+id/listallproduct"
                 android:layout_width="140dp"
                 android:layout_height="43dp"
                 android:layout_marginTop="5dp"
@@ -161,7 +161,7 @@
     </HorizontalScrollView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/notifRecyclerview"
+        android:id="@+id/historyrecyclerview"
         android:layout_width="385dp"
         android:layout_height="385dp"
         android:layout_marginEnd="1dp"
