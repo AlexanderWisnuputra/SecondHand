@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_list_to_historyDetail"
             app:destination="@id/historyDetail" />
+        <action
+            android:id="@+id/action_list_to_changeAcc"
+            app:destination="@id/changeAcc" />
     </fragment>
     <fragment
         android:id="@+id/profileDetail"
@@ -92,9 +95,6 @@
         <action
             android:id="@+id/action_changeAcc_to_profileDetail"
             app:destination="@id/profileDetail" />
-        <argument
-            android:name="dataAcc"
-            app:argType="com.example.secondhand.entity.Login" />
         <action
             android:id="@+id/action_changeAcc_to_login"
             app:destination="@id/login" />

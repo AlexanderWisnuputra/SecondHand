@@ -1,6 +1,7 @@
 package com.example.secondhand.api
 
 import com.example.secondhand.entity.*
+import com.google.gson.annotations.SerializedName
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -8,42 +9,41 @@ import retrofit2.Response
 import retrofit2.http.*
 
 interface ServiceAPI {
-    @GET("buyer/product")
-    fun getProductSold () : Call<List<SellerProductItem>>
 
-    @GET("history")
-    fun getHistory (@Header("access_token") access_token:String?) : Call<List<History>>
+    // AUTH
+    @POST("auth/register")
+    suspend fun addUser(
+        @Body post: User
+    ): Response<User>
 
-    @GET("history")
-    fun getHistorybyID (@Header("access_token") access_token:String?, @Query("id") id:Int) : Call<History>
+    @POST("auth/login")
+    fun loginUser(
+        @Body post: UserAcessToken
+    ): Call<UserAcessToken>
 
-    @GET("buyer/product/")
-    fun getProductSoldbyID (@Query("id") id:Int) : Call<SellerProductItem>
+    @GET("auth/user")
+    fun getUser(@Header("access_token") access_token:String?): Call<User>
 
-    @GET("buyer/product/")
-    fun getProductSearchBar (@Query("search") search:String) : Call<List<SellerProductItem>>
+    @Multipart
+    @PUT("auth/user")
+    suspend fun changeDetail(
+        @Header("access_token") access_token:String?,
+        @Part ("full_name") name: RequestBody,
+        @Part ("email") email: RequestBody,
+        @Part ("password") password: RequestBody,
+        @Part ("phone_number") phone_number: RequestBody,
+        @Part ("address") address: RequestBody,
+        @Part ("city") city: RequestBody,
+        @Part productImage: MultipartBody.Part?
+    ): Response<User>
 
-    @GET("buyer/product/")
-    fun getProductCategory (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
+    @PUT("auth/change-password")
+    suspend fun changePass(
+        @Header("access_token") access_token:String?,
+        @Body post: Password
+    ): Response<Password>
 
-    @GET("seller/category/")
-    fun category () : Call<List<Category>>
-
-    @GET("seller/category/")
-    fun categorybyID (@Query("id") id:Int) : Call<Category>
-
-    @GET("notification")
-    fun notif (@Header("access_token") access_token:String?) : Call<List<Notification>>
-
-    @GET("notification/")
-    fun notifbyID (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>
-
-    @GET("seller/banner")
-    fun banner() : Call<List<Banner>>
-
-    @PATCH("notification/")
-    fun notifPatch (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>
-
+    // SELLER PRODUCT
     @Multipart
     @POST("seller/product")
     suspend fun addProduct(
@@ -56,25 +56,63 @@ interface ServiceAPI {
         @Part productImage: MultipartBody.Part?
     ): Response<Product>
 
-    @POST("auth/register")
-    suspend fun addUser(
-        @Body post: User
-    ): Response<User>
+    // SELLER ORDER
 
-    @POST("auth/login")
-    fun loginUser(
-        @Body post: UserAcessToken
-    ): Call<UserAcessToken>
 
-    @PUT("auth/user")
-    suspend fun changeDetail(
-        @Header("access_token") access_token:String?,
-        @Body post: User
-    ): Response<User>
+    // SELLER CATEGORY
+    @GET("seller/category/")
+    fun category () : Call<List<Category>>
 
-    @PUT("auth/change-password")
-    suspend fun changePass(
-        @Header("access_token") access_token:String?,
-        @Body post: Password
-    ): Response<Password>
+    @GET("seller/category/")
+    fun categorybyID (@Query("id") id:Int) : Call<Category>
+
+
+    // SELLER BANNER
+    @GET("seller/banner")
+    fun banner() : Call<List<Banner>>
+
+    // BUYER PRODUCT
+    @GET("buyer/product")
+    fun getProductSold () : Call<List<SellerProductItem>>
+
+    @GET("buyer/product/")
+    fun getProductSoldbyID (@Query("id") id:Int) : Call<SellerProductItem>
+
+    @GET("buyer/product/")
+    fun getProductSearchBar (@Query("search") search:String) : Call<List<SellerProductItem>>
+
+    @GET("buyer/product/")
+    fun getProductCategory (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
+
+    // BUYER ORDER
+
+    // BUYER WISHLIST
+
+
+
+    // HISTORY
+    @GET("history")
+    fun getHistory (@Header("access_token") access_token:String?) : Call<List<History>>
+
+    @GET("history")
+    fun getHistorybyID (@Header("access_token") access_token:String?, @Query("id") id:Int) : Call<History>
+
+    // NOTIFICATION
+    @GET("notification")
+    fun notif (@Header("access_token") access_token:String?) : Call<List<Notification>>
+
+    @GET("notification/")
+    fun notifbyID (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>
+
+    @PATCH("notification/")
+    fun notifPatch (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>
+
+
+
+
+
+
+
+
+
 }

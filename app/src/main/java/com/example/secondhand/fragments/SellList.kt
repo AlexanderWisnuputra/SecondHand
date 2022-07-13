@@ -4,19 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
 import com.example.secondhand.R
+import com.example.secondhand.api.ServiceBuilder
 import com.example.secondhand.databinding.FragmentListBinding
 import com.example.secondhand.entity.History
+import com.example.secondhand.entity.User
 import com.example.secondhand.history.HistoryAdapter
 import com.example.secondhand.history.HistoryState
 import com.example.secondhand.history.HistoryVM
 import com.example.secondhand.history.HistoryInterface
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SellList : Fragment(), HistoryInterface {
     private lateinit var binding: FragmentListBinding
@@ -39,6 +49,13 @@ class SellList : Fragment(), HistoryInterface {
         setupRecyclerView()
         getdata()
         observe()
+        binding.button4.setOnClickListener {
+            findNavController().navigate(R.id.action_list_to_changeAcc)
+        }
+            getUserDetail()
+        binding.textView5.text = sharedPref.getAT("userfname")
+        binding.textView6.text = sharedPref.getAT("addresss")
+
     }
 
     private fun setupRecyclerView() {
@@ -103,5 +120,27 @@ class SellList : Fragment(), HistoryInterface {
         mBundle.putString("status", item.status)
         mBundle.putString("price_product", "Price ${item.price}")
         findNavController().navigate(R.id.action_list_to_historyDetail, mBundle)
+    }
+    private fun getUserDetail() {
+        var x = sharedPref.getAT("AT")
+        ServiceBuilder.instance().getUser(x).enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+
+                    sharedPref.putAT("userfname", response.body()?.fullName.toString())
+                    sharedPref.putAT("addresss", response.body()?.address.toString())
+
+                    Glide.with(requireContext())
+                        .load(response.body()!!.imageUrl)
+                        .into(binding.imgPoster)
+
+                } else Toast.makeText(context, response.errorBody()!!.string(), Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                println(t.message)
+            }
+        })
     }
 }

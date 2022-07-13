@@ -22,10 +22,11 @@
         app:layout_constraintTop_toBottomOf="@+id/textUbahAkun">
 
         <ImageView
+            android:id="@+id/camera"
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:background="@drawable/ic_fi_camera"/>
+            android:background="@drawable/ic_fi_camera" />
 
     </androidx.cardview.widget.CardView>
 
@@ -48,7 +49,6 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="116dp"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/text_border_small"
@@ -175,8 +175,18 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:text="Nama"
-        app:layout_constraintBottom_toTopOf="@+id/old_pass"
+        app:layout_constraintBottom_toTopOf="@+id/namaUbah"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/userimg"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="56dp"
+        android:src="@drawable/home_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

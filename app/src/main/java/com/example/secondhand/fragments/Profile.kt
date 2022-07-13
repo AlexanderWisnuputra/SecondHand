@@ -14,9 +14,9 @@ import androidx.datastore.preferences.core.preferencesKey
 import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
 import com.example.secondhand.R
-import com.example.secondhand.dao.UserViewModel
 import com.example.secondhand.databinding.FragmentProfileBinding
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,7 +26,6 @@ class Profile : Fragment() {
     private lateinit var binding: FragmentProfileBinding
     private lateinit var dataStore: DataStore<Preferences>
     private lateinit var sharedPref: Helper
-    private val viewModel: UserViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,9 +41,17 @@ class Profile : Fragment() {
         sharedPref = Helper(requireContext())
         dataStore = requireContext().createDataStore(name = "user")
         binding.apply {
-            textUbahAkun.setOnClickListener { toUbahAkun() }
+            textUbahAkun.setOnClickListener {findNavController().navigate(R.id.action_profileDetail_to_changeAcc)}
             textSettingAcc.setOnClickListener { toSettingAcc() }
             textLogout.setOnClickListener { logout() }
+            binding.userimageimp.setOnClickListener{
+                findNavController().navigate(R.id.action_profileDetail_to_changeAcc)
+            }
+            val image = sharedPref.getSell("imageusr")
+            Glide.with(requireActivity())
+                .load(image)
+                .into(binding.userimageimp)
+            binding.cardViews.visibility = View.INVISIBLE
         }
     }
 
@@ -65,16 +72,6 @@ class Profile : Fragment() {
 
     private fun toSettingAcc() {
         findNavController().navigate(R.id.action_profileDetail_to_settingAcc)
-    }
-
-    private fun toUbahAkun() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            val dataAcc = viewModel.getUserProfile(sharedPref.getEmail("email"))
-            activity?.runOnUiThread {
-                val actionToProfile = ProfileDirections.actionProfileDetailToChangeAcc(dataAcc)
-                findNavController().navigate(actionToProfile)
-            }
-        }
     }
 
     private suspend fun save(key: String, value: String) {

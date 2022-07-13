@@ -1,11 +1,15 @@
 package com.example.secondhand.fragments
 
+import android.app.Activity
+import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
@@ -14,23 +18,36 @@ import androidx.datastore.preferences.createDataStore
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.secondhand.Helper
 import com.example.secondhand.R
-import com.example.secondhand.dao.UserViewModel
+import com.example.secondhand.URIPathHelper
 import com.example.secondhand.databinding.FragmentChangeAccBinding
 import com.example.secondhand.entity.User
 import com.example.secondhand.api.ServiceBuilder
+import com.example.secondhand.repository.ChangeAccRepo
+import com.github.dhaval2404.imagepicker.ImagePicker
+import kotlinx.android.synthetic.main.fragment_change_acc.*
+import kotlinx.android.synthetic.main.fragment_sell.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.http.Part
+import java.io.File
 
 class ChangeAcc : Fragment() {
     private lateinit var binding: FragmentChangeAccBinding
     private lateinit var dataStore: DataStore<Preferences>
-    private val viewModel: UserViewModel by viewModel()
-    private val args: ChangeAccArgs by navArgs()
     private lateinit var sharedPref: Helper
+    private val repo= ChangeAccRepo()
+    private var imageUri : Uri?= null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,7 +64,57 @@ class ChangeAcc : Fragment() {
         dataStore = requireContext().createDataStore(name = "user")
         binding.apply {
             btnEdit.setOnClickListener {
-                saveData()
+                    val name = "di"
+                    val email = "countlin@mail.com"
+                    val password = "123456"
+                    val phonenumber =  "80"
+                    val city =  "k"
+                    val address = "j"
+                    val imageFile = if(imageUri == null) {
+                        null
+                    }
+                    else{
+                        File(URIPathHelper.getPath(requireContext(), imageUri!!).toString())
+                    }
+
+                    val nameBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
+                    val emailBody = email.toRequestBody("text/plain".toMediaTypeOrNull())
+                    val passwordBody = password.toRequestBody("text/plain".toMediaTypeOrNull())
+                    val phonebody = phonenumber.toRequestBody("text/plain".toMediaTypeOrNull())
+                    val addressbody = address.toRequestBody("text/plain".toMediaTypeOrNull())
+                    val cityBody = city.toRequestBody("text/plain".toMediaTypeOrNull())
+                    val requestImage = imageFile?.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                    val imageBody = requestImage?.let{
+                        MultipartBody.Part.createFormData("image", imageFile?.name, it)
+                    }
+                    lifecycleScope.launch(Dispatchers.IO) {
+                        var x = sharedPref.getAT("AT")
+                        repo.changeAcc(
+                            x,
+                            nameBody,
+                            emailBody,
+                            passwordBody,
+                            phonebody,
+                            addressbody,
+                            cityBody,
+                            imageBody
+                        )
+                    }
+                    activity?.runOnUiThread {
+                        Toast.makeText(requireContext(),"Data Berhasil ditambahkan", Toast.LENGTH_LONG).show()
+                        findNavController().navigate(R.id.action_changeAcc_to_profileDetail)
+                    }
+
+            }
+            binding.photoProfile.setOnClickListener {
+                openImagePicker()
+            }
+            binding.camera.setOnClickListener{
+                openImagePicker()
+            }
+            binding.userimg.setOnClickListener{
+                openImagePicker()
+
             }
         }
     }
@@ -62,26 +129,6 @@ class ChangeAcc : Fragment() {
         }
     }
 
-    private fun saveData() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            viewModel.userProfile(
-                args.dataAcc.id!!,
-                binding.namaUbah.text.toString(),
-                args.dataAcc.email,
-                args.dataAcc.password,
-                binding.kota.text.toString(),
-                args.dataAcc.noHP,
-                args.dataAcc.picture
-            )
-            activity?.runOnUiThread {
-                Toast.makeText(requireContext(),"Data Berhasil ditambahkan", Toast.LENGTH_LONG).show()
-                findNavController().navigate(R.id.action_changeAcc_to_profileDetail)
-            }
-        }
-        lifecycleScope.launch(Dispatchers.IO){
-            editUser()
-        }
-    }
 
     private fun login() {
         val builder = AlertDialog.Builder(requireContext())
@@ -101,20 +148,52 @@ class ChangeAcc : Fragment() {
         val preferences = dataStore.data.first()
         return preferences[dataStoreKey]
     }
-    // gambar buat error
-    private suspend fun editUser() {
-        var x =sharedPref.getAT("AT")
-            ServiceBuilder.instance().changeDetail(
-            x,
-            User(
-                binding.namaUbah.text.toString(),
-                args.dataAcc.email,
-                args.dataAcc.password,
-                args.dataAcc.noHP,
-                args.dataAcc.alamat,
-                args.dataAcc.password,
-                binding.kota.text.toString()
-            )
-        )
+
+
+    private val startForProfileImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    //Image Uri will not be null for RESULT_OK
+                    val fileUri = data?.data
+                    imageUri = fileUri
+                    loadImage(fileUri)
+                    sharedPref.putSell("imageusr", fileUri.toString())
+                }
+            }
+        }
+    private fun openImagePicker() {
+        ImagePicker.with(this)
+            .crop()
+            .saveDir(
+                File(
+                    requireContext().externalCacheDir,
+                    "ImagePicker"
+                )
+            ) //Crop image(Optional), Check Customization for more option
+            .compress(1024)            //Final image size will be less than 1 MB(Optional)
+            .maxResultSize(
+                1080,
+                1080
+            )    //Final image resolution will be less than 1080 x 1080(Optional)
+            .createIntent { intent ->
+                startForProfileImageResult.launch(intent)
+            }
     }
+
+    private fun loadImage(uri: Uri?) {
+        uri?.let {
+            Glide.with(this)
+                .load(it)
+                .centerCrop()
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(16)))
+                .into(userimg)
+        }
+        binding.camera.visibility = View.GONE
+        binding.photoProfile.visibility = View.INVISIBLE
+    }
+
 }
+

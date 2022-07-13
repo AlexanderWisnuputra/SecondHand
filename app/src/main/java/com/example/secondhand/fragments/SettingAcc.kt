@@ -42,11 +42,14 @@ class SettingAcc : Fragment() {
     }
 
     private fun saveData() {
-        lifecycleScope.launch(Dispatchers.IO) {
-            editUser()
-            activity?.runOnUiThread {
-                Toast.makeText(requireContext(),"Password Berhasil diubah", Toast.LENGTH_LONG).show()
-                findNavController().navigate(R.id.action_settingAcc_to_profileDetail)
+        if (binding.oldPass.text.toString() == sharedPref.getEmail("pass")) {
+            lifecycleScope.launch(Dispatchers.IO) {
+                editUser()
+                activity?.runOnUiThread {
+                    Toast.makeText(requireContext(), "Password Berhasil diubah", Toast.LENGTH_LONG)
+                        .show()
+                    findNavController().navigate(R.id.action_settingAcc_to_profileDetail)
+                }
             }
         }
     }

@@ -69,7 +69,7 @@ class Sell : Fragment() {
             btnTerbit.setOnClickListener {
                 val name = binding.namaProduk.text.toString()
                 val price = binding.produkHarga.text.toString()
-                val city = " "
+                val location = "jakarta"
                 val category =  "1"
                 val description = binding.deskripsi.text.toString()
                 val imageFile = if(imageUri == null) {
@@ -80,7 +80,7 @@ class Sell : Fragment() {
                 }
                 val nameBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
                 val priceBody = price.toRequestBody("text/plain".toMediaTypeOrNull())
-                val cityBody = city.toRequestBody("text/plain".toMediaTypeOrNull())
+                val cityBody = location.toRequestBody("text/plain".toMediaTypeOrNull())
                 val categoryBody = category.toRequestBody("text/plain".toMediaTypeOrNull())
                 val descriptionBody = description.toRequestBody("text/plain".toMediaTypeOrNull())
                 val requestImage = imageFile?.asRequestBody("image/jpeg".toMediaTypeOrNull())
