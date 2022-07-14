@@ -15,10 +15,10 @@ class NotificationAdapter(private val notification: MutableList<Notification>, p
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var history_image = itemView.findViewById<ImageView>(R.id.sorder_image)
-        var history_price = itemView.findViewById<TextView>(R.id.sorder_price)
-        var history_name = itemView.findViewById<TextView>(R.id.sorder_name)
-        var history_category = itemView.findViewById<TextView>(R.id.sorder_category)
+        var history_image = itemView.findViewById<ImageView>(R.id.history_image)
+        var history_price = itemView.findViewById<TextView>(R.id.history_price)
+        var history_name = itemView.findViewById<TextView>(R.id.history_name)
+        var history_category = itemView.findViewById<TextView>(R.id.history_category)
         var history_date = itemView.findViewById<TextView>(R.id.date)
 
         fun bind(product: Notification) {
