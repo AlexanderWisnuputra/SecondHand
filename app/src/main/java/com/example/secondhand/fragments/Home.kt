@@ -48,7 +48,6 @@ class Home : Fragment(), ProductInterface {
         binding.category1.setBackgroundResource(R.drawable.selected_category_border)
         binding.category1.setTextColor(Color.WHITE)
         banner()
-        showHomeBanner()
     }
 
     private fun getdata() = vmod.fetchProducts()
@@ -61,10 +60,12 @@ class Home : Fragment(), ProductInterface {
     private fun getbyID(id: Int) = vmod.getByID(id)
     private fun observeState() = vmod.getState().observe(viewLifecycleOwner, Observer { handlestate(it)})
     private fun observeProduct() = vmod.getProduct().observe(viewLifecycleOwner, Observer { handleproduct(it)})
+    private fun observeBanner() = vmod.getBanner().observe(viewLifecycleOwner, Observer { showHomeBanner(it)})
 
     private fun observe(){
         observeState()
         observeProduct()
+        observeBanner()
     }
 
     private fun handlestate(it: MainState){
@@ -221,52 +222,51 @@ class Home : Fragment(), ProductInterface {
     }
 
     private fun setupRecyclerView() {
-            binding.sellerProductRecyclerview.apply {
-                layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false )
-                adapter = Adapters(mutableListOf(), this@Home)
-            }
+        binding.sellerProductRecyclerview.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false )
+            adapter = Adapters(mutableListOf(), this@Home)
+        }
+    }
+
+    private fun showHomeBanner(data: List<Banner>?) {
+        val adapter = BannerAdapter {
+            //onclick item
         }
 
-    private fun showHomeBanner(data: Banner?) {
-            val adapter = BannerAdapter {
-                //onclick item
-            }
+        binding.vpHomeBanner.adapter = adapter
+        binding.vpHomeBanner.offscreenPageLimit = 1
+        val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
+        val currentItemHorizontalMarginPx =
+            resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
+        val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
+        val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
 
-            binding.vpHomeBanner.adapter = adapter
-            binding.vpHomeBanner.offscreenPageLimit = 1
-            val nextItemVisiblePx = resources.getDimension(R.dimen.viewpager_next_item_visible)
-            val currentItemHorizontalMarginPx =
-                resources.getDimension(R.dimen.viewpager_current_item_horizontal_margin)
-            val pageTranslationX = nextItemVisiblePx + currentItemHorizontalMarginPx
-            val pageTransformer = ViewPager2.PageTransformer { page: View, position: Float ->
+            page.translationX = -pageTranslationX * position
+            page.scaleY = 1 - (0.25f * abs(position))
 
-                page.translationX = -pageTranslationX * position
-                page.scaleY = 1 - (0.25f * abs(position))
+        }
+        binding.vpHomeBanner.setPageTransformer(pageTransformer)
 
-            }
-            binding.vpHomeBanner.setPageTransformer(pageTransformer)
+        val itemDecoration = HorizontalMarginItemDecoration(
+            requireContext(),
+            R.dimen.viewpager_current_item_horizontal_margin
+        )
 
-            val itemDecoration = HorizontalMarginItemDecoration(
-                requireContext(),
-                R.dimen.viewpager_current_item_horizontal_margin
-            )
+        binding.vpHomeBanner.addItemDecoration(itemDecoration)
 
-            binding.vpHomeBanner.addItemDecoration(itemDecoration)
-
-            adapter.submitList(data)
+        adapter.submitList(data)
     }
 
     override fun click(item: SellerProductItem) {
         var x = item.id
         getbyID(x)
         val mBundle = Bundle()
-                mBundle.putInt("id",x)
-                mBundle.putString("name_product", item.name)
-                mBundle.putString("category_product", item.categories[0].name)
-                mBundle.putString("poster", item.imageUrl)
-                mBundle.putString("description_product", item.description)
-                mBundle.putString("price_product", "Price ${item.basePrice}")
+        mBundle.putString("name_product", item.name)
+        mBundle.putString("category_product", item.categories[0].name)
+        mBundle.putString("poster", item.imageUrl)
+        mBundle.putString("description_product", item.description)
+        mBundle.putString("price_product", "Price ${item.basePrice}")
         findNavController().navigate(R.id.action_home_to_buyer_Product_Add, mBundle)
     }
 

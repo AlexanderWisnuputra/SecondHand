@@ -10,7 +10,7 @@ import com.example.secondhand.entity.Banner
 import com.example.secondhand.databinding.HomeBannerListLayoutBinding
 
 class BannerAdapter(private val onClick: (Banner) -> Unit) :
-    ListAdapter<BannerAdapter, BannerAdapter.ViewHolder>(CommunityComparator()) {
+    ListAdapter<Banner, BannerAdapter.ViewHolder>(CommunityComparator()) {
 
 
     class ViewHolder(private val binding: HomeBannerListLayoutBinding) :

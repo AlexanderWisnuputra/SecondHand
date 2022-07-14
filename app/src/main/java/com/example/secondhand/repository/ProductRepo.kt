@@ -126,8 +126,8 @@ class ProductRepo {
         })
     }
 
-    fun banner(completion: (List<Banner>?, Error?) -> Unit) {
-        api.banner().enqueue(object : Callback<List<Banner>> {
+     fun banner(completion: (List<Banner>?, Error?) -> Unit) {
+        api.getBanner().enqueue(object : Callback<List<Banner>> {
             override fun onResponse(call: Call<List<Banner>?>, response: Response<List<Banner>>) {
                 when {
                     response.isSuccessful -> {

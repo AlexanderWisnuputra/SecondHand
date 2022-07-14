@@ -61,7 +61,7 @@ class SPViewModel(
         }
     }
 
-    fun banner() {
+     fun banner() {
         loading(true)
 
         repo.banner() { bner, error ->

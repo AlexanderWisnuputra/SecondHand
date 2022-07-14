@@ -75,7 +75,7 @@ interface ServiceAPI {
 
     // SELLER BANNER ☆
     @GET("seller/banner")
-    suspend fun getBanner(): Response<Banner>
+    fun getBanner(): Call<List<Banner>>
 
     // BUYER PRODUCT ☆
     @GET("buyer/product")
