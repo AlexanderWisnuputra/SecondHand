@@ -9,8 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
 import com.example.secondhand.entity.Notification
+import com.example.secondhand.history.HistoryInterface
 
-class NotificationAdapter(private val notification: MutableList<Notification>)
+class NotificationAdapter(private val notification: MutableList<Notification>, private val mainInterface: NotificationInterface)
     : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -31,7 +32,9 @@ class NotificationAdapter(private val notification: MutableList<Notification>)
             Glide.with(itemView)
                 .load(product.imageUrl)
                 .into(history_image)
-
+            itemView.setOnClickListener {
+                mainInterface.click(product)
+            }
         }
     }
 

@@ -26,7 +26,7 @@ class NotificationVM(): ViewModel() {
     fun getByID(accestoken: String?,id: Int) {
         loading(true)
 
-        repo. getNotificationbyID(accestoken,id) { sproduct, error ->
+        repo.getNotificationbyID(accestoken,id) { sproduct, error ->
             loading(false)
             error?.let { it.message?.let { message -> println(message) } }
             sproduct?.let { notification.value?.get(id) }

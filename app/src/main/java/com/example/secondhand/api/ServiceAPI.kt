@@ -10,7 +10,7 @@ import retrofit2.http.*
 
 interface ServiceAPI {
 
-    // AUTH
+    // AUTH ☆
     @POST("auth/register")
     suspend fun addUser(
         @Body post: User
@@ -43,7 +43,7 @@ interface ServiceAPI {
         @Body post: Password
     ): Response<Password>
 
-    // SELLER PRODUCT
+    // SELLER PRODUCT ☒☒☒☒☒
     @Multipart
     @POST("seller/product")
     suspend fun addProduct(
@@ -56,10 +56,10 @@ interface ServiceAPI {
         @Part productImage: MultipartBody.Part?
     ): Response<Product>
 
-    // SELLER ORDER
+    // SELLER ORDER ☒☒☒☒
 
 
-    // SELLER CATEGORY
+    // SELLER CATEGORY ☒☒
     @GET("seller/category/")
     fun category () : Call<List<Category>>
 
@@ -67,11 +67,11 @@ interface ServiceAPI {
     fun categorybyID (@Query("id") id:Int) : Call<Category>
 
 
-    // SELLER BANNER
+    // SELLER BANNER ☆
     @GET("seller/banner")
     fun banner() : Call<List<Banner>>
 
-    // BUYER PRODUCT
+    // BUYER PRODUCT ☆
     @GET("buyer/product")
     fun getProductSold () : Call<List<SellerProductItem>>
 
@@ -84,7 +84,7 @@ interface ServiceAPI {
     @GET("buyer/product/")
     fun getProductCategory (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
 
-    // BUYER ORDER
+    // BUYER ORDER ☒☒☒☒
     @POST("buyer/order")
     fun bidPrice (@Header("access_token") access_token:String?, @Body post: Bid) : Call<Bid>
 
@@ -100,18 +100,18 @@ interface ServiceAPI {
     @DELETE("buyer/order/")
     fun deleteOrder (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<Bid>
 
-    // BUYER WISHLIST
+    // BUYER WISHLIST ☒☒☒☒
 
 
 
-    // HISTORY
+    // HISTORY ☆
     @GET("history")
     fun getHistory (@Header("access_token") access_token:String?) : Call<List<History>>
 
     @GET("history")
     fun getHistorybyID (@Header("access_token") access_token:String?, @Query("id") id:Int) : Call<History>
 
-    // NOTIFICATION
+    // NOTIFICATION ☒
     @GET("notification")
     fun notif (@Header("access_token") access_token:String?) : Call<List<Notification>>
 
@@ -120,13 +120,5 @@ interface ServiceAPI {
 
     @PATCH("notification/")
     fun notifPatch (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>
-
-
-
-
-
-
-
-
 
 }

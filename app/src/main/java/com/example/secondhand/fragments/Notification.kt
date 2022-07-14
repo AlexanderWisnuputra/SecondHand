@@ -6,16 +6,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.secondhand.Helper
+import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentNotificationBinding
 import com.example.secondhand.entity.Notification
 import com.example.secondhand.notification.NotificationAdapter
+import com.example.secondhand.notification.NotificationInterface
 import com.example.secondhand.notification.NotificationVM
 import com.example.secondhand.notification.notificationState
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class Notification : Fragment() {
+class Notification : Fragment(), NotificationInterface {
     private lateinit var binding: FragmentNotificationBinding
     private val notifVM: NotificationVM by viewModel()
     private lateinit var sharedPref: Helper
@@ -43,13 +46,17 @@ class Notification : Fragment() {
         binding.rvData.apply {
             layoutManager =
                 LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-            adapter = NotificationAdapter(mutableListOf())
+            adapter = NotificationAdapter(mutableListOf(), this@Notification)
         }
     }
 
     private fun getdata() {
         var x = sharedPref.getAT("AT")
         notifVM.getnotification(x)
+    }
+    private fun getdatabyID(id:Int) {
+        var x = sharedPref.getAT("AT")
+        notifVM.getByID(x,id)
     }
 
     private fun observe() {
@@ -82,6 +89,18 @@ class Notification : Fragment() {
                 a.updateList(sp)
             }
         }
+    }
+
+    override fun click(item: Notification) {
+        var x = item.id
+        getdatabyID(x)
+        val mBundle = Bundle()
+        mBundle.putString("name_product", item.productName)
+        mBundle.putString("category_product", item.bidPrice.toString())
+        mBundle.putString("poster", item.imageUrl)
+        mBundle.putString("status", item.status)
+        mBundle.putString("price_product", "Price ${item.product.basePrice}")
+        findNavController().navigate(R.id.action_list_to_historyDetail, mBundle)
     }
 
 }

@@ -148,6 +148,14 @@
             android:id="@+id/action_historyDetail_to_list"
             app:destination="@id/list" />
     </fragment>
+    <fragment
+        android:id="@+id/notificationDetail"
+        android:name="com.example.secondhand.fragments.NotificationDetail"
+        android:label="NotificationDetail" >
+        <action
+            android:id="@+id/action_notificationDetail_to_notification"
+            app:destination="@id/notification" />
+    </fragment>
 
 
 </navigation>
