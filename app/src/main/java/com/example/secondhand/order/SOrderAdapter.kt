@@ -6,31 +6,37 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.secondhand.R
-import com.example.secondhand.entity.BidStatus
+import com.example.secondhand.entity.Product
 
 // WORK IN PROGRESS CONTINUE
-class OrderAdapter(private val order: MutableList<BidStatus>)
-    : RecyclerView.Adapter<OrderAdapter.ViewHolder>() {
+class SOrderAdapter(private val order: MutableList<Product>,private val maininterface: SOrderInterface)
+    : RecyclerView.Adapter<SOrderAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var history_image = itemView.findViewById<ImageView>(R.id.sorder_image)
+        var Image = itemView.findViewById<ImageView>(R.id.sorder_image)
         var history_price = itemView.findViewById<TextView>(R.id.sorder_price)
         var history_name = itemView.findViewById<TextView>(R.id.sorder_name)
         var history_category = itemView.findViewById<TextView>(R.id.sorder_category)
         var history_date = itemView.findViewById<TextView>(R.id.date)
 
-        fun bind(product: BidStatus) {
-       /*
-            Glide.with(itemView)
-                .load(product.imageUrl)
-                .into(history_image)*/
+        fun bind(product: Product) {
 
+            history_name.text = product.name
+            history_category.text = product.name
+            history_price.text = product.basePrice.toString()
+            Glide.with(itemView)
+                .load(product.image)
+                .into(Image)
+            itemView.setOnClickListener {
+                maininterface.click(product)
+            }
         }
     }
 
-    fun updateList(it: List<BidStatus>) {
+    fun updateList(it: List<Product>) {
         order.clear()
         order.addAll(it)
         notifyDataSetChanged()
@@ -38,7 +44,7 @@ class OrderAdapter(private val order: MutableList<BidStatus>)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.notification_item, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.sorder_item, parent, false)
         return ViewHolder(view)
     }
 

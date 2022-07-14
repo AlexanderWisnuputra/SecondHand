@@ -11,7 +11,7 @@ class SecondHand: Application() {
         super.onCreate()
         startKoin {
             androidContext(this@SecondHand)
-            modules(ProductVM, NotifVM, HistoVM)
+            modules(ProductVM, NotifVM, HistoVM, SOVM)
         }
     }
 

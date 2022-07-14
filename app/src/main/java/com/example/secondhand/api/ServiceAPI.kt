@@ -43,7 +43,7 @@ interface ServiceAPI {
         @Body post: Password
     ): Response<Password>
 
-    // SELLER PRODUCT ☒☒☒☒☒
+    // SELLER PRODUCT ☒☒☒
     @Multipart
     @POST("seller/product")
     suspend fun addProduct(
@@ -55,6 +55,12 @@ interface ServiceAPI {
         @Part ("location") location: RequestBody,
         @Part productImage: MultipartBody.Part?
     ): Response<Product>
+
+    @GET("seller/product")
+    fun productSold(@Header("access_token") access_token:String?): Call<List<Product>>
+
+    @GET("seller/product")
+    fun getproductsoldbyID (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<Product>
 
     // SELLER ORDER ☒☒☒☒
 
