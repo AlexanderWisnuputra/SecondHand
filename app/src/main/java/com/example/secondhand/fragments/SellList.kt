@@ -16,11 +16,16 @@ import com.example.secondhand.R
 import com.example.secondhand.api.ServiceBuilder
 import com.example.secondhand.databinding.FragmentListBinding
 import com.example.secondhand.entity.History
+import com.example.secondhand.entity.Product
 import com.example.secondhand.entity.User
 import com.example.secondhand.history.HistoryAdapter
 import com.example.secondhand.history.HistoryState
 import com.example.secondhand.history.HistoryVM
 import com.example.secondhand.history.HistoryInterface
+import com.example.secondhand.order.SOrderAdapter
+import com.example.secondhand.order.SOrderInterface
+import com.example.secondhand.order.SOrderVM
+import com.example.secondhand.order.SorderState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -28,11 +33,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SellList : Fragment(), HistoryInterface {
+class SellList : Fragment(), HistoryInterface, SOrderInterface {
     private lateinit var binding: FragmentListBinding
     private lateinit var sharedPref: Helper
     private val SellVM: HistoryVM by viewModel()
-
+    private val SOVM: SOrderVM by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,15 +51,34 @@ class SellList : Fragment(), HistoryInterface {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPref = Helper(requireContext())
-        setupRecyclerView()
-        getdata()
-        observe()
+        setupRecyclerView2()
+        Sorder()
+        observe2()
+        getUserDetail()
+
         binding.button4.setOnClickListener {
             findNavController().navigate(R.id.action_list_to_changeAcc)
         }
+        binding.button2.setOnClickListener {
+            //wishlist
+        }
+        binding.button3.setOnClickListener {
+            setupRecyclerView()
             getUserDetail()
-        binding.listallproduct.setOnClickListener {
+            getdata()
+            observe()
+            binding.orderrecyclerview.visibility = View.INVISIBLE
+            binding.wishlist.visibility = View.INVISIBLE
+            binding.historyrecyclerview.visibility = View.VISIBLE
 
+        }
+        binding.listallproduct.setOnClickListener {
+            setupRecyclerView2()
+            Sorder()
+            observe2()
+            binding.orderrecyclerview.visibility = View.VISIBLE
+            binding.historyrecyclerview.visibility = View.INVISIBLE
+            binding.wishlist.visibility = View.INVISIBLE
         }
     }
 
@@ -65,15 +89,70 @@ class SellList : Fragment(), HistoryInterface {
             adapter = HistoryAdapter(mutableListOf(), this@SellList)
         }
     }
+    private fun setupRecyclerView2() {
+        binding.orderrecyclerview.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            adapter = SOrderAdapter(mutableListOf(), this@SellList)
+        }
+    }
+    private fun setupRecyclerView3() {
+        binding.wishlist.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            adapter = HistoryAdapter(mutableListOf(), this@SellList)
+        }
+    }
 
     private fun getdata() {
         var x = sharedPref.getAT("AT")
         SellVM.getHistory(x)
     }
+    private fun Sorder() {
+        var x = sharedPref.getAT("AT")
+        SOVM.getsoldProduct(x)
+    }
+    private fun Sorderid(id: Int) {
+        var x = sharedPref.getAT("AT")
+        SOVM.getsoldProductid(x,id)    }
+
 
     private fun getdatabyID(id:Int) {
         var x = sharedPref.getAT("AT")
         SellVM.getByID(x,id)
+    }
+    private fun observe2() {
+        observeState2()
+        observeProduct2()
+    }
+
+    private fun observeState2() = SOVM.getState().observe(viewLifecycleOwner, Observer { handlestate2(it) })
+
+    private fun observeProduct2() = SOVM.getOrder().observe(viewLifecycleOwner, Observer { handleproduct2(it) })
+
+    private fun handlestate2(it: SorderState) {
+        when (it) {
+            is SorderState.Loading -> isLoading2(it.isLoading)
+        }
+    }
+
+    private fun isLoading2(b: Boolean) {
+        if (b) {
+            binding.progressBar.visibility = View.VISIBLE
+            binding.imageView2.visibility = View.VISIBLE
+
+        } else {
+            binding.progressBar.visibility = View.GONE
+            binding.imageView2.visibility = View.GONE
+        }
+    }
+
+    private fun handleproduct2(sp: List<Product>) {
+        binding.orderrecyclerview.adapter?.let { a ->
+            if (a is SOrderAdapter) {
+                a.updateList(sp)
+            }
+        }
     }
 
     private fun observe() {
@@ -138,5 +217,17 @@ class SellList : Fragment(), HistoryInterface {
                 println(t.message)
             }
         })
+    }
+
+    override fun click(item: Product) {
+        var x = item.id
+        Sorderid(x!!)
+        val mBundle = Bundle()
+        mBundle.putString("name_product", item.name)
+        mBundle.putString("category_product", item.name)
+        mBundle.putString("poster", item.image)
+        mBundle.putString("status", item.description)
+        mBundle.putString("price_product", "Price ${item.basePrice}")
+        findNavController().navigate(R.id.action_list_to_orderListDetail, mBundle)
     }
 }

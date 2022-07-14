@@ -49,6 +49,9 @@
         <action
             android:id="@+id/action_list_to_changeAcc"
             app:destination="@id/changeAcc" />
+        <action
+            android:id="@+id/action_list_to_orderListDetail"
+            app:destination="@id/orderListDetail" />
     </fragment>
     <fragment
         android:id="@+id/profileDetail"
@@ -159,6 +162,15 @@
         <action
             android:id="@+id/action_notificationDetail_to_notification"
             app:destination="@id/notification" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderListDetail"
+        android:name="com.example.secondhand.OrderListDetail"
+        android:label="fragment_order_list_detail"
+        tools:layout="@layout/fragment_order_list_detail" >
+        <action
+            android:id="@+id/action_orderListDetail_to_list"
+            app:destination="@id/list" />
     </fragment>
 
 

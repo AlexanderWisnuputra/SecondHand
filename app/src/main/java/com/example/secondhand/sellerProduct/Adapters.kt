@@ -14,10 +14,10 @@ class Adapters(private val products: MutableList<SellerProductItem>, private val
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        var product_image = itemView.findViewById<ImageView>(R.id.history_image)
-        var product_price = itemView.findViewById<TextView>(R.id.history_price)
-        var product_name = itemView.findViewById<TextView>(R.id.history_name)
-        var product_category = itemView.findViewById<TextView>(R.id.history_category)
+        var product_image = itemView.findViewById<ImageView>(R.id.sorder_image)
+        var product_price = itemView.findViewById<TextView>(R.id.sorder_price)
+        var product_name = itemView.findViewById<TextView>(R.id.sorder_name)
+        var product_category = itemView.findViewById<TextView>(R.id.sorder_category)
 
         fun bind(product: SellerProductItem) {
             val price = "Rp ${product.basePrice}"
