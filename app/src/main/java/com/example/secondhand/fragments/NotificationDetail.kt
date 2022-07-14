@@ -11,7 +11,7 @@ import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentHistoryDetailBinding
 import com.example.secondhand.databinding.FragmentNotificationDetailBinding
 
-
+    // FIX LAYOUT
 class NotificationDetail : Fragment() {
     private lateinit var binding: FragmentNotificationDetailBinding
 

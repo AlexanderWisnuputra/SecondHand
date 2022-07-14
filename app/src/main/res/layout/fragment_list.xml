@@ -7,6 +7,15 @@
     tools:context="com.example.secondhand.fragments.SellList">
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/orderrecyclerview"
+        android:layout_width="393dp"
+        android:layout_height="455dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cv_item_course"
         android:layout_width="400dp"
@@ -110,8 +119,8 @@
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
-        android:layout_width="700dp"
-        android:layout_height="52dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="228dp"
         android:scrollbars="none"
         app:layout_constraintStart_toStartOf="parent"
@@ -165,9 +174,11 @@
         android:layout_width="385dp"
         android:layout_height="385dp"
         android:layout_marginEnd="1dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="40dp"
+        android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -178,4 +189,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/wishlist"
+        android:layout_width="387dp"
+        android:layout_height="454dp"
+        android:layout_marginTop="40dp"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

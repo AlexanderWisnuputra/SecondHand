@@ -9,7 +9,7 @@ import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentHistoryDetailBinding
-
+    // FIX LAYOUT
 class HistoryDetail : Fragment() {
     private lateinit var binding: FragmentHistoryDetailBinding
 

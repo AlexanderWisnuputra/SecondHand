@@ -100,7 +100,7 @@ class Notification : Fragment(), NotificationInterface {
         mBundle.putString("poster", item.imageUrl)
         mBundle.putString("status", item.status)
         mBundle.putString("price_product", "Price ${item.product.basePrice}")
-        findNavController().navigate(R.id.action_list_to_historyDetail, mBundle)
+        findNavController().navigate(R.id.action_notification_to_notificationDetail, mBundle)
     }
 
 }

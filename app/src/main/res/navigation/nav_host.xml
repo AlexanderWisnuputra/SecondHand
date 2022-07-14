@@ -18,7 +18,11 @@
         android:id="@+id/notification"
         android:name="com.example.secondhand.fragments.Notification"
         android:label="fragment_favourite"
-        tools:layout="@layout/fragment_notification" />
+        tools:layout="@layout/fragment_notification" >
+        <action
+            android:id="@+id/action_notification_to_notificationDetail"
+            app:destination="@id/notificationDetail" />
+    </fragment>
     <fragment
         android:id="@+id/sell"
         android:name="com.example.secondhand.fragments.Sell"
