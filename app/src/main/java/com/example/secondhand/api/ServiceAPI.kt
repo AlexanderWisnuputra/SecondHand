@@ -107,8 +107,11 @@ interface ServiceAPI {
     fun deleteOrder (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<Bid>
 
     // BUYER WISHLIST ☒☒☒☒
+    @POST("buyer/wishlist")
+    fun postwish(@Header("access_token") access_token:String?, @Query("product_id") id : Int) : Call<Wishlist>
 
-
+    @GET("buyer/wishlist")
+    fun listwish(@Header("access_token") access_token:String?) : Call<List<Wishlist>>
 
     // HISTORY ☆
     @GET("history")
@@ -123,6 +126,9 @@ interface ServiceAPI {
 
     @GET("notification/")
     fun notifbyID (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>
+
+    @GET("notification/")
+    fun notifbyUser (@Header("access_token") access_token:String?,@Query("notification_type") type:String) : Call<List<Notification>>
 
     @PATCH("notification/")
     fun notifPatch (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>

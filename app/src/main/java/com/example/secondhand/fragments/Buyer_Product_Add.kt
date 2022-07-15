@@ -42,7 +42,9 @@ class Buyer_Product_Add : Fragment() {
         binding.textView6.text = categoryProduct
         binding.textView7.text = priceProduct
         binding.smallerDetail.text = descriptionProduct
+        binding.fav.setOnClickListener {
 
+        }
         binding.imageView4.setOnClickListener {
             it.findNavController().navigate(R.id.action_buyer_Product_Add_to_home)
         }

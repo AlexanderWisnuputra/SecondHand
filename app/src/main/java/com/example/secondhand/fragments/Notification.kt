@@ -41,7 +41,6 @@ class Notification : Fragment(), NotificationInterface {
         observe()
     }
 
-
     private fun setupRecyclerView() {
         binding.rvData.apply {
             layoutManager =
@@ -58,7 +57,14 @@ class Notification : Fragment(), NotificationInterface {
         var x = sharedPref.getAT("AT")
         notifVM.getByID(x,id)
     }
-
+    private fun getdatabuyer(type:String) {
+        var x = sharedPref.getAT("AT")
+        notifVM.getBytype(x,type)
+    }
+    private fun getdataseller(type:String) {
+        var x = sharedPref.getAT("AT")
+        notifVM.getBytype(x,type)
+    }
     private fun observe() {
         observeState()
         observeProduct()
@@ -83,10 +89,38 @@ class Notification : Fragment(), NotificationInterface {
             binding.pbMovie.visibility = View.GONE
         }
     }
+
     private fun handleproduct(sp: List<Notification>) {
         binding.rvData.adapter?.let { a ->
             if (a is NotificationAdapter) {
                 a.updateList(sp)
+            }
+        }
+        binding.buyerNotif.setOnClickListener {
+            binding.rvData.adapter?.let { a ->
+                if (a is NotificationAdapter) {
+                    getdatabuyer("buyer")
+                    a.updateList(sp)
+                    a.notifyDataSetChanged()
+                }
+            }
+            binding.all.setOnClickListener {
+                binding.rvData.adapter?.let { a ->
+                    if (a is NotificationAdapter) {
+                        getdata()
+                        a.updateList(sp)
+                        a.notifyDataSetChanged()
+                    }
+                }
+                binding.sellerNotif.setOnClickListener {
+                    binding.rvData.adapter?.let { a ->
+                        if (a is NotificationAdapter) {
+                           getdataseller("seller")
+                            a.updateList(sp)
+                            a.notifyDataSetChanged()
+                        }
+                    }
+                }
             }
         }
     }
