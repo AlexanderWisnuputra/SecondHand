@@ -1,9 +1,9 @@
-package com.example.secondhand.repository
+package com.example.secondhand.wishlist
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.secondhand.entity.BidStatus
 import com.example.secondhand.entity.Wishlist
+import com.example.secondhand.repository.BuyerRepo
 
 class WishlistVM : ViewModel() {
     private val repo= BuyerRepo()
@@ -31,11 +31,22 @@ class WishlistVM : ViewModel() {
             error?.let { it.message?.let { message -> println(message) } }
             sproduct?.let { order.value?.get(id) }
         }
-
-
     }
+    fun deletewish(accestoken: String?,id: Int) {
+        loading(true)
+
+        repo.deletewish(accestoken,id) { sproduct, error ->
+            loading(false)
+            error?.let { it.message?.let { message -> println(message) } }
+            sproduct?.let { order.value?.get(id) }
+        }
+    }
+
+
+
+
     fun getState() =state
-    fun getnotification() = order
+    fun getwish() = order
 }
 
 sealed class wishState{

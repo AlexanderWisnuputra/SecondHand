@@ -7,15 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.example.secondhand.Helper
 import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentBuyerProductAddBinding
+import com.example.secondhand.wishlist.WishlistVM
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class Buyer_Product_Add : Fragment() {
 
     private lateinit var binding: FragmentBuyerProductAddBinding
-
+    private val vmod: WishlistVM by viewModel()
+    private lateinit var sharedpref: Helper
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -27,6 +31,7 @@ class Buyer_Product_Add : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        sharedpref = Helper(requireContext())
         val id = requireArguments().getInt("id")
         val nameProduct = arguments?.getString("name_product")
         val categoryProduct = arguments?.getString("category_product")
@@ -43,7 +48,8 @@ class Buyer_Product_Add : Fragment() {
         binding.textView7.text = priceProduct
         binding.smallerDetail.text = descriptionProduct
         binding.fav.setOnClickListener {
-
+            var x = sharedpref.getAT("AT")
+            vmod.putWish(x,id)
         }
         binding.imageView4.setOnClickListener {
             it.findNavController().navigate(R.id.action_buyer_Product_Add_to_home)

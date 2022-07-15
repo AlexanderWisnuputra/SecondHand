@@ -58,5 +58,26 @@ class BuyerRepo {
         })
     }
 
+    fun deletewish(accestoken: String?,id:Int, completion: (Wishlist?, Error?) -> Unit) {
+        api.deletewish(accestoken,id).enqueue(object : Callback<Wishlist> {
+            override fun onFailure(call: Call<Wishlist>, t: Throwable) {
+                println(t.message)
+                completion(null, Error(t.message))
+            }
 
+            override fun onResponse(
+                call: Call<Wishlist>,
+                response: Response<Wishlist>
+            ) {
+                when {
+                    response.isSuccessful -> {
+                        completion(response.body(), null)
+                    }
+                    !response.isSuccessful -> {
+                        completion(null, Error("Cannot get data"))
+                    }
+                }
+            }
+        })
+    }
 }
