@@ -14,10 +14,7 @@ import com.example.secondhand.Helper
 import com.example.secondhand.R
 import com.example.secondhand.api.ServiceBuilder
 import com.example.secondhand.databinding.FragmentListBinding
-import com.example.secondhand.entity.History
-import com.example.secondhand.entity.Product
-import com.example.secondhand.entity.User
-import com.example.secondhand.entity.Wishlist
+import com.example.secondhand.entity.*
 import com.example.secondhand.history.HistoryAdapter
 import com.example.secondhand.history.HistoryState
 import com.example.secondhand.history.HistoryVM
@@ -27,7 +24,7 @@ import com.example.secondhand.order.SOrderInterface
 import com.example.secondhand.order.SOrderVM
 import com.example.secondhand.order.SorderState
 import com.example.secondhand.wishlist.WishlistVM
-import com.example.secondhand.wishlist.wishState
+import com.example.secondhand.wishlist.bidStatus
 import com.example.secondhand.wishlist.WishlistAdapter
 import com.example.secondhand.wishlist.WishlistInterface
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -126,7 +123,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
 
     private fun getwish() {
         var x = sharedPref.getAT("AT")
-        vmod.getWish(x)    }
+        vmod.getordered(x)    }
 
 
     private fun getdatabyID(id:Int) {
@@ -144,9 +141,9 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
 
     private fun observeProduct3() = vmod.getwish().observe(viewLifecycleOwner, Observer { handleproduct3(it) })
 
-    private fun handlestate3(it: wishState) {
+    private fun handlestate3(it: bidStatus) {
         when (it) {
-            is wishState.Loading -> isLoading3(it.isLoading)
+            is bidStatus.Loading -> isLoading3(it.isLoading)
         }
     }
 
@@ -161,7 +158,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
         }
     }
 
-    private fun handleproduct3(sp: List<Wishlist>) {
+    private fun handleproduct3(sp: List<BidStatus>) {
         binding.wishlist.adapter?.let { a ->
             if (a is WishlistAdapter) {
                 a.updateList(sp)
@@ -299,7 +296,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
         findNavController().navigate(R.id.action_list_to_orderListDetail, mBundle)
     }
 
-    override fun click(item: Wishlist) {
+    override fun click(item: BidStatus) {
         TODO("Not yet implemented")
     }
 }

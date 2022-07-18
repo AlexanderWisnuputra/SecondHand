@@ -63,7 +63,8 @@ interface ServiceAPI {
     fun getproductsoldbyID (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<Product>
 
     // SELLER ORDER ☒☒☒☒
-
+    @GET("seller/order")
+    fun getordered (@Header("access_token") access_token:String?) : Call<List<BidStatus>>
 
     // SELLER CATEGORY ☒☒
     @GET("seller/category/")
@@ -105,21 +106,6 @@ interface ServiceAPI {
 
     @DELETE("buyer/order/")
     fun deleteOrder (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<Bid>
-
-    // BUYER WISHLIST ☒☒☒☒
-    @POST("buyer/wishlist")
-    fun postwish(@Header("access_token") access_token:String?, @Body product : Int) : Call<Wishlist>
-
-    @GET("buyer/wishlist")
-    fun listwish(@Header("access_token") access_token:String?) : Call<List<Wishlist>>
-
-/*    @GET("buyer/wishlist/")
-    fun getwishbyid(@Header("access_token") access_token:String?,id:Int) : Call<//Mesti buat entity baru>*/
-
-    @DELETE("buyer/wishlist/")
-    fun deletewish (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<Wishlist>
-
-
 
     // HISTORY ☆
     @GET("history")

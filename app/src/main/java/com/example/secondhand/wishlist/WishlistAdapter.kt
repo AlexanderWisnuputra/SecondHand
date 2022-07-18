@@ -8,11 +8,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
+import com.example.secondhand.entity.BidStatus
 import com.example.secondhand.entity.Notification
 import com.example.secondhand.entity.Wishlist
 
 
-class WishlistAdapter (private val notification: MutableList<Wishlist>,
+class WishlistAdapter (private val notification: MutableList<BidStatus>,
         private val mainInterface: WishlistInterface
     ) : RecyclerView.Adapter<WishlistAdapter.ViewHolder>() {
 
@@ -24,15 +25,15 @@ class WishlistAdapter (private val notification: MutableList<Wishlist>,
             var history_category = itemView.findViewById<TextView>(R.id.wishstatus)
             var history_date = itemView.findViewById<TextView>(R.id.wishlistdesc)
 
-            fun bind(product: Wishlist) {
-                val price = "Rp. ${product.basePrice}"
-                val bp = "Rp. ${product.location}"
+            fun bind(product: BidStatus) {
+                val price = "Rp. ${product.priceID}"
+                val bp = "Rp. ${product.normalPrice}"
                 history_name.text = product.name
                 history_category.text = bp
                 history_price.text = price
-                history_date.text = product.description
+                history_date.text = product.status
                 Glide.with(itemView)
-                    .load(product.imageUrl)
+                    .load(product.img)
                     .into(history_image)
                 itemView.setOnClickListener {
                     mainInterface.click(product)
@@ -40,7 +41,7 @@ class WishlistAdapter (private val notification: MutableList<Wishlist>,
             }
         }
 
-        fun updateList(it: List<Wishlist>) {
+        fun updateList(it: List<BidStatus>) {
             notification.clear()
             notification.addAll(it)
             notifyDataSetChanged()

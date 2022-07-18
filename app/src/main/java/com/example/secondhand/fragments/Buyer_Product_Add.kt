@@ -49,7 +49,7 @@ class Buyer_Product_Add : Fragment() {
         binding.smallerDetail.text = descriptionProduct
         binding.fav.setOnClickListener {
             var x = sharedpref.getAT("AT")
-            vmod.putWish(x,id)
+            vmod.getordered(x)
         }
         binding.imageView4.setOnClickListener {
             it.findNavController().navigate(R.id.action_buyer_Product_Add_to_home)
