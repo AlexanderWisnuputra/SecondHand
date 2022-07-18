@@ -31,14 +31,13 @@
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/drawable/button_change_color.xml" value="0.222" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/drawable/category_border.xml" value="0.222" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/drawable/home_category_tab_background.xml" value="0.183" />
-        <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/drawable/ic_heart.xml" value="0.2225" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/drawable/ic_search.xml" value="0.222" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/drawable/selected_category_border.xml" value="0.222" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/activity_main.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/banner.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/dropdown_item.xml" value="0.25815217391304346" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_bottom_sheet_dialog.xml" value="0.3423913043478261" />
-        <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_buyer__product__add.xml" value="0.5131195335276968" />
+        <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_buyer__product__add.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_buyer_info.xml" value="0.18802083333333333" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_change_acc.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_history_detail.xml" value="0.25" />
@@ -59,7 +58,6 @@
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/notification_item.xml" value="0.25" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/product_sold.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/spinner.xml" value="0.25815217391304346" />
-        <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/wishlist_item.xml" value="0.3500905797101449" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/menu/bottom_navigation.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/button_border.xml" value="0.209" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/drawable/category_border.xml" value="0.209" />
@@ -86,8 +84,10 @@
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_sell.xml" value="0.22" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_seller__product__add.xml" value="0.25" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_setting_acc.xml" value="0.2015625" />
+        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/fragment_update_sell_status.xml" value="0.25" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/history_item.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/home_banner_list_layout.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/home_banner_list_layout.xml" value="0.2015625" />
+        <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/negotiate_price.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/notification_item.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/product_sold.xml" value="0.2015625" />
         <entry key="..\:/Users/Rwnd/AndroidStudioProjects/SecondHand-Kelompok4-AND6/app/src/main/res/layout/test_layout.xml" value="0.20052083333333334" />
