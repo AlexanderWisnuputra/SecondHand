@@ -18,7 +18,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class Buyer_Product_Add : Fragment() {
 
     private lateinit var binding: FragmentBuyerProductAddBinding
-    private val vmod: WishlistVM by viewModel()
     private lateinit var sharedpref: Helper
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,10 +46,7 @@ class Buyer_Product_Add : Fragment() {
         binding.textView6.text = categoryProduct
         binding.textView7.text = priceProduct
         binding.smallerDetail.text = descriptionProduct
-        binding.fav.setOnClickListener {
-            var x = sharedpref.getAT("AT")
-            vmod.getordered(x)
-        }
+
         binding.imageView4.setOnClickListener {
             it.findNavController().navigate(R.id.action_buyer_Product_Add_to_home)
         }

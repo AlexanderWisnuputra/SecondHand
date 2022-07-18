@@ -12,7 +12,7 @@ import com.example.secondhand.entity.BidStatus
 import com.example.secondhand.entity.Notification
 import com.example.secondhand.entity.Wishlist
 
-
+// ganti jadi sellder order
 class WishlistAdapter (private val notification: MutableList<BidStatus>,
         private val mainInterface: WishlistInterface
     ) : RecyclerView.Adapter<WishlistAdapter.ViewHolder>() {

@@ -62,9 +62,16 @@ interface ServiceAPI {
     @GET("seller/product")
     fun getproductsoldbyID (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<Product>
 
-    // SELLER ORDER ☒☒☒☒
+    // SELLER ORDER ☒☒☒
     @GET("seller/order")
-    fun getordered (@Header("access_token") access_token:String?) : Call<List<BidStatus>>
+    fun getordered (@Header("access_token") access_token:String?, @Query("status") status:String) : Call<List<BidStatus>>
+
+    @GET("seller/order/")
+    fun getorderedbyid (@Header("access_token") access_token:String?, @Query("id") id:Int) : Call<BidStatus>
+
+
+
+
 
     // SELLER CATEGORY ☒☒
     @GET("seller/category/")

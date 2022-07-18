@@ -123,7 +123,8 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
 
     private fun getwish() {
         var x = sharedPref.getAT("AT")
-        vmod.getordered(x)    }
+        vmod.getordered(x, "pending")    }
+
 
 
     private fun getdatabyID(id:Int) {
@@ -297,6 +298,9 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
     }
 
     override fun click(item: BidStatus) {
-        TODO("Not yet implemented")
-    }
+        var id = item.id
+            var x = sharedPref.getAT("AT")
+            vmod.getorderedbyid(x,id)
+        // buat onclick pending jadi decline ato accept
+        }
 }

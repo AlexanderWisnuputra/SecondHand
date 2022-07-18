@@ -16,18 +16,18 @@ class WishlistVM : ViewModel() {
         state.value = bidStatus.Loading(b)
     }
 
-/*    fun getWish(accestoken: String?) {
+   fun getorderedbyid(accestoken: String?,id:Int) {
         loading(true)
-        repo.getWishList(accestoken) { sproduct, error ->
+        repo.getorderedbyid(accestoken,id) { sproduct, error ->
             loading(false)
             error?.let { it.message?.let { message -> println(message) } }
-            sproduct?.let { order.postValue(it) }
+            sproduct?.let { order.value?.get(id) }
         }
-    }*/
-    fun getordered(accestoken: String?) {
+    }
+    fun getordered(accestoken: String?, status: String) {
         loading(true)
 
-        repo.getordered(accestoken) { sproduct, error ->
+        repo.getordered(accestoken, status) { sproduct, error ->
             loading(false)
             error?.let { it.message?.let { message -> println(message) } }
             sproduct?.let { order.postValue(it) }

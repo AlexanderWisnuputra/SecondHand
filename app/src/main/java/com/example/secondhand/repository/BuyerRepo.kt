@@ -2,8 +2,6 @@ package com.example.secondhand.repository
 
 import com.example.secondhand.api.ServiceBuilder
 import com.example.secondhand.entity.BidStatus
-import com.example.secondhand.entity.History
-import com.example.secondhand.entity.Wishlist
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,8 +10,8 @@ class BuyerRepo {
     private val api = ServiceBuilder.instance()
 
 
-    fun getordered(accestoken: String?, completion: (List<BidStatus>?, Error?) -> Unit) {
-        api.getordered(accestoken).enqueue(object : Callback<List<BidStatus>> {
+    fun getordered(accestoken: String?, status:String, completion: (List<BidStatus>?, Error?) -> Unit) {
+        api.getordered(accestoken, status).enqueue(object : Callback<List<BidStatus>> {
             override fun onFailure(call: Call<List<BidStatus>>, t: Throwable) {
                 println(t.message)
                 completion(null, Error(t.message))
@@ -36,16 +34,16 @@ class BuyerRepo {
     }
 
 
-    /*fun getWishList(accestoken: String?, completion: (List<Wishlist>?, Error?) -> Unit) {
-        api.listwish(accestoken).enqueue(object : Callback<List<Wishlist>> {
-            override fun onFailure(call: Call<List<Wishlist>>, t: Throwable) {
+    fun getorderedbyid(accestoken: String?,id:Int, completion: (BidStatus?, Error?) -> Unit) {
+        api.getorderedbyid(accestoken,id).enqueue(object : Callback<BidStatus> {
+            override fun onFailure(call: Call<BidStatus>, t: Throwable) {
                 println(t.message)
                 completion(null, Error(t.message))
             }
 
             override fun onResponse(
-                call: Call<List<Wishlist>>,
-                response: Response<List<Wishlist>>
+                call: Call<BidStatus>,
+                response: Response<BidStatus>
             ) {
                 when {
                     response.isSuccessful -> {
@@ -59,16 +57,16 @@ class BuyerRepo {
         })
     }
 
-    fun deletewish(accestoken: String?,id:Int, completion: (Wishlist?, Error?) -> Unit) {
-        api.deletewish(accestoken,id).enqueue(object : Callback<Wishlist> {
-            override fun onFailure(call: Call<Wishlist>, t: Throwable) {
+/*    fun deletewish(accestoken: String?,id:Int, completion: (BidStatus?, Error?) -> Unit) {
+        api.deletewish(accestoken,id).enqueue(object : Callback<BidStatus> {
+            override fun onFailure(call: Call<BidStatus>, t: Throwable) {
                 println(t.message)
                 completion(null, Error(t.message))
             }
 
             override fun onResponse(
-                call: Call<Wishlist>,
-                response: Response<Wishlist>
+                call: Call<BidStatus>,
+                response: Response<BidStatus>
             ) {
                 when {
                     response.isSuccessful -> {
