@@ -5,10 +5,12 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -99,6 +101,8 @@ class Sell : Fragment() {
                       imageBody
                   )
                 }
+
+                Toast(requireActivity()).showCustomToast("Produk berhasil ditambahkan", requireContext() as Activity)
             }
             fotoProduk.setOnClickListener { openImagePicker()}
         }
@@ -197,6 +201,25 @@ class Sell : Fragment() {
                 .centerCrop()
                 .apply(RequestOptions.bitmapTransform(RoundedCorners(16)))
                 .into(fotoProduk)
+        }
+    }
+
+    private fun Toast.showCustomToast(message: String, activity: Activity) {
+        val layout = activity.layoutInflater.inflate (
+            R.layout.toast_layout,
+            activity.findViewById(R.id.toastCustom)
+        )
+
+        // set the text of the TextView of the message
+        val textView = layout.findViewById<TextView>(R.id.toastText)
+        textView.text = message
+
+        // use the application extension function
+        this.apply {
+            setGravity(Gravity.TOP, 0, 250)
+            duration = Toast.LENGTH_LONG
+            view = layout
+            show()
         }
     }
 

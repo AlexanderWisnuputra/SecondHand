@@ -64,7 +64,8 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/banner"
         android:layout_width="0dp"
-        android:layout_height="420dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="10dp"
         app:cardBackgroundColor="@color/transparent"
         app:cardElevation="0dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -81,9 +82,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/seller_product_recyclerview"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_marginTop="70dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/banner" />
 
@@ -95,16 +96,19 @@
         android:layout_marginBottom="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/seller_product_recyclerview" />
 
 
     <HorizontalScrollView
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:layout_marginStart="10dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
         android:scrollbars="none"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/seller_product_recyclerview"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/banner">
 
         <LinearLayout
@@ -120,8 +124,8 @@
                 android:background="@drawable/category_border"
                 android:drawableLeft="@drawable/ic_search_clicked"
                 android:text="Semua "
-                android:textColor="@color/black"
-                android:textAllCaps="false" />
+                android:textAllCaps="false"
+                android:textColor="@color/black" />
 
             <android.widget.Button
                 android:id="@+id/category2"
@@ -147,6 +151,7 @@
                 android:textAllCaps="false"
                 tools:layout_editor_absoluteX="56dp"
                 tools:layout_editor_absoluteY="476dp" />
+
             <android.widget.Button
                 android:id="@+id/category4"
                 android:layout_width="140dp"

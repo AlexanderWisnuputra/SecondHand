@@ -1,9 +1,12 @@
 package com.example.secondhand.fragments
 
+import android.app.Activity
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -84,6 +87,25 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
             binding.orderrecyclerview.visibility = View.VISIBLE
             binding.historyrecyclerview.visibility = View.INVISIBLE
             binding.wishlist.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun Toast.showCustomToast(message: String, activity: Activity) {
+        val layout = activity.layoutInflater.inflate (
+            R.layout.toast_layout,
+            activity.findViewById(R.id.toastCustom)
+        )
+
+        // set the text of the TextView of the message
+        val textView = layout.findViewById<TextView>(R.id.toastText)
+        textView.text = message
+
+        // use the application extension function
+        this.apply {
+            setGravity(Gravity.TOP, 0, 250)
+            duration = Toast.LENGTH_LONG
+            view = layout
+            show()
         }
     }
 
