@@ -60,7 +60,7 @@ interface ServiceAPI {
     fun productSold(@Header("access_token") access_token:String?): Call<List<Product>>
 
     @GET("seller/product/{id}")
-    fun getproductsoldbyID (@Header("access_token") access_token:String?, @Path("id") id : Int) : Call<Product>
+    fun getproductsoldbyID (@Header("access_token") access_token:String?, @Path("id") id : Int) : Response<Product>
 
     @FormUrlEncoded
     @PATCH("seller/product/{id}")

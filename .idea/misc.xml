@@ -47,6 +47,7 @@
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_login.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_notification.xml" value="0.2210144927536232" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_notification_detail.xml" value="0.3500905797101449" />
+        <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_order_list_detail.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_profile_detail.xml" value="0.4064665127020785" />
         <entry key="..\:/Users/KSMWDSZ/Desktop/Final Project Binar/app/src/main/res/layout/fragment_register.xml" value="0.36666666666666664" />
@@ -103,7 +104,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17_PREVIEW" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

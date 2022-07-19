@@ -32,6 +32,7 @@ class HistoryDetail : Fragment() {
 
         Glide.with(this)
             .load(poster)
+            .fitCenter()
             .into(binding.imageView3)
 
         binding.detailHistoryName.text = nameProduct
