@@ -43,7 +43,7 @@ interface ServiceAPI {
         @Body post: Password
     ): Response<Password>
 
-    // SELLER PRODUCT ☒☒☒
+    // SELLER PRODUCT NNN
     @Multipart
     @POST("seller/product")
     suspend fun addProduct(
@@ -59,21 +59,43 @@ interface ServiceAPI {
     @GET("seller/product")
     fun productSold(@Header("access_token") access_token:String?): Call<List<Product>>
 
-    @GET("seller/product")
-    fun getproductsoldbyID (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<Product>
+    @GET("seller/product/{id}")
+    fun getproductsoldbyID (@Header("access_token") access_token:String?, @Path("id") id : Int) : Call<Product>
 
-    // SELLER ORDER ☒☒☒
+    @FormUrlEncoded
+    @PATCH("seller/product/{id}")
+    fun putProduct (@Header("access_token") access_token:String?, @Path("id") id : Int,
+                    @Part ("name") name: RequestBody,
+                    @Part ("description") description: RequestBody,
+                    @Part ("base_price") basePrice: RequestBody,
+                    @Part ("category_ids") categoryId: RequestBody,
+                    @Part ("location") location: RequestBody,
+                    @Part productImage: MultipartBody.Part?
+    ) : Call<Product>
+
+
+    @FormUrlEncoded
+    @PATCH("seller/product/{id}")
+    fun patchProduct (@Header("access_token") access_token:String?, @Path("id") id : Int, @Field("status") status: String) : Call<Product>
+
+    @FormUrlEncoded
+    @PATCH("seller/product/{id}")
+    fun deleteProduct (@Header("access_token") access_token:String?, @Path("id") id : Int) : Call<Product>
+
+    // SELLER ORDER NNN
     @GET("seller/order")
     fun getordered (@Header("access_token") access_token:String?, @Query("status") status:String) : Call<List<BidStatus>>
 
-    @GET("seller/order/")
-    fun getorderedbyid (@Header("access_token") access_token:String?, @Query("id") id:Int) : Call<BidStatus>
+    @GET("seller/order/{id}")
+    fun getorderedbyid (@Header("access_token") access_token:String?, @Path("id") id:Int) : Call<BidStatus>
 
+    @PATCH("seller/order/{id}")
+    fun patchstatus (@Header("access_token") access_token:String?,@Path("id") id:Int, @Field("status") status: String) : Call<BidStatus>
 
+    @GET("seller/order/{product_id}")
+    fun getorderedbyproductid (@Header("access_token") access_token:String?, @Path("product_id") id:Int) : Call<BidStatus>
 
-
-
-    // SELLER CATEGORY ☒☒
+    // SELLER CATEGORY NN
     @GET("seller/category/")
     fun category () : Call<List<Category>>
 
@@ -90,7 +112,7 @@ interface ServiceAPI {
     fun getProductSold () : Call<List<SellerProductItem>>
 
     @GET("buyer/product/")
-    fun getProductSoldbyID (@Query("id") id:Int) : Call<SellerProductItem>
+    fun getProductSoldbyID (@Path("id") id:Int) : Call<SellerProductItem>
 
     @GET("buyer/product/")
     fun getProductSearchBar (@Query("search") search:String) : Call<List<SellerProductItem>>
@@ -98,21 +120,9 @@ interface ServiceAPI {
     @GET("buyer/product/")
     fun getProductCategory (@Query("category_id") search:Int) : Call<List<SellerProductItem>>
 
-    // BUYER ORDER ☒☒☒☒
+    // BUYER ORDER ☆
     @POST("buyer/order")
     fun bidPrice (@Header("access_token") access_token:String?, @Body post: Bid) : Call<Bid>
-
-    @GET("buyer/order")
-    fun getOrder (@Header("access_token") access_token:String?) : Call<List<BidStatus>>
-
-    @GET("buyer/order/")
-    fun getOrderbyID (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<BidStatus>
-
-    @PUT("buyer/order/")
-    fun patchOrder (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<BidStatus>
-
-    @DELETE("buyer/order/")
-    fun deleteOrder (@Header("access_token") access_token:String?, @Query("id") id : Int) : Call<Bid>
 
     // HISTORY ☆
     @GET("history")
@@ -121,7 +131,7 @@ interface ServiceAPI {
     @GET("history")
     fun getHistorybyID (@Header("access_token") access_token:String?, @Query("id") id:Int) : Call<History>
 
-    // NOTIFICATION ☒
+    // NOTIFICATION N
     @GET("notification")
     fun notif (@Header("access_token") access_token:String?) : Call<List<Notification>>
 

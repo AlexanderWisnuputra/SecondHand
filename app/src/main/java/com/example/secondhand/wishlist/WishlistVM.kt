@@ -33,18 +33,14 @@ class WishlistVM : ViewModel() {
             sproduct?.let { order.postValue(it) }
         }
     }
-/*    fun deletewish(accestoken: String?,id: Int) {
+    fun patchStatus(accestoken: String?,id: Int,status: String) {
         loading(true)
-
-        repo.deletewish(accestoken,id) { sproduct, error ->
+        repo.patchStatus(accestoken,id,status) { sproduct, error ->
             loading(false)
             error?.let { it.message?.let { message -> println(message) } }
             sproduct?.let { order.value?.get(id) }
         }
-    }*/
-
-
-
+    }
 
     fun getState() =state
     fun getwish() = order

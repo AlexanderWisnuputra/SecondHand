@@ -52,6 +52,28 @@ class SOrderRepo {
         })
     }
 
+    fun patch(accestoken: String?,id:Int,status: String, completion: (Product?, Error?) -> Unit) {
+        api.patchProduct(accestoken,id,status).enqueue(object : Callback<Product> {
+            override fun onFailure(call: Call<Product>, t: Throwable) {
+                println(t.message)
+                completion(null, Error(t.message))
+            }
+
+            override fun onResponse(
+                call: Call<Product>,
+                response: Response<Product>
+            ) {
+                when {
+                    response.isSuccessful -> {
+                        completion(response.body(), null)
+                    }
+                    !response.isSuccessful -> {
+                        completion(null, Error("Cannot get data"))
+                    }
+                }
+            }
+        })
+    }
 
 
 }

@@ -141,7 +141,7 @@
         android:id="@+id/NegotiatePrice"
         android:name="com.example.secondhand.fragments.NegotiatePrice"
         android:label="fragment_NegotiatePrice"
-        tools:layout="@layout/fragment_NegotiatePrice" >
+        tools:layout="@layout/fragment_update_sell_status" >
         <action
             android:id="@+id/action_NegotiatePrice_to_buyer_Product_Add"
             app:destination="@id/buyer_Product_Add" />
@@ -162,6 +162,9 @@
         <action
             android:id="@+id/action_notificationDetail_to_notification"
             app:destination="@id/notification" />
+        <action
+            android:id="@+id/action_notificationDetail_to_updateSellStatus"
+            app:destination="@id/updateSellStatus" />
     </fragment>
     <fragment
         android:id="@+id/orderListDetail"
@@ -172,6 +175,15 @@
             android:id="@+id/action_orderListDetail_to_list"
             app:destination="@id/list" />
     </fragment>
+    <dialog
+        android:id="@+id/updateSellStatus"
+        android:name="com.example.secondhand.fragments.UpdateSellStatus"
+        android:label="fragment_update_sell_status"
+        tools:layout="@layout/fragment_update_sell_status" >
+        <action
+            android:id="@+id/action_updateSellStatus_to_notificationDetail"
+            app:destination="@id/notificationDetail" />
+    </dialog>
 
 
 </navigation>

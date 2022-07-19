@@ -57,8 +57,8 @@ class BuyerRepo {
         })
     }
 
-/*    fun deletewish(accestoken: String?,id:Int, completion: (BidStatus?, Error?) -> Unit) {
-        api.deletewish(accestoken,id).enqueue(object : Callback<BidStatus> {
+    fun patchStatus(accestoken: String?,id:Int,status: String, completion: (BidStatus?, Error?) -> Unit) {
+        api.patchstatus(accestoken,id,status).enqueue(object : Callback<BidStatus> {
             override fun onFailure(call: Call<BidStatus>, t: Throwable) {
                 println(t.message)
                 completion(null, Error(t.message))
@@ -78,5 +78,5 @@ class BuyerRepo {
                 }
             }
         })
-    }*/
+    }
 }
