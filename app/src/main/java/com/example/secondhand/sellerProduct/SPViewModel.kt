@@ -71,16 +71,6 @@ class SPViewModel(
         }
     }
 
-    fun getByID(id: Int) {
-        loading(true)
-
-        repo.getByID(id) { sproduct, error ->
-            loading(false)
-            error?.let { it.message?.let { message -> println(message) } }
-            sproduct?.let { products.value?.get(id) }
-        }
-    }
-
 
     fun getState() =state
     fun getProduct() = products

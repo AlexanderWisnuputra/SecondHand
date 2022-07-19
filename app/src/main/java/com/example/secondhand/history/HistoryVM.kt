@@ -24,17 +24,7 @@ class HistoryVM() : ViewModel() {
             sproduct?.let { history.postValue(it) }
         }
     }
-        fun getByID(accestoken: String?,id: Int) {
-            loading(true)
 
-            repo. getHistorybyID(accestoken,id) { sproduct, error ->
-                loading(false)
-                error?.let { it.message?.let { message -> println(message) } }
-                sproduct?.let { history.value?.get(id) }
-            }
-
-
-    }
     fun getState() =state
     fun getHistory() = history
 }

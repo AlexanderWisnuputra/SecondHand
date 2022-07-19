@@ -26,8 +26,8 @@ class WishlistAdapter (private val notification: MutableList<BidStatus>,
             var history_date = itemView.findViewById<TextView>(R.id.wishlistdesc)
 
             fun bind(product: BidStatus) {
-                val price = "Rp. ${product.priceID}"
-                val bp = "Rp. ${product.normalPrice}"
+                val price = "Harga Rp. ${product.priceID}"
+                val bp = "Penawaran Rp. ${product.normalPrice}"
                 history_name.text = product.name
                 history_category.text = bp
                 history_price.text = price

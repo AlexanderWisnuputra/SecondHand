@@ -13,52 +13,38 @@
         android:layout_height="match_parent"
         android:backgroundTint="@color/black">
 
+
         <TextView
             android:id="@+id/wishlistname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
             android:text="Jam Tangan Casio"
             android:textColor="@color/black"
             android:textSize="15sp"
             app:layout_constraintStart_toEndOf="@+id/history_card"
-            app:layout_constraintTop_toBottomOf="@+id/wishstatus" />
-
-        <TextView
-            android:id="@+id/wishlistcate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:text="Aksesoris"
-            android:textColor="#000000"
-            android:textSize="10sp"
-            app:layout_constraintStart_toEndOf="@+id/history_card"
-            app:layout_constraintTop_toBottomOf="@+id/wishlistname" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/wishlistprice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
             android:text="Rp 250.000"
             android:textColor="@color/black"
-            android:textSize="15sp"
+            android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/history_card"
-            app:layout_constraintTop_toBottomOf="@+id/wishlistcate"
-            app:layout_constraintVertical_bias="0.783" />
-
+            app:layout_constraintTop_toBottomOf="@+id/wishstatus" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/history_card"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dp"
-            android:layout_marginBottom="28dp"
             android:adjustViewBounds="true"
             app:cardCornerRadius="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -81,12 +67,13 @@
             android:id="@+id/wishstatus"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
             android:text="Penawaran produk"
-            android:textSize="8sp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
             app:layout_constraintStart_toEndOf="@+id/history_card"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/wishlistname" />
 
         <TextView
             android:id="@+id/wishlistdesc"

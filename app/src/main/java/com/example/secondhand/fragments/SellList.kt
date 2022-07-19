@@ -61,6 +61,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
         getUserDetail()
 
         binding.button4.setOnClickListener {
+            sharedPref.putAT("status","1")
             findNavController().navigate(R.id.action_list_to_changeAcc)
         }
         binding.button2.setOnClickListener {
@@ -148,11 +149,6 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
     private fun patch(id: Int,status: String){
         var x = sharedPref.getAT("AT")
         vmod.patchStatus(x,id,status)
-    }
-
-    private fun getdatabyID(id:Int) {
-        var x = sharedPref.getAT("AT")
-        SellVM.getByID(x,id)
     }
 
 
@@ -258,23 +254,21 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
     }
 
     override fun click(item: History) {
-        var x = item.id
-        getdatabyID(x)
-        val mBundle = Bundle()
-        mBundle.putString("name_product", item.productName)
-        mBundle.putString("category_product", item.category)
-        mBundle.putString("poster", item.imageUrl)
-        mBundle.putString("status", item.status)
-        mBundle.putString("price_product", "Price ${item.price}")
-        findNavController().navigate(R.id.action_list_to_historyDetail, mBundle)
+        var x = sharedPref.getAT("AT")
+        var s = item.id
+                historydetail(x,s)
+
     }
     private fun getUserDetail() {
         var x = sharedPref.getAT("AT")
         ServiceBuilder.instance().getUser(x).enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
+                    binding.textView5.text = response.body()?.fullName.toString()
+                    binding.textView6.text = response.body()?.address.toString()
+
                     Glide.with(requireContext())
-                        .load(response.body()!!.imageUrl)
+                        .load(response.body()?.imageUrl.toString())
                         .into(binding.imgPoster)
 
                 } else Toast.makeText(context, response.errorBody()!!.string(), Toast.LENGTH_SHORT)
@@ -331,4 +325,33 @@ fun productListbyid(accesstoken: String?, id: Int) {
         }
     })
 }
+
+    fun historydetail(accesstoken: String?, id: Int) {
+        val api = ServiceBuilder.instance()
+        api.getHistorybyID(accesstoken, id).enqueue(object : Callback<History> {
+            override fun onResponse(call: Call<History>, response: Response<History>) {
+                if (response.isSuccessful) {
+                    val value = response.body()
+                    value.let {
+                        val mBundle = Bundle()
+                        val name = value?.productName
+                        val price = value?.price
+                        val poster = value?.imageUrl
+                        val status = value?.status
+                        mBundle.putString("name_product",name)
+                        mBundle.putString("poster", poster)
+                        mBundle.putString("status", status)
+                        mBundle.putString("price_product", "Rp ${price}")
+                        findNavController().navigate(R.id.action_list_to_historyDetail, mBundle)
+
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<History>, t: Throwable) {
+                println(t.message)
+
+            }
+        })
+    }
 }

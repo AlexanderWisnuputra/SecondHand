@@ -15,12 +15,17 @@ import androidx.viewpager2.widget.ViewPager2
 import com.example.secondhand.Helper
 import com.example.secondhand.HorizontalMarginItemDecoration
 import com.example.secondhand.R
+import com.example.secondhand.api.ServiceBuilder
 import com.example.secondhand.banner.BannerAdapter
 import com.example.secondhand.databinding.FragmentHomeBinding
 import com.example.secondhand.entity.Banner
+import com.example.secondhand.entity.History
 import com.example.secondhand.entity.SellerProductItem
 import com.example.secondhand.sellerProduct.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import kotlin.math.abs
 
 
@@ -57,7 +62,6 @@ class Home : Fragment(), ProductInterface {
     private fun getdataCategory4() = vmod.fetchCategorybyId(119)
     private fun getdataSearch(search: String) = vmod.fetchProductsbySearch(search)
     private fun banner() = vmod.banner()
-    private fun getbyID(id: Int) = vmod.getByID(id)
     private fun observeState() = vmod.getState().observe(viewLifecycleOwner, Observer { handlestate(it)})
     private fun observeProduct() = vmod.getProduct().observe(viewLifecycleOwner, Observer { handleproduct(it)})
     private fun observeBanner() = vmod.getBanner().observe(viewLifecycleOwner, Observer { showHomeBanner(it)})
@@ -260,15 +264,8 @@ class Home : Fragment(), ProductInterface {
 
     override fun click(item: SellerProductItem) {
         var x = item.id
-        getbyID(x)
-        val mBundle = Bundle()
-        mBundle.putInt("id", x)
-        mBundle.putString("name_product", item.name)
-        mBundle.putString("category_product", item.categories[0].name)
-        mBundle.putString("poster", item.imageUrl)
-        mBundle.putString("description_product", item.description)
-        mBundle.putString("price_product", "Price ${item.basePrice}")
-        findNavController().navigate(R.id.action_home_to_buyer_Product_Add, mBundle)
+        getByID(x)
+
     }
 
     private fun doubleBackToExit() {
@@ -283,5 +280,39 @@ class Home : Fragment(), ProductInterface {
             }
             doubleBackPressed = System.currentTimeMillis()
         }
+    }
+
+    private fun getByID(id: Int) {
+        val api = ServiceBuilder.instance()
+
+        api.getProductSoldbyID(id).enqueue(object : Callback<SellerProductItem> {
+            override fun onResponse(call: Call<SellerProductItem>, response: Response<SellerProductItem>) {
+                if (response.isSuccessful) {
+                    val value = response.body()
+                    value.let {
+                        val name = value?.name
+                        val cate = value?.categories?.firstOrNull()?.name
+                        val poster = value?.imageUrl
+                        val desc = value?.description
+                        val price = value?.basePrice
+                        val status = value?.stats
+                        val x = value?.id
+                        val mBundle = Bundle()
+                        mBundle.putInt("id", x!!)
+                        mBundle.putString("name_product", name)
+                        mBundle.putString("category_product", cate)
+                        mBundle.putString("poster", poster)
+                        mBundle.putString("description_product", "${status +""+ desc}")
+                        mBundle.putString("price_product", "Rp. $price")
+                        findNavController().navigate(R.id.action_home_to_buyer_Product_Add, mBundle)
+
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<SellerProductItem>, t: Throwable) {
+                println(t.message)
+            }
+       })
     }
 }

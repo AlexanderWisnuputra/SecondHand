@@ -105,6 +105,9 @@
         <action
             android:id="@+id/action_changeAcc_to_login"
             app:destination="@id/login" />
+        <action
+            android:id="@+id/action_changeAcc_to_list"
+            app:destination="@id/list" />
     </fragment>
     <fragment
         android:id="@+id/settingAcc"

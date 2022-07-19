@@ -111,7 +111,7 @@ interface ServiceAPI {
     @GET("buyer/product")
     fun getProductSold () : Call<List<SellerProductItem>>
 
-    @GET("buyer/product/")
+    @GET("buyer/product/{id}")
     fun getProductSoldbyID (@Path("id") id:Int) : Call<SellerProductItem>
 
     @GET("buyer/product/")
@@ -124,14 +124,14 @@ interface ServiceAPI {
     @POST("buyer/order")
     fun bidPrice (@Header("access_token") access_token:String?, @Body post: Bid) : Call<Bid>
 
-    // HISTORY X
+    // HISTORY ☆
     @GET("history")
     fun getHistory (@Header("access_token") access_token:String?) : Call<List<History>>
 
-    @GET("history")
+    @GET("history/{id}")
     fun getHistorybyID (@Header("access_token") access_token:String?, @Path("id") id:Int) : Call<History>
 
-    // NOTIFICATION patch error
+    // NOTIFICATION patch error, id error
     @GET("notification")
     fun notif (@Header("access_token") access_token:String?) : Call<List<Notification>>
 

@@ -11,7 +11,6 @@ import com.example.secondhand.R
 import com.example.secondhand.entity.Product
 import com.example.secondhand.entity.ProductResponse
 
-// WORK IN PROGRESS CONTINUE
 class SOrderAdapter(private val order: MutableList<ProductResponse>,private val maininterface: SOrderInterface)
     : RecyclerView.Adapter<SOrderAdapter.ViewHolder>() {
 

@@ -102,7 +102,15 @@ class ChangeAcc : Fragment() {
                     }
                     activity?.runOnUiThread {
                         Toast.makeText(requireContext(),"Data Berhasil ditambahkan", Toast.LENGTH_LONG).show()
-                        findNavController().navigate(R.id.action_changeAcc_to_profileDetail)
+                        val x =sharedPref.getAT("status")
+                        if(x == "1"){
+                            findNavController().navigate(R.id.action_changeAcc_to_list)
+                            sharedPref.putAT("status", "0")
+                        }
+                        else{
+                            findNavController().navigate(R.id.action_changeAcc_to_profileDetail)
+
+                        }
                     }
 
             }

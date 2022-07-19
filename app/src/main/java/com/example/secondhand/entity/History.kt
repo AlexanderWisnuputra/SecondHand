@@ -11,8 +11,6 @@ data class History(
     val productName: String,
     @SerializedName("price")
     val price: Int,
-    @SerializedName("category")
-    val category: String,
     @SerializedName("transaction_date")
     val transactionDate: String,
     @SerializedName("status")
