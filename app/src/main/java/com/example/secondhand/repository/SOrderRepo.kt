@@ -32,25 +32,10 @@ class SOrderRepo {
         })
     }
 
-    fun productListbyid(accesstoken: String?, id:Int,completion: (Product?, Error?) -> Unit) {
-        api.getproductsoldbyID(accesstoken,id).enqueue(object : Callback<Product> {
-            override fun onResponse(call: Call<Product>, response: Response<Product>) {
-                when {
-                    response.isSuccessful -> {
-                        completion(response.body(), null)
-                    }
-                    !response.isSuccessful -> {
-                        completion(null, Error("Cannot get data"))
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<Product>, t: Throwable) {
-                println(t.message)
-                completion(null, Error(t.message))
-            }
-        })
+    fun productListbyid(accesstoken: String?, id:Int): Response<Product>{
+        return api.getproductsoldbyID(accesstoken,id)
     }
+
 
     fun patch(accestoken: String?,id:Int,status: String, completion: (Product?, Error?) -> Unit) {
         api.patchProduct(accestoken,id,status).enqueue(object : Callback<Product> {

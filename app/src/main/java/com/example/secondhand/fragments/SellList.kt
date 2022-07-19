@@ -48,6 +48,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
     ): View {
         val listBinding = FragmentListBinding.inflate(inflater, container, false)
         binding = listBinding
+
         return listBinding.root
     }
 
@@ -191,27 +192,6 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     private fun observe2() {
         observeState2()
         observeProduct2()
@@ -249,6 +229,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
     private fun observe() {
         observeState()
         observeProduct()
+
     }
 
     private fun observeState() = SellVM.getState().observe(viewLifecycleOwner, Observer { handlestate(it) })
@@ -282,6 +263,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
 
     override fun click(item: History) {
         var x = item.id
+
         getdatabyID(x)
         val mBundle = Bundle()
         mBundle.putString("name_product", item.productName)
@@ -313,13 +295,16 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
     override fun click(item: Product) {
         var x = item.id
         Sorderid(x!!)
-        val mBundle = Bundle()
-        mBundle.putString("name_product", item.name)
-        mBundle.putString("category_product", item.name)
-        mBundle.putString("poster", item.image)
-        mBundle.putString("status", item.description)
-        mBundle.putString("price_product", "Price ${item.basePrice}")
-        findNavController().navigate(R.id.action_list_to_orderListDetail, mBundle)
+        SOVM.getOrder2().observe(viewLifecycleOwner, Observer { response ->
+            val mBundle = Bundle()
+            mBundle.putString("name_product", response.body()!!.name)
+            mBundle.putString("category_product", response.body()!!.name)
+            mBundle.putString("poster", response.body()!!.image)
+            mBundle.putString("status", response.body()!!.description)
+            mBundle.putString("price_product", "Price ${response.body()!!.basePrice}")
+            findNavController().navigate(R.id.action_list_to_orderListDetail, mBundle)
+
+        })
     }
 
     override fun click(item: BidStatus) {
