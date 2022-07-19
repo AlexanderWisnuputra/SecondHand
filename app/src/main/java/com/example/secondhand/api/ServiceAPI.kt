@@ -57,10 +57,10 @@ interface ServiceAPI {
     ): Response<Product>
 
     @GET("seller/product")
-    fun productSold(@Header("access_token") access_token:String?): Call<List<Product>>
+    fun productSold(@Header("access_token") access_token:String?): Call<List<ProductResponse>>
 
     @GET("seller/product/{id}")
-    fun getproductsoldbyID (@Header("access_token") access_token:String?, @Path("id") id : Int) : Response<Product>
+    fun getproductsoldbyID (@Header("access_token") access_token:String?, @Path("id") id : Int) : Call<ProductResponse>
 
     @FormUrlEncoded
     @PATCH("seller/product/{id}")
@@ -124,24 +124,24 @@ interface ServiceAPI {
     @POST("buyer/order")
     fun bidPrice (@Header("access_token") access_token:String?, @Body post: Bid) : Call<Bid>
 
-    // HISTORY ☆
+    // HISTORY X
     @GET("history")
     fun getHistory (@Header("access_token") access_token:String?) : Call<List<History>>
 
     @GET("history")
-    fun getHistorybyID (@Header("access_token") access_token:String?, @Query("id") id:Int) : Call<History>
+    fun getHistorybyID (@Header("access_token") access_token:String?, @Path("id") id:Int) : Call<History>
 
-    // NOTIFICATION N
+    // NOTIFICATION patch error
     @GET("notification")
     fun notif (@Header("access_token") access_token:String?) : Call<List<Notification>>
 
-    @GET("notification/")
-    fun notifbyID (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>
+    @GET("notification/{id}")
+    fun notifbyID (@Header("access_token") access_token:String?,@Path("id") id:Int) : Call<Notification>
 
     @GET("notification/")
     fun notifbyUser (@Header("access_token") access_token:String?,@Query("notification_type") type:String) : Call<List<Notification>>
 
-    @PATCH("notification/")
-    fun notifPatch (@Header("access_token") access_token:String?,@Query("id") id:Int) : Call<Notification>
+    @PATCH("notification/{id}")
+    fun notifPatch (@Header("access_token") access_token:String?,@Path("id") id:Int) : Call<Notification>
 
 }

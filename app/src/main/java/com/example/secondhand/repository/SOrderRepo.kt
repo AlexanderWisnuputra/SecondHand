@@ -1,10 +1,7 @@
 package com.example.secondhand.repository
 
 import com.example.secondhand.api.ServiceBuilder
-import com.example.secondhand.entity.Bid
-import com.example.secondhand.entity.BidStatus
-import com.example.secondhand.entity.History
-import com.example.secondhand.entity.Product
+import com.example.secondhand.entity.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -12,9 +9,9 @@ import retrofit2.Response
 class SOrderRepo {
     private val api = ServiceBuilder.instance()
 
-    fun productList(accesstoken: String?,completion: (List<Product>?, Error?) -> Unit) {
-        api.productSold(accesstoken).enqueue(object : Callback<List<Product>> {
-            override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
+    fun productList(accesstoken: String?,completion: (List<ProductResponse>?, Error?) -> Unit) {
+        api.productSold(accesstoken).enqueue(object : Callback<List<ProductResponse>> {
+            override fun onResponse(call: Call<List<ProductResponse>>, response: Response<List<ProductResponse>>) {
                 when {
                     response.isSuccessful -> {
                         completion(response.body(), null)
@@ -25,16 +22,13 @@ class SOrderRepo {
                 }
             }
 
-            override fun onFailure(call: Call<List<Product>>, t: Throwable) {
+            override fun onFailure(call: Call<List<ProductResponse>>, t: Throwable) {
                 println(t.message)
                 completion(null, Error(t.message))
             }
         })
     }
 
-    fun productListbyid(accesstoken: String?, id:Int): Response<Product>{
-        return api.getproductsoldbyID(accesstoken,id)
-    }
 
 
     fun patch(accestoken: String?,id:Int,status: String, completion: (Product?, Error?) -> Unit) {

@@ -41,7 +41,7 @@ class OrderListDetail : Fragment() {
         binding.detailHistoryPrice.text = priceProduct
 
         binding.imageView4.setOnClickListener {
-            it.findNavController().navigate(R.id.action_historyDetail_to_list)
+            it.findNavController().navigate(R.id.action_orderListDetail_to_list)
         }
     }
 }
