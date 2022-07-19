@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentHistoryDetailBinding
@@ -26,7 +28,7 @@ class NotificationDetail : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val ids = arguments?.getInt("id")
         val nameProduct = arguments?.getString("name_product")
         val categoryProduct = arguments?.getString("category_product")
         val priceProduct = arguments?.getString("price_product")
@@ -34,9 +36,17 @@ class NotificationDetail : Fragment() {
 
         Glide.with(this)
             .load(poster)
+            .centerCrop()
             .into(binding.imageView3)
+
+
         binding.imageView4.setOnClickListener {
-            it.findNavController().navigate(R.id.action_NegotiatePrice_to_buyer_Product_Add)
+            it.findNavController().navigate(R.id.action_notificationDetail_to_notification)
+        }
+        binding.button6.setOnClickListener {
+            val mBundle = Bundle()
+            ids?.let { it1 -> mBundle.putInt("id", it1) }
+            findNavController().navigate(R.id.action_notificationDetail_to_updateSellStatus, mBundle)
         }
         binding.detailHistoryName.text = nameProduct
         binding.detailHistoryCategory.text = categoryProduct

@@ -104,6 +104,7 @@ class Notification : Fragment(), NotificationInterface {
                     a.notifyDataSetChanged()
                 }
             }
+        }
             binding.all.setOnClickListener {
                 binding.rvData.adapter?.let { a ->
                     if (a is NotificationAdapter) {
@@ -112,6 +113,7 @@ class Notification : Fragment(), NotificationInterface {
                         a.notifyDataSetChanged()
                     }
                 }
+            }
                 binding.sellerNotif.setOnClickListener {
                     binding.rvData.adapter?.let { a ->
                         if (a is NotificationAdapter) {
@@ -122,19 +124,17 @@ class Notification : Fragment(), NotificationInterface {
                     }
                 }
             }
-        }
-    }
+
 
     override fun click(item: Notification) {
-        var x = item.id
-        getdatabyID(x)
         val mBundle = Bundle()
+        mBundle.putInt("id", item.id)
         mBundle.putString("name_product", item.productName)
         mBundle.putString("category_product", item.bidPrice.toString())
         mBundle.putString("poster", item.imageUrl)
         mBundle.putString("status", item.status)
-        mBundle.putString("price_product", "Price ${item.product.basePrice}")
-        findNavController().navigate(R.id.action_notification_to_notificationDetail, mBundle)
+        mBundle.putString("price_product", "Price ${item.bidPrice}")
+        findNavController().navigate(R.id.action_notification_to_notificationDetail)
     }
 
 }

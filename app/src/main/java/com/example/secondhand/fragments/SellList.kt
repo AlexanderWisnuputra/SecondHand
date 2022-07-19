@@ -147,7 +147,10 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
         var x = sharedPref.getAT("AT")
         vmod.getordered(x, "pending")    }
 
-
+    private fun patch(id: Int,status: String){
+        var x = sharedPref.getAT("AT")
+        vmod.patchStatus(x,id,status)
+    }
 
     private fun getdatabyID(id:Int) {
         var x = sharedPref.getAT("AT")
@@ -324,5 +327,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
             var x = sharedPref.getAT("AT")
             vmod.getorderedbyid(x,id)
         // buat onclick pending jadi decline ato accept
+        // klo pending jadi accept -> hilang patch notif
+        // klo pending delcined -> hilang path noti
         }
 }

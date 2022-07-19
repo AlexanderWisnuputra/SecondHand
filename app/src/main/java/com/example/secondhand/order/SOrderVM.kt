@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import com.example.secondhand.entity.BidStatus
 import com.example.secondhand.entity.Notification
 import com.example.secondhand.entity.Product
-import com.example.secondhand.repository.OrderRepo
 import com.example.secondhand.repository.SOrderRepo
 
 class SOrderVM(): ViewModel() {
@@ -34,6 +33,15 @@ class SOrderVM(): ViewModel() {
             sproduct?.let { order.value!!.get(id) }
         }
     }
+    fun patch(accestoken: String?, id:Int,sat:String) {
+        loading(true)
+        repo.patch(accestoken,id,sat) { sproduct, error ->
+            loading(false)
+            error?.let { it.message?.let { message -> println(message) } }
+            sproduct?.let { order.value!!.get(id) }
+        }
+    }
+
     fun getState() =state
     fun getOrder() = order
 }

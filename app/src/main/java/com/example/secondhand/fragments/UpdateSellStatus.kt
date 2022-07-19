@@ -5,57 +5,57 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
+import com.example.secondhand.Helper
 import com.example.secondhand.R
+import com.example.secondhand.api.ServiceBuilder
+import com.example.secondhand.databinding.FragmentUpdateSellStatusBinding
+import com.example.secondhand.databinding.NegotiatePriceBinding
+import com.example.secondhand.entity.Bid
+import com.example.secondhand.order.SOrderVM
+import com.example.secondhand.repository.SOrderRepo
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [UpdateSellStatus.newInstance] factory method to
- * create an instance of this fragment.
- */
-class UpdateSellStatus : BottomSheetDialogFragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+class UpdateSellStatus: BottomSheetDialogFragment() {
+    private lateinit var sharedPref: Helper
+    private val vmod: SOrderVM by viewModel()
+    private lateinit var binding: FragmentUpdateSellStatusBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_update_sell_status, container, false)
+        val updateStatus = FragmentUpdateSellStatusBinding.inflate(inflater, container, false)
+        binding = updateStatus
+        return updateStatus.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UpdateSellStatus.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            UpdateSellStatus().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        sharedPref = Helper(requireContext())
+        val mBundle = Bundle()
+        var ids = arguments?.getInt("id")
+
+        var x = sharedPref.getAT("AT")
+        //ID MSH ERROR
+        binding.button.setOnClickListener {
+                vmod.patch(x, ids!!, "seller")
             }
+        }
     }
-}
+
+
+
+
+
+
+

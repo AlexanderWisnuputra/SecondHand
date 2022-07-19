@@ -35,18 +35,12 @@ class NotificationVM(): ViewModel() {
 
     fun getBytype(accestoken: String?,type: String) {
         loading(true)
-
         repo.getNotificationbyUser(accestoken,type) { sproduct, error ->
             loading(false)
             error?.let { it.message?.let { message -> println(message) } }
             sproduct?.let { notification.postValue(it) }
         }
-
-
     }
-
-
-
     fun getState() =state
     fun getnotification() = notification
 }

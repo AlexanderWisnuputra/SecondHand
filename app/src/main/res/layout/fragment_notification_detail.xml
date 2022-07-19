@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.HistoryDetail">
+    tools:context=".fragments.NotificationDetail">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -82,8 +82,8 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="412dp"
+            android:layout_height="300dp"
             android:scaleType="fitXY"
             android:src="@drawable/item"
             app:layout_constraintEnd_toEndOf="parent"
@@ -108,6 +108,17 @@
                 tools:layout_editor_absoluteX="134dp"
                 tools:layout_editor_absoluteY="66dp" />
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="120dp"
+            android:text="Button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
