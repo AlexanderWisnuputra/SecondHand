@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -141,8 +141,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/Detail"
-            android:layout_width="400dp"
-            android:layout_height="300dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="480dp"
             android:layout_marginEnd="4dp"
@@ -155,6 +155,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cons"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:elevation="1dp">
@@ -173,7 +174,7 @@
                 <TextView
                     android:id="@+id/smaller_detail"
                     android:layout_width="324dp"
-                    android:layout_height="283dp"
+                    android:layout_height="200dp"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="12dp"
                     android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -182,25 +183,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/Deskripsi" />
 
-                <android.widget.Button
-                    android:id="@+id/button5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/button_border"
-                    android:backgroundTint="@color/purple_500"
-                    android:layout_marginTop="160dp"
-                    android:elevation="10dp"
-                    android:text="Saya Tertarik dan ingin Nego"
-                    android:textColor="@color/white"
-                    android:textAllCaps="false"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         </androidx.cardview.widget.CardView>
+
+        <android.widget.Button
+            android:id="@+id/button5"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_border"
+            android:backgroundTint="@color/purple_500"
+            android:elevation="10dp"
+            android:text="Saya Tertarik dan ingin Nego"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/Detail" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
@@ -222,4 +223,4 @@
         </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-</ScrollView>
+</androidx.core.widget.NestedScrollView>
