@@ -55,6 +55,8 @@ class Home : Fragment(), ProductInterface {
         banner()
     }
 
+
+
     private fun getdata() = vmod.fetchProducts()
     private fun getdataCategory1() = vmod.fetchCategorybyId(96)
     private fun getdataCategory2() = vmod.fetchCategorybyId(114)

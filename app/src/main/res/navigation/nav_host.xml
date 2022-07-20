@@ -67,6 +67,9 @@
         <action
             android:id="@+id/action_profileDetail_to_settingAcc"
             app:destination="@id/settingAcc" />
+        <action
+            android:id="@+id/action_profileDetail_to_home"
+            app:destination="@id/home" />
     </fragment>
     <fragment
         android:id="@+id/login"

@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
     tools:context=".fragments.Sell">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
     <EditText
         android:id="@+id/deskripsi"
@@ -74,14 +80,16 @@
         app:layout_constraintBottom_toTopOf="@+id/kategori"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:fontFamily="@font/poppins"
-        android:text="Foto Produk"
-        app:layout_constraintBottom_toTopOf="@+id/fotoProduk"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:fontFamily="@font/poppins"
+            android:id="@+id/textFotoProduk"
+            android:text="Foto Produk"
+            app:layout_constraintBottom_toTopOf="@+id/fotoProduk"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/deskripsi" />
 
     <EditText
         android:id="@+id/produkHarga"
@@ -146,41 +154,44 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
-        android:id="@+id/btnTerbit"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/button_border"
-        android:fontFamily="@font/poppins"
-        android:text="Terbitkan"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/btnPreview" />
+        <Button
+            android:id="@+id/btnTerbit"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="28dp"
+            android:background="@drawable/button_border"
+            android:fontFamily="@font/poppins"
+            android:text="Terbitkan"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.575"
+            app:layout_constraintTop_toBottomOf="@+id/fotoProduk" />
 
-    <android.widget.Button
-        android:id="@+id/btnPreview"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/border_purple"
-        android:fontFamily="@font/poppins"
-        android:text="Preview"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <android.widget.Button
+            android:id="@+id/btnPreview"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/border_purple"
+            android:fontFamily="@font/poppins"
+            android:text="Preview"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fotoProduk" />
 
-    <ImageView
-        android:id="@+id/fotoProduk"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/dashed_line"
-        android:src="@drawable/ic_baseline_add_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deskripsi" />
+        <ImageView
+            android:id="@+id/fotoProduk"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/dashed_line"
+            android:src="@drawable/ic_baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="@id/textFotoProduk"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/deskripsi"
+            app:layout_constraintVertical_bias="0.0" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
