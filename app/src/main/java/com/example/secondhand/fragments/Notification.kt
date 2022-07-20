@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.secondhand.Helper
 import com.example.secondhand.R
+import com.example.secondhand.api.ServiceBuilder
 import com.example.secondhand.databinding.FragmentNotificationBinding
 import com.example.secondhand.entity.Notification
 import com.example.secondhand.notification.NotificationAdapter
@@ -17,6 +18,9 @@ import com.example.secondhand.notification.NotificationInterface
 import com.example.secondhand.notification.NotificationVM
 import com.example.secondhand.notification.notificationState
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Notification : Fragment(), NotificationInterface {
     private lateinit var binding: FragmentNotificationBinding
@@ -53,9 +57,33 @@ class Notification : Fragment(), NotificationInterface {
         var x = sharedPref.getAT("AT")
         notifVM.getnotification(x)
     }
-    private fun getdatabyID(id:Int) {
-        var x = sharedPref.getAT("AT")
-        notifVM.getByID(x,id)
+    fun productListbyid(accesstoken: String?, id: Int) {
+        val api = ServiceBuilder.instance()
+        api.notifbyID(accesstoken, id).enqueue(object : Callback<Notification> {
+            override fun onResponse(call: Call<Notification>, response: Response<Notification>) {
+                if (response.isSuccessful) {
+                    val value = response.body()
+                    value.let {
+                        val mBundle = Bundle()
+                        val name = value?.productName
+                        val price = value?.bidPrice
+                        val desc = value?.status
+                        val poster = value?.imageUrl
+                        val category = value?.sellerName
+                        mBundle.putString("name_product", name)
+                        mBundle.putString("poster", poster)
+                        mBundle.putString("status", desc.toString())
+                        mBundle.putString("price_product", "Price ${price}")
+                        mBundle.putString("category_product", category)
+                        findNavController().navigate(R.id.action_notification_to_notificationDetail, mBundle)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<Notification>, t: Throwable) {
+                println(t.message)
+            }
+        })
     }
     private fun getdatabuyer(type:String) {
         var x = sharedPref.getAT("AT")
@@ -126,15 +154,12 @@ class Notification : Fragment(), NotificationInterface {
             }
 
 
-    override fun click(item: Notification) {
-        val mBundle = Bundle()
-        mBundle.putInt("id", item.id)
-        mBundle.putString("name_product", item.productName)
-        mBundle.putString("category_product", item.bidPrice.toString())
-        mBundle.putString("poster", item.imageUrl)
-        mBundle.putString("status", item.status)
-        mBundle.putString("price_product", "Price ${item.bidPrice}")
-        findNavController().navigate(R.id.action_notification_to_notificationDetail)
-    }
+        override fun click(item: Notification) {
+            val x = sharedPref.getAT("AT")
+            val y = item.id
+            productListbyid(x, y)
+        }
 
 }
+
+

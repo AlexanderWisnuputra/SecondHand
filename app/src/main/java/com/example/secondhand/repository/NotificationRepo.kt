@@ -31,29 +31,6 @@ class NotificationRepo {
         })
     }
 
-    fun getNotificationbyID(accestoken: String?,id:Int, completion: (Notification?, Error?) -> Unit) {
-        api.notifbyID(accestoken,id).enqueue(object : Callback<Notification> {
-            override fun onFailure(call: Call<Notification>, t: Throwable) {
-                println(t.message)
-                completion(null, Error(t.message))
-            }
-
-            override fun onResponse(
-                call: Call<Notification>,
-                response: Response<Notification>
-            ) {
-                when {
-                    response.isSuccessful -> {
-                        completion(response.body(), null)
-                    }
-                    !response.isSuccessful -> {
-                        completion(null, Error("Cannot get data"))
-                    }
-                }
-            }
-        })
-    }
-
     fun getNotificationbyUser(accestoken: String?,type:String, completion: (List<Notification>?, Error?) -> Unit) {
         api.notifbyUser(accestoken,type).enqueue(object : Callback<List<Notification>> {
             override fun onFailure(call: Call<List<Notification>>, t: Throwable) {
