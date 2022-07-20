@@ -61,9 +61,9 @@
     <Button
         android:id="@+id/buyer_notif"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="92dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="94dp"
         android:text="Buyer"
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@+id/all"

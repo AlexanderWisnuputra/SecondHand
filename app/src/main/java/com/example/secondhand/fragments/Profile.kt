@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
 import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentProfileBinding
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class Profile : Fragment() {
@@ -53,6 +54,39 @@ class Profile : Fragment() {
         }
     }
 
+    private suspend fun read(key: String): String? {
+        val dataStoreKey = preferencesKey<String>(key)
+        val preferences = dataStore.data.first()
+        return preferences[dataStoreKey]
+    }
+
+    override fun onStart() {
+        super.onStart()
+        lifecycleScope.launch{
+            val loginCheck = read("login")
+            if (loginCheck == "") {
+                login()
+            }
+        }
+    }
+
+    private fun login() {
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setMessage("Anda belum login, apakah anda ingin login ?")
+            .setPositiveButton("Ya") {_, _->
+                findNavController().navigate(R.id.action_profileDetail_to_login)
+            }
+            .setNegativeButton("Tidak") {_, _->
+                findNavController().navigate(R.id.action_profileDetail_to_home)
+                Toast.makeText(requireContext(), "Untuk memposting barang anda harus login terlebih dahulu", Toast.LENGTH_LONG).show()
+            }
+            .setOnCancelListener {
+                findNavController().navigate(R.id.action_profileDetail_to_home)
+                Toast.makeText(requireContext(), "Untuk memposting barang anda harus login terlebih dahulu", Toast.LENGTH_LONG).show()
+            }
+            .show()
+    }
+
     private fun logout() {
         val builder = AlertDialog.Builder(requireContext())
         builder.setMessage("Yakin ingin keluar?")
@@ -65,6 +99,7 @@ class Profile : Fragment() {
                     sharedPref.putSell("imageusr","")
                 }
                 Toast.makeText(requireContext(), "Anda berhasil logout!", Toast.LENGTH_LONG).show()
+                findNavController().navigate(R.id.action_profileDetail_to_home)
             }
             .setNegativeButton("Tidak") {dialog, _->
                 dialog.dismiss()
