@@ -28,4 +28,10 @@ class Helper(context: Context) {
     fun getSell(key: String): String? {
         return sharedPref.getString(key, null)
     }
+    fun putNotif(key: String, value: String) {
+        editor.putString(key, value).apply()
+    }
+    fun getNotif(key: String): String? {
+        return sharedPref.getString(key, null)
+    }
 }

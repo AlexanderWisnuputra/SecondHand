@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -43,6 +45,13 @@ class Notification : Fragment(), NotificationInterface {
         setupRecyclerView()
         getdata()
         observe()
+
+        val notifData = view.findViewById<ImageView>(R.id.redDot)
+        val notifstat = sharedPref.getNotif("notif")
+        val itemclicked = "${notifstat}"
+        if (itemclicked == "asd"){
+            notifData?.visibility = View.GONE
+        }
     }
 
     private fun setupRecyclerView() {
@@ -155,6 +164,7 @@ class Notification : Fragment(), NotificationInterface {
 
 
         override fun click(item: Notification) {
+            sharedPref.putNotif("notif", "asd")
             val x = sharedPref.getAT("AT")
             val y = item.id
             productListbyid(x, y)
