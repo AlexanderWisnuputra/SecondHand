@@ -33,30 +33,6 @@ class BuyerRepo {
         })
     }
 
-
-    fun getorderedbyid(accestoken: String?,id:Int, completion: (BidStatus?, Error?) -> Unit) {
-        api.getorderedbyid(accestoken,id).enqueue(object : Callback<BidStatus> {
-            override fun onFailure(call: Call<BidStatus>, t: Throwable) {
-                println(t.message)
-                completion(null, Error(t.message))
-            }
-
-            override fun onResponse(
-                call: Call<BidStatus>,
-                response: Response<BidStatus>
-            ) {
-                when {
-                    response.isSuccessful -> {
-                        completion(response.body(), null)
-                    }
-                    !response.isSuccessful -> {
-                        completion(null, Error("Cannot get data"))
-                    }
-                }
-            }
-        })
-    }
-
     fun patchStatus(accestoken: String?,id:Int,status: String, completion: (BidStatus?, Error?) -> Unit) {
         api.patchstatus(accestoken,id,status).enqueue(object : Callback<BidStatus> {
             override fun onFailure(call: Call<BidStatus>, t: Throwable) {

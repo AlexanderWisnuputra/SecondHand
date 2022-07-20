@@ -45,15 +45,11 @@ class NotificationDetail : Fragment() {
         }
         binding.button6.setOnClickListener {
             val mBundle = Bundle()
-            ids?.let { it1 -> mBundle.putInt("id", it1) }
+            mBundle.putInt("id", ids!!)
             findNavController().navigate(R.id.action_notificationDetail_to_updateSellStatus, mBundle)
         }
         binding.detailHistoryName.text = nameProduct
         binding.detailHistoryCategory.text = categoryProduct
         binding.detailHistoryPrice.text = priceProduct
-
-        binding.imageView4.setOnClickListener {
-            it.findNavController().navigate(R.id.action_historyDetail_to_list)
-        }
     }
 }

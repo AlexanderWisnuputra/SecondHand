@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_list_to_orderListDetail"
             app:destination="@id/orderListDetail" />
+        <action
+            android:id="@+id/action_list_to_buyerInfo"
+            app:destination="@id/buyerInfo" />
     </fragment>
     <fragment
         android:id="@+id/profileDetail"
@@ -192,6 +195,18 @@
             android:id="@+id/action_updateSellStatus_to_notificationDetail"
             app:destination="@id/notificationDetail" />
     </dialog>
+    <fragment
+        android:id="@+id/buyerInfo"
+        android:name="com.example.secondhand.fragments.BuyerInfo"
+        android:label="fragment_buyer_info"
+        tools:layout="@layout/fragment_buyer_info" >
+        <action
+            android:id="@+id/action_buyerInfo_to_list"
+            app:destination="@id/list" />
+        <action
+            android:id="@+id/action_buyerInfo_to_updateSellStatus"
+            app:destination="@id/updateSellStatus" />
+    </fragment>
 
 
 </navigation>
