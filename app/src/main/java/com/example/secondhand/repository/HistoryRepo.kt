@@ -31,27 +31,4 @@ class HistoryRepo {
             }
         })
     }
-
-    fun getHistorybyID(accestoken: String?,id:Int, completion: (History?, Error?) -> Unit) {
-        api.getHistorybyID(accestoken,id).enqueue(object : Callback<History> {
-            override fun onFailure(call: Call<History>, t: Throwable) {
-                println(t.message)
-                completion(null, Error(t.message))
-            }
-            override fun onResponse(
-                call: Call<History>,
-                response: Response<History>
-            ) {
-                when {
-                    response.isSuccessful -> {
-                        completion(response.body(), null)
-                    }
-                    !response.isSuccessful -> {
-                        completion(null, Error("Cannot get data"))
-                    }
-                }
-            }
-        })
-    }
-
 }

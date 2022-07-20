@@ -18,6 +18,8 @@ data class SellerProductItem(
     val imageName: String,
     @SerializedName("image_url")
     val imageUrl: String,
+    @SerializedName("status")
+    val stats: String,
     @SerializedName("location")
     val location: String,
     @SerializedName("name")

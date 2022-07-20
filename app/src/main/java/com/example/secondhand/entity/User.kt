@@ -15,7 +15,7 @@ data class User(
     val phoneNumber: Int?,
     @SerializedName("address")
     val address: String?,
-    @SerializedName("image")
+    @SerializedName("image_url")
     val imageUrl: String?,
     @SerializedName("city")
     val city: String?

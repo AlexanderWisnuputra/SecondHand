@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
@@ -48,7 +49,6 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
     ): View {
         val listBinding = FragmentListBinding.inflate(inflater, container, false)
         binding = listBinding
-
         return listBinding.root
     }
 
@@ -61,6 +61,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
         getUserDetail()
 
         binding.button4.setOnClickListener {
+            sharedPref.putAT("status","1")
             findNavController().navigate(R.id.action_list_to_changeAcc)
         }
         binding.button2.setOnClickListener {
@@ -119,8 +120,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
     }
     private fun setupRecyclerView2() {
         binding.orderrecyclerview.apply {
-            layoutManager =
-                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+                layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = SOrderAdapter(mutableListOf(), this@SellList)
         }
     }
@@ -140,9 +140,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
         var x = sharedPref.getAT("AT")
         SOVM.getsoldProduct(x)
     }
-    private fun Sorderid(id: Int) {
-        var x = sharedPref.getAT("AT")
-        SOVM.getsoldProductid(x,id)    }
+
 
     private fun getwish() {
         var x = sharedPref.getAT("AT")
@@ -151,11 +149,6 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
     private fun patch(id: Int,status: String){
         var x = sharedPref.getAT("AT")
         vmod.patchStatus(x,id,status)
-    }
-
-    private fun getdatabyID(id:Int) {
-        var x = sharedPref.getAT("AT")
-        SellVM.getByID(x,id)
     }
 
 
@@ -218,7 +211,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
         }
     }
 
-    private fun handleproduct2(sp: List<Product>) {
+    private fun handleproduct2(sp: List<ProductResponse>) {
         binding.orderrecyclerview.adapter?.let { a ->
             if (a is SOrderAdapter) {
                 a.updateList(sp)
@@ -229,7 +222,6 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
     private fun observe() {
         observeState()
         observeProduct()
-
     }
 
     private fun observeState() = SellVM.getState().observe(viewLifecycleOwner, Observer { handlestate(it) })
@@ -262,24 +254,21 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
     }
 
     override fun click(item: History) {
-        var x = item.id
+        var x = sharedPref.getAT("AT")
+        var s = item.id
+                historydetail(x,s)
 
-        getdatabyID(x)
-        val mBundle = Bundle()
-        mBundle.putString("name_product", item.productName)
-        mBundle.putString("category_product", item.category)
-        mBundle.putString("poster", item.imageUrl)
-        mBundle.putString("status", item.status)
-        mBundle.putString("price_product", "Price ${item.price}")
-        findNavController().navigate(R.id.action_list_to_historyDetail, mBundle)
     }
     private fun getUserDetail() {
         var x = sharedPref.getAT("AT")
         ServiceBuilder.instance().getUser(x).enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
+                    binding.textView5.text = response.body()?.fullName.toString()
+                    binding.textView6.text = response.body()?.address.toString()
+
                     Glide.with(requireContext())
-                        .load(response.body()!!.imageUrl)
+                        .load(response.body()?.imageUrl.toString())
                         .into(binding.imgPoster)
 
                 } else Toast.makeText(context, response.errorBody()!!.string(), Toast.LENGTH_SHORT)
@@ -292,19 +281,10 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
         })
     }
 
-    override fun click(item: Product) {
+    override fun click(item: ProductResponse) {
         var x = item.id
-        Sorderid(x!!)
-        SOVM.getOrder2().observe(viewLifecycleOwner, Observer { response ->
-            val mBundle = Bundle()
-            mBundle.putString("name_product", response.body()!!.name)
-            mBundle.putString("category_product", response.body()!!.name)
-            mBundle.putString("poster", response.body()!!.image)
-            mBundle.putString("status", response.body()!!.description)
-            mBundle.putString("price_product", "Price ${response.body()!!.basePrice}")
-            findNavController().navigate(R.id.action_list_to_orderListDetail, mBundle)
-
-        })
+        var s = sharedPref.getAT("AT")
+        productListbyid(s,x!!)
     }
 
     override fun click(item: BidStatus) {
@@ -315,4 +295,63 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface, WishlistInterfac
         // klo pending jadi accept -> hilang patch notif
         // klo pending delcined -> hilang path noti
         }
+
+fun productListbyid(accesstoken: String?, id: Int) {
+    val api = ServiceBuilder.instance()
+    api.getproductsoldbyID(accesstoken, id).enqueue(object : Callback<ProductResponse> {
+        override fun onResponse(call: Call<ProductResponse>, response: Response<ProductResponse>) {
+            if (response.isSuccessful) {
+                val value = response.body()
+                value.let {
+                    val mBundle = Bundle()
+                    val name = value?.name
+                    val desc =  value?.description
+                    val price = value?.basePrice.toString()
+                    val poster = value?.image
+                    val category = value?.categories?.firstOrNull()?.name
+                    mBundle.putString("name_product", name)
+                    mBundle.putString("poster", poster)
+                    mBundle.putString("status", desc)
+                    mBundle.putString("price_product", "Price ${price}")
+                    mBundle.putString("category_product",category)
+                    findNavController().navigate(R.id.action_list_to_orderListDetail, mBundle)
+                }
+            }
+        }
+
+        override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
+            println(t.message)
+
+        }
+    })
+}
+
+    fun historydetail(accesstoken: String?, id: Int) {
+        val api = ServiceBuilder.instance()
+        api.getHistorybyID(accesstoken, id).enqueue(object : Callback<History> {
+            override fun onResponse(call: Call<History>, response: Response<History>) {
+                if (response.isSuccessful) {
+                    val value = response.body()
+                    value.let {
+                        val mBundle = Bundle()
+                        val name = value?.productName
+                        val price = value?.price
+                        val poster = value?.imageUrl
+                        val status = value?.status
+                        mBundle.putString("name_product",name)
+                        mBundle.putString("poster", poster)
+                        mBundle.putString("status", status)
+                        mBundle.putString("price_product", "Rp ${price}")
+                        findNavController().navigate(R.id.action_list_to_historyDetail, mBundle)
+
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<History>, t: Throwable) {
+                println(t.message)
+
+            }
+        })
+    }
 }

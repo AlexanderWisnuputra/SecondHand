@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
 import com.example.secondhand.entity.Product
+import com.example.secondhand.entity.ProductResponse
 
-// WORK IN PROGRESS CONTINUE
-class SOrderAdapter(private val order: MutableList<Product>,private val maininterface: SOrderInterface)
+class SOrderAdapter(private val order: MutableList<ProductResponse>,private val maininterface: SOrderInterface)
     : RecyclerView.Adapter<SOrderAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -20,12 +20,11 @@ class SOrderAdapter(private val order: MutableList<Product>,private val maininte
         var history_price = itemView.findViewById<TextView>(R.id.sorder_price)
         var history_name = itemView.findViewById<TextView>(R.id.sorder_name)
         var history_category = itemView.findViewById<TextView>(R.id.sorder_category)
-        var history_date = itemView.findViewById<TextView>(R.id.date)
 
-        fun bind(product: Product) {
+        fun bind(product: ProductResponse) {
 
             history_name.text = product.name
-            history_category.text = product.name
+            history_category.text = product.categories.firstOrNull()?.name
             history_price.text = product.basePrice.toString()
             Glide.with(itemView)
                 .load(product.image)
@@ -36,7 +35,7 @@ class SOrderAdapter(private val order: MutableList<Product>,private val maininte
         }
     }
 
-    fun updateList(it: List<Product>) {
+    fun updateList(it: List<ProductResponse>) {
         order.clear()
         order.addAll(it)
         notifyDataSetChanged()

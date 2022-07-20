@@ -108,6 +108,9 @@
         <action
             android:id="@+id/action_changeAcc_to_login"
             app:destination="@id/login" />
+        <action
+            android:id="@+id/action_changeAcc_to_list"
+            app:destination="@id/list" />
     </fragment>
     <fragment
         android:id="@+id/settingAcc"
@@ -154,6 +157,8 @@
         android:name="com.example.secondhand.fragments.HistoryDetail"
         android:label="fragment_history_detail"
         tools:layout="@layout/fragment_history_detail" >
+
+
         <action
             android:id="@+id/action_historyDetail_to_list"
             app:destination="@id/list" />

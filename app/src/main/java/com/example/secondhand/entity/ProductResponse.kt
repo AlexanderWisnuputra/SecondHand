@@ -1,9 +1,7 @@
 package com.example.secondhand.entity
-
-
 import com.google.gson.annotations.SerializedName
 
-data class Product(
+data class ProductResponse(
     @SerializedName("id")
     val id: Int?,
     @SerializedName("name")
@@ -12,8 +10,8 @@ data class Product(
     val description: String,
     @SerializedName("base_price")
     val basePrice: Int,
-    @SerializedName("category_ids")
-    val category: List<Category>,
+    @SerializedName("Categories")
+    val categories: List<Category>,
     @SerializedName("image_url")
     val image: String,
     @SerializedName("location")

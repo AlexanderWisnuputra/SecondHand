@@ -18,14 +18,12 @@ class HistoryAdapter(private val sejarah: MutableList<History>, private val main
         var history_image = itemView.findViewById<ImageView>(R.id.sorder_image)
         var history_price = itemView.findViewById<TextView>(R.id.sorder_price)
         var history_name = itemView.findViewById<TextView>(R.id.sorder_name)
-        var history_category = itemView.findViewById<TextView>(R.id.sorder_category)
         var history_status = itemView.findViewById<TextView>(R.id.history_status)
         var history_date = itemView.findViewById<TextView>(R.id.date)
 
         fun bind(product: History) {
             val price = "Rp ${product.price}"
             history_name.text = product.productName
-            history_category.text = product.category
             history_price.text = price
             history_status.text = product.status
             history_date.text = product.transactionDate

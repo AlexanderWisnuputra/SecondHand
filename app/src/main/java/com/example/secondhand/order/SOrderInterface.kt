@@ -1,8 +1,8 @@
 package com.example.secondhand.order
 
-import com.example.secondhand.entity.Product
+import com.example.secondhand.entity.ProductResponse
 
 interface SOrderInterface {
-        fun click(item: Product)
+        fun click(item: ProductResponse)
 
 }
