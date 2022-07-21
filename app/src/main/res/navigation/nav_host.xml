@@ -50,6 +50,9 @@
             android:id="@+id/action_list_to_changeAcc"
             app:destination="@id/changeAcc" />
         <action
+            android:id="@+id/action_list_to_buyerInfo"
+            app:destination="@id/buyerInfo" />
+        <action
             android:id="@+id/action_list_to_orderListDetail"
             app:destination="@id/orderListDetail" />
     </fragment>
@@ -157,8 +160,6 @@
         android:name="com.example.secondhand.fragments.HistoryDetail"
         android:label="fragment_history_detail"
         tools:layout="@layout/fragment_history_detail" >
-
-
         <action
             android:id="@+id/action_historyDetail_to_list"
             app:destination="@id/list" />
@@ -174,15 +175,6 @@
             android:id="@+id/action_notificationDetail_to_updateSellStatus"
             app:destination="@id/updateSellStatus" />
     </fragment>
-    <fragment
-        android:id="@+id/orderListDetail"
-        android:name="com.example.secondhand.OrderListDetail"
-        android:label="fragment_order_list_detail"
-        tools:layout="@layout/fragment_order_list_detail" >
-        <action
-            android:id="@+id/action_orderListDetail_to_list"
-            app:destination="@id/list" />
-    </fragment>
     <dialog
         android:id="@+id/updateSellStatus"
         android:name="com.example.secondhand.fragments.UpdateSellStatus"
@@ -192,6 +184,27 @@
             android:id="@+id/action_updateSellStatus_to_notificationDetail"
             app:destination="@id/notificationDetail" />
     </dialog>
+    <fragment
+        android:id="@+id/buyerInfo"
+        android:name="com.example.secondhand.fragments.BuyerInfo"
+        android:label="fragment_buyer_info"
+        tools:layout="@layout/fragment_buyer_info" >
+        <action
+            android:id="@+id/action_buyerInfo_to_list"
+            app:destination="@id/list" />
+        <action
+            android:id="@+id/action_buyerInfo_to_updateSellStatus"
+            app:destination="@id/updateSellStatus" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderListDetail"
+        android:name="com.example.secondhand.fragments.OrderListDetail"
+        android:label="fragment_order_list_detail"
+        tools:layout="@layout/fragment_order_list_detail" >
+        <action
+            android:id="@+id/action_orderListDetail_to_list"
+            app:destination="@id/list" />
+    </fragment>
 
 
 </navigation>

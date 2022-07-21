@@ -16,14 +16,7 @@ class WishlistVM : ViewModel() {
         state.value = bidStatus.Loading(b)
     }
 
-   fun getorderedbyid(accestoken: String?,id:Int) {
-        loading(true)
-        repo.getorderedbyid(accestoken,id) { sproduct, error ->
-            loading(false)
-            error?.let { it.message?.let { message -> println(message) } }
-            sproduct?.let { order.value?.get(id) }
-        }
-    }
+
     fun getordered(accestoken: String?, status: String) {
         loading(true)
 

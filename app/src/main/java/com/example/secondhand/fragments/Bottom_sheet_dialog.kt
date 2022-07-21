@@ -73,7 +73,10 @@ class NegotiatePrice : BottomSheetDialogFragment() {
                     response.body()
                     Toast.makeText(context,"Anda Berhasil Bid",Toast.LENGTH_SHORT).show()
                     findNavController().navigate(R.id.action_NegotiatePrice_to_buyer_Product_Add)
-                } else Toast.makeText(context,"Gagal Menawar",Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Gagal Menawar", Toast.LENGTH_SHORT).show()
+                    findNavController().popBackStack()
+                }
             }
             override fun onFailure(call: Call<Bid>, t: Throwable) {
                 println(t.message)

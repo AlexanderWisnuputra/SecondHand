@@ -79,6 +79,8 @@ class Notification : Fragment(), NotificationInterface {
                         val desc = value?.status
                         val poster = value?.imageUrl
                         val category = value?.sellerName
+                        val ids = value?.id
+                        mBundle.putInt("id", ids!!)
                         mBundle.putString("name_product", name)
                         mBundle.putString("poster", poster)
                         mBundle.putString("status", desc.toString())

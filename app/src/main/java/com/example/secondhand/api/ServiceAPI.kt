@@ -4,6 +4,7 @@ import com.example.secondhand.entity.*
 import com.google.gson.annotations.SerializedName
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
@@ -78,9 +79,8 @@ interface ServiceAPI {
     @PATCH("seller/product/{id}")
     fun patchProduct (@Header("access_token") access_token:String?, @Path("id") id : Int, @Field("status") status: String) : Call<Product>
 
-    @FormUrlEncoded
-    @PATCH("seller/product/{id}")
-    fun deleteProduct (@Header("access_token") access_token:String?, @Path("id") id : Int) : Call<Product>
+    @DELETE("seller/product/{id}")
+    fun deleteProduct (@Header("access_token") access_token:String?, @Path("id") id : Int) : Call<Void>
 
     // SELLER ORDER NNN
     @GET("seller/order")

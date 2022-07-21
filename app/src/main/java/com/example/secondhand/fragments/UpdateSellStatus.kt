@@ -48,7 +48,19 @@ class UpdateSellStatus: BottomSheetDialogFragment() {
         var x = sharedPref.getAT("AT")
         //ID MSH ERROR
         binding.button.setOnClickListener {
+            if(binding.radioButton.isChecked){
                 vmod.patch(x, ids!!, "seller")
+                findNavController().popBackStack()
+            }
+            else if (binding.radioButton2.isChecked){
+                vmod.patch(x, ids!!, "buyer")
+                findNavController().popBackStack()
+
+            }
+            else{
+                Toast.makeText(context,"Gagal Update", Toast.LENGTH_SHORT).show()
+                findNavController().popBackStack()
+            }
             }
         }
     }
