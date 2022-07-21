@@ -13,7 +13,6 @@ import com.example.secondhand.R
 import com.example.secondhand.databinding.FragmentHistoryDetailBinding
 import com.example.secondhand.databinding.FragmentNotificationDetailBinding
 
-    // FIX LAYOUT
 class NotificationDetail : Fragment() {
     private lateinit var binding: FragmentNotificationDetailBinding
 
@@ -40,7 +39,7 @@ class NotificationDetail : Fragment() {
             .into(binding.imageView3)
 
 
-        binding.imageView4.setOnClickListener {
+       binding.imageView4.setOnClickListener {
             it.findNavController().navigate(R.id.action_notificationDetail_to_notification)
         }
         binding.button6.setOnClickListener {
