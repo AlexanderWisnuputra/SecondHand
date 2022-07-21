@@ -5,8 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.secondhand.Helper
 import com.example.secondhand.R
 import com.example.secondhand.entity.Notification
 
@@ -14,12 +16,14 @@ class NotificationAdapter(private val notification: MutableList<Notification>, p
     : RecyclerView.Adapter<NotificationAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+//        private lateinit var sharedPref: Helper
 
         var history_image = itemView.findViewById<ImageView>(R.id.history_image)
         var history_price = itemView.findViewById<TextView>(R.id.history_price)
         var history_name = itemView.findViewById<TextView>(R.id.history_name)
         var history_category = itemView.findViewById<TextView>(R.id.history_category)
         var history_date = itemView.findViewById<TextView>(R.id.date)
+//        val notificationItem = itemView.findViewById<CardView>(R.id.cv_item_course)
 
         fun bind(product: Notification) {
             val price = "Rp. ${product.bidPrice}"
@@ -34,6 +38,9 @@ class NotificationAdapter(private val notification: MutableList<Notification>, p
             itemView.setOnClickListener {
                 mainInterface.click(product)
             }
+//            notificationItem.setOnClickListener {
+//                sharedPref.putNotif("notif", "asd")
+//            }
         }
     }
 
@@ -44,7 +51,6 @@ class NotificationAdapter(private val notification: MutableList<Notification>, p
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
         val view = LayoutInflater.from(parent.context).inflate(R.layout.notification_item, parent, false)
         return ViewHolder(view)
     }
