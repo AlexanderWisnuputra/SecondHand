@@ -32,7 +32,7 @@ class SOrderVM(): ViewModel() {
         repo.patch(accestoken,id,sat) { sproduct, error ->
             loading(false)
             error?.let { it.message?.let { message -> println(message) } }
-            sproduct?.let { order.value!!.get(id) }
+            sproduct?.let { order.value!![id]}
         }
     }
 

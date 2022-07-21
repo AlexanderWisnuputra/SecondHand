@@ -82,10 +82,6 @@ class BuyerInfo : Fragment(),WishlistInterface {
         var x = sharedPref.getAT("AT")
         vmod.getordered(x, "pending")    }
 
-    private fun patch(id: Int,status: String){
-        var x = sharedPref.getAT("AT")
-        vmod.patchStatus(x,id,status)
-    }
         private fun setupRecyclerView3() {
             binding.wishlist.apply {
                 layoutManager =
@@ -149,9 +145,11 @@ class BuyerInfo : Fragment(),WishlistInterface {
                         val poster = value?.img
                         val price2 = value?.priceID
                         val price = value?.normalPrice
-                        val x = value?.id
+                        val x = value?.productID
+                        val s = value?.id
                         val mBundle = Bundle()
                         mBundle.putInt("id", x!!)
+                        mBundle.putInt("ids", s!!)
                         mBundle.putString("name_product", name)
                         mBundle.putString("stats", stat)
                         mBundle.putString("poster", poster)

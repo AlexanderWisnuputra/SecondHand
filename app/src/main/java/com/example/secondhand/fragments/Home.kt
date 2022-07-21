@@ -58,10 +58,10 @@ class Home : Fragment(), ProductInterface {
 
 
     private fun getdata() = vmod.fetchProducts()
-    private fun getdataCategory1() = vmod.fetchCategorybyId(96)
-    private fun getdataCategory2() = vmod.fetchCategorybyId(114)
-    private fun getdataCategory3() = vmod.fetchCategorybyId(105)
-    private fun getdataCategory4() = vmod.fetchCategorybyId(119)
+    private fun getdataCategory1() = vmod.fetchCategorybyId(1)
+    private fun getdataCategory2() = vmod.fetchCategorybyId(19)
+    private fun getdataCategory3() = vmod.fetchCategorybyId(10)
+    private fun getdataCategory4() = vmod.fetchCategorybyId(24)
     private fun getdataSearch(search: String) = vmod.fetchProductsbySearch(search)
     private fun banner() = vmod.banner()
     private fun observeState() = vmod.getState().observe(viewLifecycleOwner, Observer { handlestate(it)})

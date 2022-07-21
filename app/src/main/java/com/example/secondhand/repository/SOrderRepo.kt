@@ -1,5 +1,6 @@
 package com.example.secondhand.repository
 
+import android.widget.Toast
 import com.example.secondhand.api.ServiceBuilder
 import com.example.secondhand.entity.*
 import retrofit2.Call
@@ -31,16 +32,16 @@ class SOrderRepo {
 
 
 
-    fun patch(accestoken: String?,id:Int,status: String, completion: (Product?, Error?) -> Unit) {
-        api.patchProduct(accestoken,id,status).enqueue(object : Callback<Product> {
-            override fun onFailure(call: Call<Product>, t: Throwable) {
+    fun patch(accestoken: String?,id:Int,status: String, completion: (ProductResponse?, Error?) -> Unit) {
+        api.patchProduct(accestoken,id,status).enqueue(object : Callback<ProductResponse> {
+            override fun onFailure(call: Call<ProductResponse>, t: Throwable) {
                 println(t.message)
                 completion(null, Error(t.message))
             }
 
             override fun onResponse(
-                call: Call<Product>,
-                response: Response<Product>
+                call: Call<ProductResponse>,
+                response: Response<ProductResponse>
             ) {
                 when {
                     response.isSuccessful -> {
