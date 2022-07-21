@@ -103,6 +103,7 @@ class Sell : Fragment() {
                 }
 
                 Toast(requireActivity()).showCustomToast("Produk berhasil ditambahkan", requireContext() as Activity)
+                findNavController().navigate(R.id.action_sell_to_home)
             }
             fotoProduk.setOnClickListener { openImagePicker()}
         }
