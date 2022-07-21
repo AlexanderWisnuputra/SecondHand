@@ -70,7 +70,7 @@ class OrderListDetail: Fragment() {
                 else {
                 Toast.makeText(context,"Gagal Dihapus",Toast.LENGTH_SHORT).show()
                 }
-                }
+            }
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 println(t.message)
             }
