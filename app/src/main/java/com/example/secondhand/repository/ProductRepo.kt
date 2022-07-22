@@ -34,30 +34,7 @@ class ProductRepo {
         })
     }
 
-    fun category(completion: (List<Category>?, Error?) -> Unit) {
-        api.category().enqueue(object : Callback<List<Category>> {
-            override fun onFailure(call: Call<List<Category>>, t: Throwable) {
-                println(t.message)
-                completion(null, Error(t.message))
-            }
-
-            override fun onResponse(
-                call: Call<List<Category>>,
-                response: Response<List<Category>>
-            ) {
-                when {
-                    response.isSuccessful -> {
-                        completion(response.body(), null)
-                    }
-                    !response.isSuccessful -> {
-                        completion(null, Error("Cannot get data"))
-                    }
-                }
-            }
-        })
-    }
-
-    fun categorybyId(id:Int, completion: (List<SellerProductItem>?, Error?) -> Unit) {
+        fun categorybyId(id:Int, completion: (List<SellerProductItem>?, Error?) -> Unit) {
         api.getProductCategory(id).enqueue(object : Callback<List<SellerProductItem>> {
             override fun onFailure(call: Call<List<SellerProductItem>>, t: Throwable) {
                 println(t.message)

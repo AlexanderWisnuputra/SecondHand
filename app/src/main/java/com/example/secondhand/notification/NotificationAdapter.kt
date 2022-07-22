@@ -23,11 +23,17 @@ class NotificationAdapter(private val notification: MutableList<Notification>, p
         var history_name = itemView.findViewById<TextView>(R.id.history_name)
         var history_category = itemView.findViewById<TextView>(R.id.history_category)
         var history_date = itemView.findViewById<TextView>(R.id.date)
-//        val notificationItem = itemView.findViewById<CardView>(R.id.cv_item_course)
+        val notificationItem = itemView.findViewById<ImageView>(R.id.redDot)
 
         fun bind(product: Notification) {
-            val price = "Rp. ${product.bidPrice}"
-            val bp = "Rp. ${product.bidPrice}"
+            if (product.read == true){
+                notificationItem.visibility = View.GONE
+            }
+            else{
+                notificationItem.visibility = View.VISIBLE
+            }
+            val price = "Ditawar Rp. ${product.bidPrice}"
+            val bp = "Rp. ${product.basePrice}"
             history_name.text = product.productName
             history_category.text = bp
             history_price.text = price
@@ -38,9 +44,7 @@ class NotificationAdapter(private val notification: MutableList<Notification>, p
             itemView.setOnClickListener {
                 mainInterface.click(product)
             }
-//            notificationItem.setOnClickListener {
-//                sharedPref.putNotif("notif", "asd")
-//            }
+
         }
     }
 

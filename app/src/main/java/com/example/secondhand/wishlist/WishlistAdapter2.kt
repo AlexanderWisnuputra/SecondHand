@@ -6,17 +6,20 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
 import com.example.secondhand.entity.BidStatus
 import com.example.secondhand.entity.Notification
 import com.example.secondhand.entity.Wishlist
+import com.example.secondhand.fragments.BuyerInfoDirections
+import kotlinx.android.synthetic.main.wishlist_item.view.*
 
 // ganti jadi sellder order
-class WishlistAdapter (private val notification: MutableList<BidStatus>,
-        private val mainInterface: WishlistInterface
-    ) : RecyclerView.Adapter<WishlistAdapter.ViewHolder>() {
+class WishlistAdapter2 (private val notification: MutableList<BidStatus>,
+                        private val mainInterface: WishlistInterface
+    ) : RecyclerView.Adapter<WishlistAdapter2.ViewHolder>() {
 
         inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -25,14 +28,9 @@ class WishlistAdapter (private val notification: MutableList<BidStatus>,
             var history_name = itemView.findViewById<TextView>(R.id.wishlistname)
             var history_category = itemView.findViewById<TextView>(R.id.wishstatus)
             var history_date = itemView.findViewById<TextView>(R.id.wishlistdesc)
-            var button1 = itemView.findViewById<Button>(R.id.button7)
-            var button2 = itemView.findViewById<Button>(R.id.button8)
-            var button3 = itemView.findViewById<Button>(R.id.button9)
-            var button4 = itemView.findViewById<Button>(R.id.button10)
-
             fun bind(product: BidStatus) {
-                val price = "Harga Rp. ${product.priceID}"
-                val bp = "Penawaran Rp. ${product.normalPrice}"
+                val price = "Penawaran Rp. ${product.priceID}"
+                val bp = "Harga Rp. ${product.normalPrice}"
                 history_name.text = product.name
                 history_category.text = bp
                 history_price.text = price
@@ -40,12 +38,11 @@ class WishlistAdapter (private val notification: MutableList<BidStatus>,
                 Glide.with(itemView)
                     .load(product.img)
                     .into(history_image)
-                button1.visibility = View.GONE
-                button2.visibility = View.GONE
-                button3.visibility = View.GONE
-                button4.visibility = View.GONE
                 itemView.setOnClickListener {
                     mainInterface.click(product)
+
+
+
                 }
             }
         }
@@ -65,7 +62,43 @@ class WishlistAdapter (private val notification: MutableList<BidStatus>,
 
         override fun getItemCount() = notification.size
 
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.bind(notification[position])
+            holder.itemView.button10.setOnClickListener {
+                //YEY HARGA KAMU DITERIMA!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                // TARO FUNGSI DELETE DARI FRAGEMENT UPDATE SELL STATUS
+                holder.itemView.button7.visibility = View.GONE
+                holder.itemView.button8.visibility = View.GONE
+                holder.itemView.button9.visibility = View.GONE
+                holder.itemView.button10.visibility = View.GONE
 
+            }
+            holder.itemView.button9.setOnClickListener {
+                holder.itemView.button7.visibility = View.VISIBLE
+                holder.itemView.button8.visibility = View.VISIBLE
+                holder.itemView.button9.visibility = View.GONE
+                holder.itemView.button10.visibility = View.GONE
+            }
+            holder.itemView.button7.setOnClickListener {
+                 val action = BuyerInfoDirections.actionBuyerInfoToUpdateSellStatus()
+            holder.itemView.findNavController().navigate(action)
+                holder.itemView.button8.setOnClickListener {
+                    // SELLER 30 BUAT LAYOUT TOOOOOODDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
+                    val action = BuyerInfoDirections.actionBuyerInfoToUpdateSellStatus()
+                    holder.itemView.findNavController().navigate(action)
+                }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+        }
     }

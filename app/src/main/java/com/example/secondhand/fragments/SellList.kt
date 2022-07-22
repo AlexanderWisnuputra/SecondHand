@@ -27,17 +27,21 @@ import com.example.secondhand.order.SOrderAdapter
 import com.example.secondhand.order.SOrderInterface
 import com.example.secondhand.order.SOrderVM
 import com.example.secondhand.order.SorderState
+import com.example.secondhand.wishlist.WishlistAdapter
 import com.example.secondhand.wishlist.WishlistInterface
+import com.example.secondhand.wishlist.WishlistVM
+import com.example.secondhand.wishlist.bidStatus
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SellList : Fragment(), HistoryInterface, SOrderInterface {
+class SellList : Fragment(), HistoryInterface, SOrderInterface,WishlistInterface {
     private lateinit var binding: FragmentListBinding
     private lateinit var sharedPref: Helper
     private val SellVM: HistoryVM by viewModel()
     private val SOVM: SOrderVM by viewModel()
+    private val vmod: WishlistVM by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,23 +58,30 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface {
         setupRecyclerView2()
         Sorder()
         observe2()
-        binding.orderrecyclerview.visibility = View.VISIBLE
         getUserDetail()
+        binding.orderrecyclerview.visibility = View.VISIBLE
 
         binding.button4.setOnClickListener {
             sharedPref.putAT("status","1")
             findNavController().navigate(R.id.action_list_to_changeAcc)
         }
         binding.button2.setOnClickListener {
-            findNavController().navigate(R.id.action_list_to_buyerInfo)
+            getwish()
+            observe3()
+            setupRecyclerView3()
+
+            binding.orderrecyclerview.visibility = View.INVISIBLE
+            binding.historyrecyclerview.visibility = View.INVISIBLE
+            binding.wishlist.visibility = View.VISIBLE
+
         }
         binding.button3.setOnClickListener {
             setupRecyclerView()
-            getUserDetail()
             getdata()
             observe()
             binding.orderrecyclerview.visibility = View.INVISIBLE
             binding.historyrecyclerview.visibility = View.VISIBLE
+            binding.wishlist.visibility = View.INVISIBLE
 
         }
         binding.listallproduct.setOnClickListener {
@@ -79,6 +90,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface {
             observe2()
             binding.orderrecyclerview.visibility = View.VISIBLE
             binding.historyrecyclerview.visibility = View.INVISIBLE
+            binding.wishlist.visibility = View.INVISIBLE
         }
     }
 
@@ -112,6 +124,54 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface {
         binding.orderrecyclerview.apply {
                 layoutManager = GridLayoutManager(requireContext(), 2)
             adapter = SOrderAdapter(mutableListOf(), this@SellList)
+        }
+    }
+    private fun setupRecyclerView3() {
+        binding.wishlist.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+            adapter = WishlistAdapter(mutableListOf(), this@SellList)
+        }
+    }
+    private fun getwish() {
+        var x = sharedPref.getAT("AT")
+        vmod.getordered(x, "pending")    }
+
+
+
+    private fun observe3() {
+        observeState3()
+        observeProduct3()
+    }
+
+    private fun observeState3() =
+        vmod.getState().observe(viewLifecycleOwner, Observer { handlestate3(it) })
+
+    private fun observeProduct3() =
+        vmod.getwish().observe(viewLifecycleOwner, Observer { handleproduct3(it) })
+
+    private fun handlestate3(it: bidStatus) {
+        when (it) {
+            is bidStatus.Loading -> isLoading3(it.isLoading)
+        }
+    }
+
+    private fun isLoading3(b: Boolean) {
+        if (b) {
+            binding.progressBar.visibility = View.VISIBLE
+            binding.imageView2.visibility = View.VISIBLE
+
+        } else {
+            binding.progressBar.visibility = View.GONE
+            binding.imageView2.visibility = View.GONE
+        }
+    }
+
+    private fun handleproduct3(sp: List<BidStatus>) {
+        binding.wishlist.adapter?.let { a ->
+            if (a is WishlistAdapter) {
+                a.updateList(sp)
+            }
         }
     }
 
@@ -284,6 +344,10 @@ fun productListbyid(accesstoken: String?, id: Int) {
 
             }
         })
+    }
+
+    override fun click(item: BidStatus) {
+        findNavController().navigate(R.id.action_list_to_buyerInfo)
     }
 
 }

@@ -30,6 +30,6 @@ data class Notification(
     val createdAt: String,
     @SerializedName("updated_at")
     val updatedAt: String,
-    @SerializedName("Product")
-    val product: ProductX
+    @SerializedName("base_price")
+    val basePrice: Int
 )

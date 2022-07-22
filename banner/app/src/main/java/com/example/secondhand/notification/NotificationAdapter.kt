@@ -23,7 +23,7 @@ class NotificationAdapter(private val notification: MutableList<Notification>)
 
         fun bind(product: Notification) {
             val price = "Rp. ${product.bidPrice}"
-            val bp = "Rp. ${product.product.basePrice}"
+            val bp = "Rp. ${product.basePrice}"
             history_name.text = product.productName
             history_category.text = bp
             history_price.text = price

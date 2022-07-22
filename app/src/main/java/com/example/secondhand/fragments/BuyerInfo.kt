@@ -21,10 +21,7 @@ import com.example.secondhand.history.HistoryInterface
 import com.example.secondhand.history.HistoryVM
 import com.example.secondhand.order.SOrderInterface
 import com.example.secondhand.order.SOrderVM
-import com.example.secondhand.wishlist.WishlistAdapter
-import com.example.secondhand.wishlist.WishlistInterface
-import com.example.secondhand.wishlist.WishlistVM
-import com.example.secondhand.wishlist.bidStatus
+import com.example.secondhand.wishlist.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import retrofit2.Call
 import retrofit2.Callback
@@ -83,10 +80,10 @@ class BuyerInfo : Fragment(),WishlistInterface {
         vmod.getordered(x, "pending")    }
 
         private fun setupRecyclerView3() {
-            binding.wishlist.apply {
+            binding.wishlist2.apply {
                 layoutManager =
                     LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-                adapter = WishlistAdapter(mutableListOf(), this@BuyerInfo)
+                adapter = WishlistAdapter2(mutableListOf(), this@BuyerInfo)
             }
         }
 
@@ -119,10 +116,11 @@ class BuyerInfo : Fragment(),WishlistInterface {
         }
 
         private fun handleproduct3(sp: List<BidStatus>) {
-            binding.wishlist.adapter?.let { a ->
-                if (a is WishlistAdapter) {
+            binding.wishlist2.adapter?.let { a ->
+                if (a is WishlistAdapter2) {
                     a.updateList(sp)
                 }
+
             }
         }
 
@@ -134,7 +132,7 @@ class BuyerInfo : Fragment(),WishlistInterface {
     fun bidetail(id: Int) {
         val api = ServiceBuilder.instance()
         var x = sharedPref.getAT("AT")
-
+    //// CEK KEGUNAANNYA, ABIS DIPINDAHIN SOALNYA
         api.getorderedbyid(x, id).enqueue(object : Callback<BidStatus> {
             override fun onResponse(call: Call<BidStatus>, response: Response<BidStatus>) {
                 if (response.isSuccessful) {
@@ -155,7 +153,6 @@ class BuyerInfo : Fragment(),WishlistInterface {
                         mBundle.putString("poster", poster)
                         mBundle.putString("price_product", "Rp. $price")
                         mBundle.putString("price", "Rp. $price2")
-                        findNavController().navigate(R.id.action_buyerInfo_to_updateSellStatus, mBundle)
 
                     }
                 }

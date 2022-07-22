@@ -82,7 +82,7 @@ interface ServiceAPI {
     @DELETE("seller/product/{id}")
     fun deleteProduct (@Header("access_token") access_token:String?, @Path("id") id : Int) : Call<Void>
 
-    // SELLER ORDER N
+    // SELLER ORDER ☆
     @GET("seller/order")
     fun getordered (@Header("access_token") access_token:String?, @Query("status") status:String) : Call<List<BidStatus>>
 
@@ -92,17 +92,6 @@ interface ServiceAPI {
     @FormUrlEncoded
     @PATCH("seller/order/{id}")
     fun patchstatus (@Header("access_token") access_token:String?,@Path("id") id:Int, @Field("status") status: String) : Call<BidStatus>
-
-    @GET("seller/order/{product_id}")
-    fun getorderedbyproductid (@Header("access_token") access_token:String?, @Path("product_id") id:Int) : Call<BidStatus>
-
-    // SELLER CATEGORY NN
-    @GET("seller/category/")
-    fun category () : Call<List<Category>>
-
-    @GET("seller/category/")
-    fun categorybyID (@Query("id") id:Int) : Call<Category>
-
 
     // SELLER BANNER ☆
     @GET("seller/banner")
@@ -132,7 +121,7 @@ interface ServiceAPI {
     @GET("history/{id}")
     fun getHistorybyID (@Header("access_token") access_token:String?, @Path("id") id:Int) : Call<History>
 
-    // NOTIFICATION patch error
+    // NOTIFICATION ☆
     @GET("notification")
     fun notif (@Header("access_token") access_token:String?) : Call<List<Notification>>
 

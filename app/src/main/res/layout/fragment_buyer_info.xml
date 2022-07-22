@@ -113,7 +113,7 @@
         app:layout_constraintTop_toBottomOf="@+id/buyer" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/wishlist"
+        android:id="@+id/wishlist2"
         android:layout_width="387dp"
         android:layout_height="454dp"
         android:layout_marginTop="16dp"

@@ -86,7 +86,10 @@ class Notification : Fragment(), NotificationInterface {
                         mBundle.putString("status", desc.toString())
                         mBundle.putString("price_product", "Price ${price}")
                         mBundle.putString("category_product", category)
-                        findNavController().navigate(R.id.action_notification_to_notificationDetail, mBundle)
+                        findNavController().navigate(
+                            R.id.action_notification_to_notificationDetail,
+                            mBundle
+                        )
                     }
                 }
             }
@@ -95,6 +98,17 @@ class Notification : Fragment(), NotificationInterface {
                 println(t.message)
             }
         })
+    }
+        fun patch(accesstoken: String?, id: Int) {
+            val api = ServiceBuilder.instance()
+            api.notifPatch(accesstoken, id).enqueue(object : Callback<Notification> {
+                override fun onResponse(call: Call<Notification>, response: Response<Notification>) {
+                }
+                override fun onFailure(call: Call<Notification>, t: Throwable) {
+                    println(t.message)
+                }
+            })
+
     }
     private fun getdatabuyer(type:String) {
         var x = sharedPref.getAT("AT")
@@ -170,6 +184,7 @@ class Notification : Fragment(), NotificationInterface {
             val x = sharedPref.getAT("AT")
             val y = item.id
             productListbyid(x, y)
+            patch(x,y)
         }
 
 }

@@ -23,7 +23,6 @@ class SPViewModel(
     private val repo= ProductRepo()
     private val state = MutableLiveData<MainState>()
     private val products = MutableLiveData<List<SellerProductItem>>()
-    private val category = MutableLiveData<List<Category>>()
     private val bannerr = MutableLiveData<List<Banner>>()
 
     private fun loading(b: Boolean){
@@ -37,16 +36,6 @@ class SPViewModel(
             loading(false)
             error?.let{it.message?.let { message -> println(message) }}
             sproduct?.let { products.postValue(it) }
-        }
-    }
-
-    fun categori(){
-        loading(true)
-        repo.category{
-                sproduct, error ->
-            loading(false)
-            error?.let{it.message?.let { message -> println(message) }}
-            sproduct?.let { category.postValue(it) }
         }
     }
 
@@ -83,7 +72,6 @@ class SPViewModel(
     fun getState() =state
     fun getProduct() = products
     fun getBanner() = bannerr
-    fun getcate() = category
 }
 
 sealed class MainState{
