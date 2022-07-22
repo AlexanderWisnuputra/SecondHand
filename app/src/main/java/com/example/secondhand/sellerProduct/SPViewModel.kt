@@ -25,8 +25,6 @@ class SPViewModel(
     private val products = MutableLiveData<List<SellerProductItem>>()
     private val category = MutableLiveData<List<Category>>()
     private val bannerr = MutableLiveData<List<Banner>>()
-    private lateinit var sharedPref: Helper
-    val showResponseSuccess: MutableLiveData<String> = MutableLiveData()
 
     private fun loading(b: Boolean){
         state.value = MainState.Loading(b)
