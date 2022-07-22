@@ -44,7 +44,7 @@ interface ServiceAPI {
         @Body post: Password
     ): Response<Password>
 
-    // SELLER PRODUCT NNN
+    // SELLER PRODUCT put
     @Multipart
     @POST("seller/product")
     suspend fun addProduct(
@@ -77,7 +77,7 @@ interface ServiceAPI {
 
     @FormUrlEncoded
     @PATCH("seller/product/{id}")
-    fun patchProduct (@Header("access_token") access_token:String?, @Path("id") id : Int, @Field("status") status: String) : Call<Product>
+    fun patchProduct (@Header("access_token") access_token:String?, @Path("id") id : Int, @Field("status") status: String) : Call<ProductResponse>
 
     @DELETE("seller/product/{id}")
     fun deleteProduct (@Header("access_token") access_token:String?, @Path("id") id : Int) : Call<Void>
@@ -89,6 +89,7 @@ interface ServiceAPI {
     @GET("seller/order/{id}")
     fun getorderedbyid (@Header("access_token") access_token:String?, @Path("id") id:Int) : Call<BidStatus>
 
+    @FormUrlEncoded
     @PATCH("seller/order/{id}")
     fun patchstatus (@Header("access_token") access_token:String?,@Path("id") id:Int, @Field("status") status: String) : Call<BidStatus>
 

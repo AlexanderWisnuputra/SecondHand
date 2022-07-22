@@ -72,7 +72,7 @@ class Sell : Fragment() {
                 val name = binding.namaProduk.text.toString()
                 val price = binding.produkHarga.text.toString()
                 val location = "jakarta"
-                val category =  "119"
+                val category =  "1"
                 val description = binding.deskripsi.text.toString()
                 val imageFile = if(imageUri == null) {
                     null
