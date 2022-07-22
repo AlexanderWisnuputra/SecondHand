@@ -150,7 +150,8 @@
                 android:layout_marginTop="6dp"
                 android:background="@drawable/category_border"
                 android:drawableLeft="@drawable/ic_heart"
-                android:text="Hobi"
+                android:text="Info Buyer"
+                android:singleLine="true"
                 android:textAllCaps="false"
                 android:textColor="@color/white" />
 
