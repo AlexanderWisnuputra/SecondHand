@@ -3,9 +3,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string-array name="category">
-        <item>1</item>
-        <item>Sport</item>
+        <item>Elektronik</item>
+        <item>Otomotif</item>
         <item>Makanan</item>
-        <item>Hobi</item>
+        <item>Fotografi</item>
     </string-array>
 </resources>

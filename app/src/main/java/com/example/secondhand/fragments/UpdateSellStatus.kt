@@ -45,7 +45,6 @@ class UpdateSellStatus: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPref = Helper(requireContext())
-        val mBundle = Bundle()
         var ids = arguments?.getInt("id")
         var id = arguments?.getInt("ids")
 
@@ -56,14 +55,12 @@ class UpdateSellStatus: BottomSheetDialogFragment() {
                 deleteProduct(ids!!)
                 vmod.patch(x, ids!!, "sold")
                 findNavController().popBackStack()
-                vmod.patch(x, ids!!, "sold")
-
             }
             else if (binding.radioButton2.isChecked){
                 vmod2.patchStatus(x,id!!,"decline")
                 vmod.patch(x, ids!!, "available")
                 findNavController().popBackStack()
-                vmod.patch(x, ids!!, "available")
+
             }
             else{
                 Toast.makeText(context,"Gagal Update", Toast.LENGTH_SHORT).show()

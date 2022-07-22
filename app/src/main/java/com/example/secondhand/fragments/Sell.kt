@@ -69,10 +69,21 @@ class Sell : Fragment() {
         binding.apply {
             btnPreview.setOnClickListener { toPreview() }
             btnTerbit.setOnClickListener {
+                if(binding.kategoriText.text.toString() == "Elektronik"){
+                    sharedPref.putSell("key","1")
+                }
+                else if(binding.kategoriText.text.toString() == "Otomotif"){
+                    sharedPref.putSell("key","19")
+
+                }
+                else if(binding.kategoriText.text.toString() == "Otomotif"){
+                    sharedPref.putSell("key","10")}
+                else{ sharedPref.putSell("key","24")}
+
                 val name = binding.namaProduk.text.toString()
                 val price = binding.produkHarga.text.toString()
                 val location = "jakarta"
-                val category =  "1"
+                val category =  sharedPref.getSell("key").toString()
                 val description = binding.deskripsi.text.toString()
                 val imageFile = if(imageUri == null) {
                     null
@@ -103,6 +114,10 @@ class Sell : Fragment() {
                 }
 
                 Toast(requireActivity()).showCustomToast("Produk berhasil ditambahkan", requireContext() as Activity)
+                binding.kategoriText.text.clear()
+                binding.namaProduk.text.clear()
+                binding.produkHarga.text.clear()
+                binding.deskripsi.text.clear()
             }
             fotoProduk.setOnClickListener { openImagePicker()}
         }
