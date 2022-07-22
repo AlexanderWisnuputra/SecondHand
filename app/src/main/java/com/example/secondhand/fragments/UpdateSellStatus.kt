@@ -45,7 +45,6 @@ class UpdateSellStatus: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPref = Helper(requireContext())
-        val mBundle = Bundle()
         var ids = arguments?.getInt("id")
         var id = arguments?.getInt("ids")
 

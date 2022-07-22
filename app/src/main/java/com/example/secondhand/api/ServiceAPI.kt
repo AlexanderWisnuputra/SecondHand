@@ -82,7 +82,7 @@ interface ServiceAPI {
     @DELETE("seller/product/{id}")
     fun deleteProduct (@Header("access_token") access_token:String?, @Path("id") id : Int) : Call<Void>
 
-    // SELLER ORDER NNN
+    // SELLER ORDER N
     @GET("seller/order")
     fun getordered (@Header("access_token") access_token:String?, @Query("status") status:String) : Call<List<BidStatus>>
 
@@ -132,7 +132,7 @@ interface ServiceAPI {
     @GET("history/{id}")
     fun getHistorybyID (@Header("access_token") access_token:String?, @Path("id") id:Int) : Call<History>
 
-    // NOTIFICATION patch error, id error
+    // NOTIFICATION patch error
     @GET("notification")
     fun notif (@Header("access_token") access_token:String?) : Call<List<Notification>>
 

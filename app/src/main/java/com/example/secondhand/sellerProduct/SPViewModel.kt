@@ -25,8 +25,6 @@ class SPViewModel(
     private val products = MutableLiveData<List<SellerProductItem>>()
     private val category = MutableLiveData<List<Category>>()
     private val bannerr = MutableLiveData<List<Banner>>()
-    private lateinit var sharedPref: Helper
-    val showResponseSuccess: MutableLiveData<String> = MutableLiveData()
 
     private fun loading(b: Boolean){
         state.value = MainState.Loading(b)
@@ -40,8 +38,18 @@ class SPViewModel(
             error?.let{it.message?.let { message -> println(message) }}
             sproduct?.let { products.postValue(it) }
         }
-
     }
+
+    fun categori(){
+        loading(true)
+        repo.category{
+                sproduct, error ->
+            loading(false)
+            error?.let{it.message?.let { message -> println(message) }}
+            sproduct?.let { category.postValue(it) }
+        }
+    }
+
     fun fetchCategorybyId(id: Int) {
         loading(true)
 
@@ -75,6 +83,7 @@ class SPViewModel(
     fun getState() =state
     fun getProduct() = products
     fun getBanner() = bannerr
+    fun getcate() = category
 }
 
 sealed class MainState{
