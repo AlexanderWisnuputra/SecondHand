@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -55,6 +56,11 @@ class ChangeAcc : Fragment() {
     ): View? {
         val changeAccBinding = FragmentChangeAccBinding.inflate(inflater, container, false)
         binding = changeAccBinding
+
+        val category = resources.getStringArray(R.array.kota)
+        val arrayAdapter = ArrayAdapter(requireContext(), R.layout.dropdown_item, category)
+        binding.kota.setAdapter(arrayAdapter)
+
         return changeAccBinding.root
     }
 

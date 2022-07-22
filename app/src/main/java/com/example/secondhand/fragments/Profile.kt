@@ -17,9 +17,14 @@ import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
 import com.example.secondhand.R
+import com.example.secondhand.api.ServiceBuilder
 import com.example.secondhand.databinding.FragmentProfileBinding
+import com.example.secondhand.entity.User
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class Profile : Fragment() {
     private lateinit var binding: FragmentProfileBinding
@@ -50,8 +55,29 @@ class Profile : Fragment() {
             Glide.with(requireActivity())
                 .load(image)
                 .into(binding.userimageimp)
+
             binding.cardViews.visibility = View.INVISIBLE
         }
+        getUserDetail()
+    }
+
+    private fun getUserDetail() {
+        var x = sharedPref.getAT("AT")
+        ServiceBuilder.instance().getUser(x).enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                if (response.isSuccessful) {
+                    Glide.with(requireContext())
+                        .load(response.body()?.imageUrl.toString())
+                        .into(binding.userimageimp)
+
+                } else Toast.makeText(context, response.errorBody()!!.string(), Toast.LENGTH_SHORT)
+                    .show()
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                println(t.message)
+            }
+        })
     }
 
     private suspend fun read(key: String): String? {
