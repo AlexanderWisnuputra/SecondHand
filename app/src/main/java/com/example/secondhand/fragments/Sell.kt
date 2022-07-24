@@ -118,7 +118,7 @@ class Sell : Fragment() {
                 binding.namaProduk.text.clear()
                 binding.produkHarga.text.clear()
                 binding.deskripsi.text.clear()
-                findNavController().navigate(R.id.action_sell_to_home)
+                findNavController().navigate(R.id.action_sell_to_list)
             }
             fotoProduk.setOnClickListener { openImagePicker()}
         }

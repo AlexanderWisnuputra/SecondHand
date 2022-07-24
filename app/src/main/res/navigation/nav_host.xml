@@ -31,12 +31,16 @@
         <action
             android:id="@+id/action_sell_to_login"
             app:destination="@id/login" />
-        <action
-            android:id="@+id/action_sell_to_home"
-            app:destination="@id/home" />
+
         <action
             android:id="@+id/action_sell_to_seller_Product_Add"
             app:destination="@id/seller_Product_Add" />
+        <action
+            android:id="@+id/action_sell_to_list"
+            app:destination="@id/list" />
+        <action
+            android:id="@+id/action_sell_to_home"
+            app:destination="@id/home" />
     </fragment>
     <fragment
         android:id="@+id/list"
@@ -55,6 +59,12 @@
         <action
             android:id="@+id/action_list_to_orderListDetail"
             app:destination="@id/orderListDetail" />
+        <action
+            android:id="@+id/action_list_to_updateSellStatus"
+            app:destination="@id/updateSellStatus" />
+        <action
+            android:id="@+id/action_list_to_call"
+            app:destination="@id/call" />
     </fragment>
     <fragment
         android:id="@+id/profileDetail"
@@ -145,7 +155,11 @@
         android:id="@+id/seller_Product_Add"
         android:name="com.example.secondhand.fragments.SellPreview"
         android:label="fragment_seller__product__add"
-        tools:layout="@layout/fragment_sell_preview" />
+        tools:layout="@layout/fragment_sell_preview" >
+        <action
+            android:id="@+id/action_seller_Product_Add_to_list"
+            app:destination="@id/list" />
+    </fragment>
     <dialog
         android:id="@+id/NegotiatePrice"
         android:name="com.example.secondhand.fragments.NegotiatePrice"
@@ -171,18 +185,15 @@
         <action
             android:id="@+id/action_notificationDetail_to_notification"
             app:destination="@id/notification" />
-        <action
-            android:id="@+id/action_notificationDetail_to_updateSellStatus"
-            app:destination="@id/updateSellStatus" />
     </fragment>
     <dialog
         android:id="@+id/updateSellStatus"
         android:name="com.example.secondhand.fragments.UpdateSellStatus"
         android:label="fragment_update_sell_status"
         tools:layout="@layout/fragment_update_sell_status" >
-        <action
-            android:id="@+id/action_updateSellStatus_to_notificationDetail"
-            app:destination="@id/notificationDetail" />
+        <argument
+            android:name="ids"
+            app:argType="integer" />
     </dialog>
     <fragment
         android:id="@+id/buyerInfo"
@@ -192,9 +203,14 @@
         <action
             android:id="@+id/action_buyerInfo_to_list"
             app:destination="@id/list" />
+
         <action
-            android:id="@+id/action_buyerInfo_to_updateSellStatus"
-            app:destination="@id/updateSellStatus" />
+            android:id="@+id/action_buyerInfo_to_productMatch"
+            app:destination="@id/productMatch" />
+        <action
+            android:id="@+id/action_buyerInfo_to_decline2"
+            app:destination="@id/decline2" />
+
     </fragment>
     <fragment
         android:id="@+id/orderListDetail"
@@ -205,6 +221,28 @@
             android:id="@+id/action_orderListDetail_to_list"
             app:destination="@id/list" />
     </fragment>
+    <dialog
+        android:id="@+id/productMatch"
+        android:name="com.example.secondhand.fragments.ProductMatch"
+        android:label="fragment_product_match"
+        tools:layout="@layout/fragment_product_match" >
+        <argument
+            android:name="productid"
+            app:argType="integer" />
+        <argument
+            android:name="pid"
+            app:argType="integer" />
+    </dialog>
+    <fragment
+        android:id="@+id/decline2"
+        android:name="com.example.secondhand.fragments.Decline"
+        android:label="fragment_dialog_alert"
+        tools:layout="@layout/fragment_dialog_alert" />
+    <fragment
+        android:id="@+id/call"
+        android:name="com.example.secondhand.fragments.Call"
+        android:label="fragment_call"
+        tools:layout="@layout/fragment_call" />
 
 
 </navigation>

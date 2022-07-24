@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
 import com.example.secondhand.R
@@ -30,7 +32,7 @@ class UpdateSellStatus: BottomSheetDialogFragment() {
     private lateinit var sharedPref: Helper
     private val vmod: SOrderVM by viewModel()
     private val vmod2: WishlistVM by viewModel()
-
+    private val id: UpdateSellStatusArgs by navArgs()
     private lateinit var binding: FragmentUpdateSellStatusBinding
 
     override fun onCreateView(
@@ -45,19 +47,14 @@ class UpdateSellStatus: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         sharedPref = Helper(requireContext())
-        var ids = arguments?.getInt("id")
-        var id = arguments?.getInt("ids")
-
+        var ids = id.ids
         var x = sharedPref.getAT("AT")
         binding.button.setOnClickListener {
             if(binding.radioButton.isChecked){
-                vmod2.patchStatus(x,id!!,"accepted")
-                deleteProduct(ids!!)
                 vmod.patch(x, ids!!, "sold")
                 findNavController().popBackStack()
             }
             else if (binding.radioButton2.isChecked){
-                vmod2.patchStatus(x,id!!,"decline")
                 vmod.patch(x, ids!!, "available")
                 findNavController().popBackStack()
 
@@ -68,18 +65,6 @@ class UpdateSellStatus: BottomSheetDialogFragment() {
             }
             }
         }
-    fun deleteProduct(id: Int) {
-        val api = ServiceBuilder.instance()
-        var x = sharedPref.getAT("AT")
-        api.deleteProduct(x, id).enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-            }
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                println(t.message)
-            }
-        })
-
-    }
     }
 
 

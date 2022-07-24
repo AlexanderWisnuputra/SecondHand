@@ -8,8 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
+import com.example.secondhand.R
 import com.example.secondhand.URIPathHelper
 import com.example.secondhand.databinding.FragmentSellPreviewBinding
 import com.example.secondhand.repository.ProductRepo
@@ -41,6 +43,7 @@ class SellPreview : Fragment() {
         binding.button5.setOnClickListener {
                 sellProduct()
             clear()
+            findNavController().navigate(R.id.action_seller_Product_Add_to_list)
         }
     }
 

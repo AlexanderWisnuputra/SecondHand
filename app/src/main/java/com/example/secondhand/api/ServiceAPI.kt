@@ -114,6 +114,8 @@ interface ServiceAPI {
     @POST("buyer/order")
     fun bidPrice (@Header("access_token") access_token:String?, @Body post: Bid) : Call<Bid>
 
+    @DELETE("buyer/order/{id}")
+    fun delBid (@Header("access_token") access_token:String?, @Path("id") id:Int) : Call<Void>
     // HISTORY ☆
     @GET("history")
     fun getHistory (@Header("access_token") access_token:String?) : Call<List<History>>

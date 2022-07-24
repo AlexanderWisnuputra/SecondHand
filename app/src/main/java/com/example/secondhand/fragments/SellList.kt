@@ -135,7 +135,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface,WishlistInterface
     }
     private fun getwish() {
         var x = sharedPref.getAT("AT")
-        vmod.getordered(x, "pending")    }
+        vmod.getordered(x, "")    }
 
 
 
@@ -256,7 +256,6 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface,WishlistInterface
         var x = sharedPref.getAT("AT")
         var s = item.id
                 historydetail(x,s)
-
     }
     private fun getUserDetail() {
         var x = sharedPref.getAT("AT")
@@ -348,6 +347,6 @@ fun productListbyid(accesstoken: String?, id: Int) {
 
     override fun click(item: BidStatus) {
         findNavController().navigate(R.id.action_list_to_buyerInfo)
-    }
 
+    }
 }

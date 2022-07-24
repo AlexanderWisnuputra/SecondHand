@@ -6,12 +6,15 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.secondhand.R
 import com.example.secondhand.entity.BidStatus
 import com.example.secondhand.entity.Notification
 import com.example.secondhand.entity.Wishlist
+import com.example.secondhand.fragments.BuyerInfoDirections
+import com.example.secondhand.fragments.SellListDirections
 
 // ganti jadi sellder order
 class WishlistAdapter (private val notification: MutableList<BidStatus>,
@@ -65,7 +68,23 @@ class WishlistAdapter (private val notification: MutableList<BidStatus>,
 
         override fun getItemCount() = notification.size
 
-        override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.bind(notification[position])
+            if(holder.history_date.text.equals("pending")){
+                holder.button1.visibility =View.VISIBLE
+                holder.button2.visibility =View.VISIBLE
+
+            }
+            holder.button1.setOnClickListener {
+                val q = notification[position].productID
+                val action = SellListDirections.actionListToUpdateSellStatus(q)
+                holder.itemView.findNavController().navigate(action)
+
+            }
+            holder.button2.setOnClickListener {
+                val action = SellListDirections.actionListToCall()
+                holder.itemView.findNavController().navigate(action)            }
+
+        }
 
     }

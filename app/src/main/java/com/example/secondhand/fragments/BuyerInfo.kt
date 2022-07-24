@@ -126,7 +126,11 @@ class BuyerInfo : Fragment(),WishlistInterface {
 
     override fun click(item: BidStatus) {
         var id = item.id
+        var pid = item.productID
         var x = sharedPref.getAT("AT")
+        sharedPref.putSell("LOCK", "$id")
+        sharedPref.putSell("SUCCESS","$id")
+        sharedPref.putSell("DELETE","$pid")
         bidetail(id)
     }
     fun bidetail(id: Int) {

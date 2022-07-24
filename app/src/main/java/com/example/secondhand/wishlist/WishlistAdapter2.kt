@@ -1,11 +1,14 @@
 package com.example.secondhand.wishlist
 
+import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,7 +19,6 @@ import com.example.secondhand.entity.Wishlist
 import com.example.secondhand.fragments.BuyerInfoDirections
 import kotlinx.android.synthetic.main.wishlist_item.view.*
 
-// ganti jadi sellder order
 class WishlistAdapter2 (private val notification: MutableList<BidStatus>,
                         private val mainInterface: WishlistInterface
     ) : RecyclerView.Adapter<WishlistAdapter2.ViewHolder>() {
@@ -40,9 +42,6 @@ class WishlistAdapter2 (private val notification: MutableList<BidStatus>,
                     .into(history_image)
                 itemView.setOnClickListener {
                     mainInterface.click(product)
-
-
-
                 }
             }
         }
@@ -74,31 +73,20 @@ class WishlistAdapter2 (private val notification: MutableList<BidStatus>,
 
             }
             holder.itemView.button9.setOnClickListener {
-                holder.itemView.button7.visibility = View.VISIBLE
-                holder.itemView.button8.visibility = View.VISIBLE
+                val action = BuyerInfoDirections.actionBuyerInfoToDecline2()
+                holder.itemView.findNavController().navigate(action)
+                holder.itemView.button7.visibility = View.GONE
+                holder.itemView.button8.visibility = View.GONE
                 holder.itemView.button9.visibility = View.GONE
                 holder.itemView.button10.visibility = View.GONE
             }
-            holder.itemView.button7.setOnClickListener {
-                 val action = BuyerInfoDirections.actionBuyerInfoToUpdateSellStatus()
-            holder.itemView.findNavController().navigate(action)
-                holder.itemView.button8.setOnClickListener {
-                    // SELLER 30 BUAT LAYOUT TOOOOOODDDDDDDDDDDDDDDDDDDDDDDDDDDDDDD
-                    val action = BuyerInfoDirections.actionBuyerInfoToUpdateSellStatus()
+                holder.itemView.button10.setOnClickListener {
+                    var q = notification[position].id
+                    var s = notification[position].productID
+                    val action = BuyerInfoDirections.actionBuyerInfoToProductMatch(q,s)
                     holder.itemView.findNavController().navigate(action)
                 }
 
         }
-
-
-
-
-
-
-
-
-
-
-
         }
-    }
+
