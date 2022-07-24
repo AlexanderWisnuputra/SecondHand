@@ -65,6 +65,9 @@
         <action
             android:id="@+id/action_list_to_call"
             app:destination="@id/call" />
+        <action
+            android:id="@+id/action_list_to_sell"
+            app:destination="@id/sell" />
     </fragment>
     <fragment
         android:id="@+id/profileDetail"

@@ -70,7 +70,7 @@ class WishlistAdapter (private val notification: MutableList<BidStatus>,
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.bind(notification[position])
-            if(holder.history_date.text.equals("pending")){
+            if(holder.history_date.text.equals("decline")){
                 holder.button1.visibility =View.VISIBLE
                 holder.button2.visibility =View.VISIBLE
 

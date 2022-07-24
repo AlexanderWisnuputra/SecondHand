@@ -60,6 +60,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface,WishlistInterface
         observe2()
         getUserDetail()
         binding.orderrecyclerview.visibility = View.VISIBLE
+        binding.button11.visibility = View.VISIBLE
 
         binding.button4.setOnClickListener {
             sharedPref.putAT("status","1")
@@ -69,7 +70,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface,WishlistInterface
             getwish()
             observe3()
             setupRecyclerView3()
-
+            binding.button11.visibility = View.GONE
             binding.orderrecyclerview.visibility = View.INVISIBLE
             binding.historyrecyclerview.visibility = View.INVISIBLE
             binding.wishlist.visibility = View.VISIBLE
@@ -79,6 +80,7 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface,WishlistInterface
             setupRecyclerView()
             getdata()
             observe()
+            binding.button11.visibility = View.GONE
             binding.orderrecyclerview.visibility = View.INVISIBLE
             binding.historyrecyclerview.visibility = View.VISIBLE
             binding.wishlist.visibility = View.INVISIBLE
@@ -88,9 +90,13 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface,WishlistInterface
             setupRecyclerView2()
             Sorder()
             observe2()
+            binding.button11.visibility = View.VISIBLE
             binding.orderrecyclerview.visibility = View.VISIBLE
             binding.historyrecyclerview.visibility = View.INVISIBLE
             binding.wishlist.visibility = View.INVISIBLE
+        }
+        binding.button11.setOnClickListener {
+            findNavController().navigate(R.id.action_list_to_sell)
         }
     }
 

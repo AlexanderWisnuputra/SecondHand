@@ -51,10 +51,12 @@ class UpdateSellStatus: BottomSheetDialogFragment() {
         var x = sharedPref.getAT("AT")
         binding.button.setOnClickListener {
             if(binding.radioButton.isChecked){
+                vmod2.patchStatus(x,ids,"accepted")
                 vmod.patch(x, ids!!, "sold")
                 findNavController().popBackStack()
             }
             else if (binding.radioButton2.isChecked){
+                vmod2.patchStatus(x,ids,"accepted")
                 vmod.patch(x, ids!!, "available")
                 findNavController().popBackStack()
 
