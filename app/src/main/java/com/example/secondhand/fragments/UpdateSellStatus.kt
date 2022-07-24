@@ -48,15 +48,15 @@ class UpdateSellStatus: BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         sharedPref = Helper(requireContext())
         var ids = id.ids
+        var idss = id.idss
         var x = sharedPref.getAT("AT")
         binding.button.setOnClickListener {
             if(binding.radioButton.isChecked){
-                vmod2.patchStatus(x,ids,"accepted")
                 vmod.patch(x, ids!!, "sold")
+                deleteProduct(idss)
                 findNavController().popBackStack()
             }
             else if (binding.radioButton2.isChecked){
-                vmod2.patchStatus(x,ids,"accepted")
                 vmod.patch(x, ids!!, "available")
                 findNavController().popBackStack()
 
@@ -67,6 +67,18 @@ class UpdateSellStatus: BottomSheetDialogFragment() {
             }
             }
         }
+    fun deleteProduct(id: Int) {
+        val api = ServiceBuilder.instance()
+        var x = sharedPref.getAT("AT")
+        api.deleteProduct(x, id).enqueue(object : Callback<Void> {
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+            }
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                println(t.message)
+            }
+        })
+
+    }
     }
 
 

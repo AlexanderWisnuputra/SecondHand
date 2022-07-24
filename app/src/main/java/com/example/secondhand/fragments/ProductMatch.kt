@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.example.secondhand.Helper
 import com.example.secondhand.api.ServiceBuilder
 import com.example.secondhand.databinding.FragmentProductMatchBinding
@@ -41,9 +42,21 @@ class ProductMatch : BottomSheetDialogFragment() {
         var ids = pid.pid
         vmod2.patchStatus(x,id,"accepted")
         deleteProduct(ids)
-        val nameProduct = this.arguments?.getString("named")
-        val priceProduct = this.arguments?.getString("priced")
-        val poster = this.arguments?.getString("posterd")
+        val nameProduct = this.arguments?.getString("name_product")
+        val priceProduct = this.arguments?.getString("price_product")
+        val base = this.arguments?.getString("price")
+        val poster = this.arguments?.getString("poster")
+
+
+
+        binding.namaProduk.text = nameProduct
+        binding.hargaProduk.text = priceProduct
+        binding.tawarProduk.text = base
+        Glide.with(requireContext())
+            .load(poster)
+            .into(binding.picPembeli2)
+
+
 
         binding.whatsapp.setOnClickListener {
             val sendIntent = Intent()
