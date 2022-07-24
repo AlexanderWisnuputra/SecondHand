@@ -77,7 +77,8 @@ class WishlistAdapter (private val notification: MutableList<BidStatus>,
             }
             holder.button1.setOnClickListener {
                 val q = notification[position].productID
-                val action = SellListDirections.actionListToUpdateSellStatus(q)
+                val s = notification[position].id
+                val action = SellListDirections.actionListToUpdateSellStatus(q,s)
                 holder.itemView.findNavController().navigate(action)
 
             }
