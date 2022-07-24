@@ -1,6 +1,7 @@
 package com.example.secondhand.fragments
 
 import android.app.Activity
+import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -62,6 +63,9 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface,WishlistInterface
         binding.orderrecyclerview.visibility = View.VISIBLE
         binding.button11.visibility = View.VISIBLE
 
+        binding.button1.setBackgroundResource(R.drawable.selected_category_border)
+        binding.button1.setTextColor(Color.WHITE)
+
         binding.button4.setOnClickListener {
             sharedPref.putAT("status","1")
             findNavController().navigate(R.id.action_list_to_changeAcc)
@@ -75,6 +79,12 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface,WishlistInterface
             binding.historyrecyclerview.visibility = View.INVISIBLE
             binding.wishlist.visibility = View.VISIBLE
 
+            binding.button1.setBackgroundResource(R.drawable.category_border)
+            binding.button1.setTextColor(Color.BLACK)
+            binding.button2.setBackgroundResource(R.drawable.selected_category_border)
+            binding.button2.setTextColor(Color.WHITE)
+            binding.button3.setBackgroundResource(R.drawable.category_border)
+            binding.button3.setTextColor(Color.BLACK)
         }
         binding.button3.setOnClickListener {
             setupRecyclerView()
@@ -85,8 +95,15 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface,WishlistInterface
             binding.historyrecyclerview.visibility = View.VISIBLE
             binding.wishlist.visibility = View.INVISIBLE
 
+            binding.button1.setBackgroundResource(R.drawable.category_border)
+            binding.button1.setTextColor(Color.BLACK)
+            binding.button2.setBackgroundResource(R.drawable.category_border)
+            binding.button2.setTextColor(Color.BLACK)
+            binding.button3.setBackgroundResource(R.drawable.selected_category_border)
+            binding.button3.setTextColor(Color.WHITE)
+
         }
-        binding.listallproduct.setOnClickListener {
+        binding.button1.setOnClickListener {
             setupRecyclerView2()
             Sorder()
             observe2()
@@ -94,6 +111,13 @@ class SellList : Fragment(), HistoryInterface, SOrderInterface,WishlistInterface
             binding.orderrecyclerview.visibility = View.VISIBLE
             binding.historyrecyclerview.visibility = View.INVISIBLE
             binding.wishlist.visibility = View.INVISIBLE
+
+            binding.button1.setBackgroundResource(R.drawable.selected_category_border)
+            binding.button1.setTextColor(Color.WHITE)
+            binding.button2.setBackgroundResource(R.drawable.category_border)
+            binding.button2.setTextColor(Color.BLACK)
+            binding.button3.setBackgroundResource(R.drawable.category_border)
+            binding.button3.setTextColor(Color.BLACK)
         }
         binding.button11.setOnClickListener {
             findNavController().navigate(R.id.action_list_to_sell)

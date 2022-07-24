@@ -141,7 +141,7 @@
             android:orientation="horizontal">
 
             <android.widget.Button
-                android:id="@+id/listallproduct"
+                android:id="@+id/button1"
                 android:layout_width="140dp"
                 android:layout_height="43dp"
                 android:layout_marginTop="5dp"
@@ -151,7 +151,7 @@
                 android:text="Produk "
                 android:textAllCaps="false" />
 
-            <Button
+            <android.widget.Button
                 android:id="@+id/button2"
                 android:layout_width="140dp"
                 android:layout_height="43dp"
@@ -160,9 +160,7 @@
                 android:background="@drawable/category_border"
                 android:drawableLeft="@drawable/ic_heart"
                 android:text="Diminati"
-                android:singleLine="true"
-                android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textAllCaps="false" />
 
             <android.widget.Button
                 android:id="@+id/button3"
@@ -202,10 +200,11 @@
 
     <Button
         android:id="@+id/button11"
-        android:layout_width="107dp"
-        android:layout_height="100dp"
+        android:layout_width="100dp"
+        android:layout_height="130dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
+        android:background="@drawable/dashed_line"
         android:backgroundTint="@color/white"
         android:textColor="@color/black"
         android:visibility="invisible"
